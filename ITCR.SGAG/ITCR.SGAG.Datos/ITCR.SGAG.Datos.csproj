@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ITCR.SGAG.Datos</RootNamespace>
+    <AssemblyName>ITCR.SGAG.Datos</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cBDInteraccionBase.cs" />
+    <Compile Include="ClasesBase\cSGGIDANOBase.cs" />
+    <Compile Include="ClasesBase\cSGGIDANOPORIMPLEMENTOBase.cs" />
+    <Compile Include="ClasesBase\cSGGIDEPORTEBase.cs" />
+    <Compile Include="ClasesBase\cSGGIIMPLEMENTOBase.cs" />
+    <Compile Include="ClasesBase\cSGGITIPOIMPLEMENTOBase.cs" />
+    <Compile Include="ClasesBase\cSGMAHHORARIOCUMPLIDOPORUSUARIOBase.cs" />
+    <Compile Include="ClasesBase\cSGMHHORARIOBase.cs" />
+    <Compile Include="ClasesBase\cSGMHHORARIOCUMPLIDOBase.cs" />
+    <Compile Include="ClasesBase\cSGMHHORARIOPORUSUARIOBase.cs" />
+    <Compile Include="ClasesBase\cSGMUPERMISOBase.cs" />
+    <Compile Include="ClasesBase\cSGMUPERMISOSPORTIPOUSUARIOBase.cs" />
+    <Compile Include="ClasesBase\cSGMUTIPOUSUARIOBase.cs" />
+    <Compile Include="ClasesBase\cSGMUUSUARIOBase.cs" />
+    <Compile Include="ClasesBase\cSGPRDANOPORDEVOLUCIONBase.cs" />
+    <Compile Include="ClasesBase\cSGPRDEVOLUCIONBase.cs" />
+    <Compile Include="ClasesBase\cSGPRDEVOLUCIONPORPRESTAMOBase.cs" />
+    <Compile Include="ClasesBase\cSGPRIMPLEMENTOPORPRESTAMOBase.cs" />
+    <Compile Include="ClasesBase\cSGPRINGRESOBase.cs" />
+    <Compile Include="ClasesBase\cSGPRPRESTAMOBase.cs" />
+    <Compile Include="ClasesBase\cSGPRTIPOPRESTAMOBase.cs" />
+    <Compile Include="ClasesBase\cSGPRUSUARIOGIMNASIOBase.cs" />
+    <Compile Include="ClasesBase\cSysdiagramsBase.cs" />
+    <Compile Include="ClasesDatos\cSGGIDANODatos.cs" />
+    <Compile Include="ClasesDatos\cSGGIDANOPORIMPLEMENTODatos.cs" />
+    <Compile Include="ClasesDatos\cSGGIDEPORTEDatos.cs" />
+    <Compile Include="ClasesDatos\cSGGIIMPLEMENTODatos.cs" />
+    <Compile Include="ClasesDatos\cSGGITIPOIMPLEMENTODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMAHHORARIOCUMPLIDOPORUSUARIODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMHHORARIOCUMPLIDODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMHHORARIODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMHHORARIOPORUSUARIODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMUPERMISODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMUPERMISOSPORTIPOUSUARIODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMUTIPOUSUARIODatos.cs" />
+    <Compile Include="ClasesDatos\cSGMUUSUARIODatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRDANOPORDEVOLUCIONDatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRDEVOLUCIONDatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRDEVOLUCIONPORPRESTAMODatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRIMPLEMENTOPORPRESTAMODatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRINGRESODatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRPRESTAMODatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRTIPOPRESTAMODatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRUSUARIOGIMNASIODatos.cs" />
+    <Compile Include="ClasesDatos\cSysdiagramsDatos.cs" />
+    <Compile Include="cProveedorConexion.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

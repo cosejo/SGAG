@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCR.SGAG.Interfaz", "ITCR.SGAG.Interfaz\ITCR.SGAG.Interfaz.csproj", "{04F61B79-BD86-431B-B122-3EC534E93018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCR.SGAG.Negocios", "ITCR.SGAG.Negocios\ITCR.SGAG.Negocios.csproj", "{937D46B1-A7DD-432F-AC3A-19D75FE2A107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCR.SGAG.Datos", "ITCR.SGAG.Datos\ITCR.SGAG.Datos.csproj", "{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04F61B79-BD86-431B-B122-3EC534E93018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04F61B79-BD86-431B-B122-3EC534E93018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04F61B79-BD86-431B-B122-3EC534E93018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04F61B79-BD86-431B-B122-3EC534E93018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{937D46B1-A7DD-432F-AC3A-19D75FE2A107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{937D46B1-A7DD-432F-AC3A-19D75FE2A107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{937D46B1-A7DD-432F-AC3A-19D75FE2A107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{937D46B1-A7DD-432F-AC3A-19D75FE2A107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

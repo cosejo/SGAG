@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{937D46B1-A7DD-432F-AC3A-19D75FE2A107}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ITCR.SGAG.Negocios</RootNamespace>
+    <AssemblyName>ITCR.SGAG.Negocios</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClasesNegocios\cSGGIDANONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGGIDANOPORIMPLEMENTONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGGIDEPORTENegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGGIIMPLEMENTONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGGITIPOIMPLEMENTONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMAHHORARIOCUMPLIDOPORUSUARIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMHHORARIOCUMPLIDONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMHHORARIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMHHORARIOPORUSUARIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMUPERMISONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMUPERMISOSPORTIPOUSUARIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMUTIPOUSUARIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMUUSUARIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRDANOPORDEVOLUCIONNegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRDEVOLUCIONNegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRDEVOLUCIONPORPRESTAMONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRIMPLEMENTOPORPRESTAMONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRINGRESONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRPRESTAMONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRTIPOPRESTAMONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRUSUARIOGIMNASIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSysdiagramsNegocios.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITCR.SGAG.Datos\ITCR.SGAG.Datos.csproj">
+      <Project>{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}</Project>
+      <Name>ITCR.SGAG.Datos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
