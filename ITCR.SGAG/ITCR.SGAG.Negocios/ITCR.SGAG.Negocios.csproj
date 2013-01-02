@@ -49,6 +49,7 @@
     <Compile Include="ClasesNegocios\cSGMHHORARIOCUMPLIDONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGMHHORARIONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGMHHORARIOPORUSUARIONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGMUMANEJODATOSUSUARIOGIMNASIO.cs" />
     <Compile Include="ClasesNegocios\cSGMUPERMISONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGMUPERMISOSPORTIPOUSUARIONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGMUTIPOUSUARIONegocios.cs" />
@@ -60,7 +61,6 @@
     <Compile Include="ClasesNegocios\cSGPRINGRESONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRPRESTAMONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRTIPOPRESTAMONegocios.cs" />
-    <Compile Include="ClasesNegocios\cSGPRUSUARIOGIMNASIONegocios.cs" />
     <Compile Include="ClasesNegocios\cSysdiagramsNegocios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

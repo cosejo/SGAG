@@ -7,7 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCR.SGAG.Negocios", "ITCR.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCR.SGAG.Datos", "ITCR.SGAG.Datos\ITCR.SGAG.Datos.csproj", "{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCR.SGAG.Pruebas", "ITCR.SGAG.Pruebas\ITCR.SGAG.Pruebas.csproj", "{E5173675-5717-4913-BC2D-A60904C10371}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1144B64-FBE4-4E55-A81D-094A465B8C29}"
+	ProjectSection(SolutionItems) = preProject
+		ITCR.SGAG.vsmdi = ITCR.SGAG.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ITCR.SGAG.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -25,6 +37,10 @@ Global
 		{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF709D5D-8F82-4ED1-8CF1-AF4225B7571A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5173675-5717-4913-BC2D-A60904C10371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5173675-5717-4913-BC2D-A60904C10371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5173675-5717-4913-BC2D-A60904C10371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5173675-5717-4913-BC2D-A60904C10371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
