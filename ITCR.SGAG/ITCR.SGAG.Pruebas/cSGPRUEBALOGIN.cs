@@ -12,6 +12,10 @@ namespace ITCR.SGAG.Pruebas
         [TestMethod]
         public void TestMethod1()
         {
+            String IdUsuario = "201012345"; 
+            wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+            wsseg.ObtenerCedula(IdUsuario); //obtener número de cédula si tiene.
+            wsseg.ObtenerNombreUsuario(IdUsuario); //obtener nombre completo del usuario.
         }
     }
 }
