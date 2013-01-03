@@ -64,6 +64,7 @@
     <Compile Include="ClasesNegocios\cSGPRPRESTAMONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRTIPOPRESTAMONegocios.cs" />
     <Compile Include="ClasesNegocios\cSysdiagramsNegocios.cs" />
+    <Compile Include="ClasesNegocios\IniciarSesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\wsSeguridad\Reference.cs">
       <AutoGen>True</AutoGen>
