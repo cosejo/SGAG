@@ -13,5 +13,10 @@ namespace ITCR.SGAG.Interfaz
         {
 
         }
+
+        protected void cmdGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

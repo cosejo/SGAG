@@ -144,7 +144,7 @@ namespace ITCR.SGAG.Interfaz
                         int CodAplicacion = Global.gCOD_APLICACION;
 
                        /* wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-
+                        
                         if (wsseg.TieneAccesoAplicacion(CodAplicacion, IdUsuario, Session["COD_SEDE"].ToString()))
                         {
                             switch (System.Int32.Parse(ddlTipoUsuario.SelectedItem.Value))
@@ -166,15 +166,50 @@ namespace ITCR.SGAG.Interfaz
                             Session.Add("NUM_CEDULA", wsseg.ObtenerCedula(IdUsuario)); //obtener número de cédula si tiene.
                             Session.Add("NOM_USUARIO", wsseg.ObtenerNombreUsuario(IdUsuario)); //obtener nombre completo del usuario.
                             Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());*/
-                            if (FormsAuthentication.GetRedirectUrl(IdUsuario, false) == "")
-                            {
+                           // if (FormsAuthentication.GetRedirectUrl(IdUsuario, false) == "")
+                            //{
+                               /* Session.Add("ID_USUARIO", IdUsuario);
                                 FormsAuthentication.SetAuthCookie(IdUsuario, false);
-                                Response.Redirect(this.PaginaRedireccionar);
-                            }
-                            else
+                                //Response.Redirect(this.PaginaRedireccionar);
+                                Response.Write("Ha iniciado Sesión satisfactoriamente");*/
+                        Negocios.ClasesNegocios.IniciarSesion inicio = new Negocios.ClasesNegocios.IniciarSesion();
+                        switch (System.Int32.Parse(ddlTipoUsuario.SelectedItem.Value))
+                        {
+                            case 1://Funcionario
+                                if (inicio.iniciarSesionFuncionario(IdUsuario, Password))
+                                {
+                                    Session.Add("ID_USUARIO", IdUsuario);
+                                    FormsAuthentication.SetAuthCookie(IdUsuario, false);
+                                    //Response.Redirect(this.PaginaRedireccionar);
+                                    Response.Write("Ha iniciado Sesión satisfactoriamente");
+                                }
+                                else 
+                                {
+                                    throw new Exception("El usuario del funcionario no es válido");
+                                }
+                                break;
+                            case 2://Estudiante
+                                if (inicio.iniciarSesionEstudiante(IdUsuario, Password))
+                                {
+                                    Session.Add("ID_USUARIO", IdUsuario);
+                                    FormsAuthentication.SetAuthCookie(IdUsuario, false);
+                                    //Response.Redirect(this.PaginaRedireccionar);
+                                    Response.Write("Ha iniciado Sesión satisfactoriamente");
+                                }
+                                else
+                                {
+                                    throw new Exception("El Estudiante no es válido"); }
+                                break;
+                            case 3://Usuario Sistema
+                                break;
+                        }
+
+
+                          //  }
+                           /* else
                             {
                                 FormsAuthentication.RedirectFromLoginPage(IdUsuario, false);
-                            }
+                            }*/
                       /*  }
                         else
                         {
