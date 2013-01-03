@@ -50,7 +50,7 @@
 	        <tr>
 		        <td style="text-align:center; vertical-align:top" class="style3">
 			        <asp:Image ID="imgAplicacion" runat="server" 
-                        ImageUrl="~/imagenes/candado.jpg" />
+                        ImageUrl="~/imagenes/candado.png" />
                 </TD>
 	        </TR>
 	        <tr>
@@ -116,7 +116,7 @@
 					        <TD align="center">
 						        <br />
                                 <asp:ImageButton ID="btnEntrar" runat="server" CausesValidation="False" 
-                                    ImageUrl="~/imagenes/login_peq.jpeg" onclick="btnEntrar_Click" 
+                                    ImageUrl="~/imagenes/login_peq.png" onclick="btnEntrar_Click" 
                                     onclientclick="entrar()" />
                             </TD>
 				        </TR>
