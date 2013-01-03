@@ -66,7 +66,9 @@
     <Content Include="frmError.aspx" />
     <Content Include="frmMantenimiento.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="imagenes\candado.png" />
     <Content Include="imagenes\imgIngreso.gif" />
+    <Content Include="imagenes\login_peq.png" />
     <Content Include="imagenes\logo.gif" />
     <Content Include="imagenes\logoSistemasTEC.jpg" />
     <Content Include="imagenes\logotec1.gif" />
