@@ -72,7 +72,6 @@
     <Content Include="frmDatos.aspx" />
     <Content Include="frmError.aspx" />
     <Content Include="frmGestionInventario.aspx" />
-    <Content Include="frmIngresoSalaFuerza.aspx" />
     <Content Include="frmMantenimiento.aspx" />
     <Content Include="Global.asax" />
     <Content Include="imagenes\candado.png" />
@@ -168,12 +167,6 @@
     </Compile>
     <Compile Include="frmGestionInventario.aspx.designer.cs">
       <DependentUpon>frmGestionInventario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmIngresoSalaFuerza.aspx.cs">
-      <DependentUpon>frmIngresoSalaFuerza.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmIngresoSalaFuerza.aspx.designer.cs">
-      <DependentUpon>frmIngresoSalaFuerza.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmMantenimiento.aspx.cs">
       <DependentUpon>frmMantenimiento.aspx</DependentUpon>
