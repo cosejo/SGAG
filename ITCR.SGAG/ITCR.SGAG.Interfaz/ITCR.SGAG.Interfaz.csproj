@@ -64,6 +64,7 @@
     <Content Include="frmAutenticacion.aspx" />
     <Content Include="frmDatos.aspx" />
     <Content Include="frmError.aspx" />
+    <Content Include="frmIngresoSalaFuerza.aspx" />
     <Content Include="frmMantenimiento.aspx" />
     <Content Include="Global.asax" />
     <Content Include="imagenes\candado.png" />
@@ -145,6 +146,13 @@
     <Compile Include="frmError.aspx.cs">
       <DependentUpon>frmError.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmIngresoSalaFuerza.aspx.cs">
+      <DependentUpon>frmIngresoSalaFuerza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmIngresoSalaFuerza.aspx.designer.cs">
+      <DependentUpon>frmIngresoSalaFuerza.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmMantenimiento.aspx.cs">
       <DependentUpon>frmMantenimiento.aspx</DependentUpon>
