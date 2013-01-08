@@ -71,7 +71,6 @@
     <Content Include="frmAutenticacion.aspx" />
     <Content Include="frmDatos.aspx" />
     <Content Include="frmError.aspx" />
-    <Content Include="frmIngresoSalaFuerza.aspx" />
     <Content Include="frmGestionInventario.aspx" />
     <Content Include="frmMantenimiento.aspx" />
     <Content Include="Global.asax" />
@@ -162,12 +161,6 @@
       <DependentUpon>frmError.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frmIngresoSalaFuerza.aspx.cs">
-      <DependentUpon>frmIngresoSalaFuerza.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmIngresoSalaFuerza.aspx.designer.cs">
-      <DependentUpon>frmIngresoSalaFuerza.aspx</DependentUpon>
     <Compile Include="frmGestionInventario.aspx.cs">
       <DependentUpon>frmGestionInventario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
