@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,15 +58,20 @@
   <ItemGroup>
     <Content Include="Controles\Breadcrumb.txt" />
     <Content Include="Controles\Navigation.ascx" />
+    <Content Include="css\demo_page.css" />
+    <Content Include="css\demo_table.css" />
     <Content Include="css\itcr.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\jquery.ui.autocomplete.css" />
     <Content Include="css\Menu.css" />
+    <Content Include="css\TableTools.css" />
+    <Content Include="css\TableTools_JUI.css" />
     <Content Include="Default.aspx" />
     <Content Include="FinSesion.aspx" />
     <Content Include="frmAutenticacion.aspx" />
     <Content Include="frmDatos.aspx" />
     <Content Include="frmError.aspx" />
+    <Content Include="frmGestionInventario.aspx" />
     <Content Include="frmMantenimiento.aspx" />
     <Content Include="Global.asax" />
     <Content Include="imagenes\candado.png" />
@@ -76,10 +84,17 @@
     <Content Include="imagenes\tit-TEC.jpg" />
     <Content Include="js\easyTooltip.js" />
     <Content Include="js\jquery-ui.js" />
+    <Content Include="js\jquery.dataTables.js" />
+    <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery.menu.js" />
+    <Content Include="js\TableTools.js" />
+    <Content Include="js\TableTools.min.js" />
+    <Content Include="js\ZeroClipboard.js" />
+    <Content Include="Prueba.aspx" />
     <Content Include="Scripts\assets\css\simplemodal.css" />
     <Content Include="Scripts\assets\images\loader.gif" />
+    <Content Include="Scripts\DataTables.js" />
     <Content Include="Scripts\Interfaz.js" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -146,6 +161,13 @@
       <DependentUpon>frmError.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="frmGestionInventario.aspx.cs">
+      <DependentUpon>frmGestionInventario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmGestionInventario.aspx.designer.cs">
+      <DependentUpon>frmGestionInventario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmMantenimiento.aspx.cs">
       <DependentUpon>frmMantenimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,6 +179,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prueba.aspx.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prueba.aspx.designer.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Service References\wsSeguridad\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
