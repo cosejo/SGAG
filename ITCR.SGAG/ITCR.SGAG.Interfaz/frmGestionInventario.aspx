@@ -11,6 +11,11 @@
     		    $(document).ready(function () {
     		        $('#table_id').dataTable();
     		    });
+
+    		    function fnClickAgregarFila(p1,p2,p3,p4,p5,p6) {
+    		        $('#table_id').dataTable().fnAddData([
+                       p1,p2,p3,p4,p5,p6]);
+    		    }
 		</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

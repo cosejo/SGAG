@@ -18,7 +18,9 @@ namespace ITCR.SGAG.Interfaz
         protected void obtenerImplementos() 
         {
             cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION,"CA",2,"cosejo");
+            cSGGITIPOIMPLEMENTONegocios TipoImplemento = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION,"CA",2,"cosejo");
             Implemento.SeleccionarTodos();
+            TipoImplemento.SeleccionarTodos();
         }
     }
 }
