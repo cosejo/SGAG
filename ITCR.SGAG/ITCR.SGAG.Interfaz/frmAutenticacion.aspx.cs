@@ -172,7 +172,7 @@ namespace ITCR.SGAG.Interfaz
                                 FormsAuthentication.SetAuthCookie(IdUsuario, false);
                                 //Response.Redirect(this.PaginaRedireccionar);
                                 Response.Write("Ha iniciado Sesión satisfactoriamente");*/
-                        PaginaRedireccionar = "frmGestionInventario.aspx";
+                        PaginaRedireccionar = "frmIngresoSalaFuerza.aspx";
                         Negocios.ClasesNegocios.IniciarSesion inicio = new Negocios.ClasesNegocios.IniciarSesion();
                        /* switch (System.Int32.Parse(ddlTipoUsuario.SelectedItem.Value))
                         {
