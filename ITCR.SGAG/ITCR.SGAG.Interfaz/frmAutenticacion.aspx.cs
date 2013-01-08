@@ -172,15 +172,19 @@ namespace ITCR.SGAG.Interfaz
                                 FormsAuthentication.SetAuthCookie(IdUsuario, false);
                                 //Response.Redirect(this.PaginaRedireccionar);
                                 Response.Write("Ha iniciado Sesión satisfactoriamente");*/
+                        PaginaRedireccionar = "frmGestionInventario.aspx";
                         Negocios.ClasesNegocios.IniciarSesion inicio = new Negocios.ClasesNegocios.IniciarSesion();
-                        switch (System.Int32.Parse(ddlTipoUsuario.SelectedItem.Value))
+                       /* switch (System.Int32.Parse(ddlTipoUsuario.SelectedItem.Value))
                         {
                             case 1://Funcionario
                                 if (inicio.iniciarSesionFuncionario(IdUsuario, Password))
                                 {
                                     Session.Add("ID_USUARIO", IdUsuario);
+                                    Session.Add("NUM_CEDULA", "12345"); //obtener número de cédula si tiene.
+                                    Session.Add("NOM_USUARIO", IdUsuario); //obtener nombre completo del usuario.
+                                    Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());
                                     FormsAuthentication.SetAuthCookie(IdUsuario, false);
-                                    //Response.Redirect(this.PaginaRedireccionar);
+                                    Response.Redirect(this.PaginaRedireccionar);
                                     Response.Write("Ha iniciado Sesión satisfactoriamente");
                                 }
                                 else 
@@ -192,8 +196,11 @@ namespace ITCR.SGAG.Interfaz
                                 if (inicio.iniciarSesionEstudiante(IdUsuario, Password))
                                 {
                                     Session.Add("ID_USUARIO", IdUsuario);
+                                    Session.Add("NUM_CEDULA", "12345"); //obtener número de cédula si tiene.
+                                    Session.Add("NOM_USUARIO", IdUsuario); //obtener nombre completo del usuario.
+                                    Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());
                                     FormsAuthentication.SetAuthCookie(IdUsuario, false);
-                                    //Response.Redirect(this.PaginaRedireccionar);
+                                    Response.Redirect(this.PaginaRedireccionar);
                                     Response.Write("Ha iniciado Sesión satisfactoriamente");
                                 }
                                 else
@@ -202,8 +209,7 @@ namespace ITCR.SGAG.Interfaz
                                 break;
                             case 3://Usuario Sistema
                                 break;
-                        }
-
+                        }*/
 
                           //  }
                            /* else
@@ -216,6 +222,21 @@ namespace ITCR.SGAG.Interfaz
                             txtUsuario.Text = "";
                             txtPassword.Text = "";
                         }*/
+                        Session.Add("ID_USUARIO", IdUsuario);
+                        Session.Add("NUM_CEDULA", "12345"); //obtener número de cédula si tiene.
+                        Session.Add("NOM_USUARIO", IdUsuario); //obtener nombre completo del usuario.
+                        Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());
+                        if (FormsAuthentication.GetRedirectUrl(IdUsuario, false) == "/default.aspx")
+                        {
+                            FormsAuthentication.SetAuthCookie(IdUsuario, false);
+                            Response.Redirect(PaginaRedireccionar, false);
+                            Response.Write("Ha iniciado Sesión satisfactoriamente");
+                        }
+                         else
+                            {
+                                FormsAuthentication.RedirectFromLoginPage(IdUsuario, false);
+                            }
+                        
                     }
                     catch (COMException ex)// captura y manejo de errores
                     {

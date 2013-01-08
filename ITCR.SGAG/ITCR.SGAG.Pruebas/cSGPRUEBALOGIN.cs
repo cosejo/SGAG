@@ -12,9 +12,6 @@ namespace ITCR.SGAG.Pruebas
         [TestMethod]
         public void TestConexion()
         {
-<<<<<<< HEAD
-
-=======
             String IdUsuario = "201012345"; 
             wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
             bool actual = wsseg.EsEstudiante(IdUsuario);
@@ -58,7 +55,6 @@ namespace ITCR.SGAG.Pruebas
             bool actual;
             actual = inicio.iniciarSesionFuncionario(IdUsuario, Contrasena);
             Assert.AreEqual(expected, actual);
->>>>>>> ce67630ae852a8acf188a6d9411a73a68baf2a2f
         }
     }
 }
