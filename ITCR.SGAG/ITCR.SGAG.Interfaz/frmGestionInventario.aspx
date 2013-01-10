@@ -6,7 +6,68 @@
     {
         margin-top: 24px;
     }
-</style>
+        .style2
+        {
+            width: 242px;
+        }
+        .style5
+        {
+            width: 8px;
+        }
+        .style6
+        {
+            width: 104px;
+        }
+        .style7
+        {
+            width: 60px;
+        }
+        .style8
+        {
+            width: 242px;
+            height: 50px;
+        }
+        .style9
+        {
+            width: 8px;
+            height: 50px;
+        }
+        .style10
+        {
+            width: 104px;
+            height: 50px;
+        }
+        .style11
+        {
+            width: 60px;
+            height: 50px;
+        }
+        .style12
+        {
+            width: 242px;
+            height: 20px;
+        }
+        .style13
+        {
+            width: 8px;
+            height: 20px;
+        }
+        .style14
+        {
+            width: 104px;
+            height: 20px;
+        }
+        .style15
+        {
+            width: 60px;
+            height: 20px;
+        }
+        .style16
+        {
+            width: 300px;
+            height: 55px;
+        }
+    </style>
     		<script type="text/javascript" charset="utf-8">
     		    $(document).ready(function () {
     		        $('#table_id').dataTable();
@@ -14,7 +75,7 @@
 		</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <div> <label title="LabelTituloInventario"> Inventario</label>
+          <div style="width: 690px; margin-left: 0px"> <label title="LabelTituloInventario"> Inventario</label>
           <br/>
           <label>Show <select size="1" name="example_length" aria-controls="table_id"><option value="5" selected="selected">5</option><option value="10">10</option><option value="50">50</option><option value="100">100</option></select> entries</label>
             <table id="table_id" class="display">
@@ -134,4 +195,68 @@
                 <a class="paginate_enabled_next" tabindex="0" role="button" id="example_next" aria-controls="table_id">Next</a>
                 </div>
     </div>
-</asp:Content>
+    <div style="width: 687px">
+    </div>
+        <div style="width: 687px">
+            <hr />
+    </div>
+        <div style="width: 687px">
+            <div>
+            </div>
+    </div>
+    <div style="width: 687px; height: 141px;">
+        <table style="width:100%; margin-bottom: 0px;">
+            <tr>
+                <td class="style2">
+                    <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" style="margin-left: 32px" ValidationGroup="Implemento"
+                        Width="195px"></asp:TextBox>
+                                     </td>
+                <td align="left" class="style5">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
+                        ErrorMessage="Nombre del Implemento" ControlToValidate="TextBoxImplementoNuevo">*</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="TextoError" ValidationGroup="Deporte"
+                        ErrorMessage="Nombre del Deporte" ControlToValidate="TextBoxDeporteNuevo">*</asp:RequiredFieldValidator>
+                </td>
+                <td class="style6" align="left">
+                    <asp:TextBox ID="TextBoxDeporteNuevo" runat="server" style="margin-left: 22px" ValidationGroup="Deporte"
+                        Width="200px"></asp:TextBox>
+                </td>
+                 <td class="style7">
+                    <asp:Button ID="BotonAgregarDeporte" runat="server" Text="Agregar Deporte" 
+                        style="margin-left: 25px" onclick="BotonAgregarDeporte_Click" ValidationGroup="Deporte"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="style12">
+                    </td>
+                <td class="style13">
+                    </td>
+                <td class="style14">
+                    </td>
+                 <td class="style15">
+                     </td>
+            </tr>
+            <tr>
+                <td class="style8">
+                    <asp:Button ID="BotonAgregarImplemento" runat="server" style="margin-left: 50px" 
+                        Text="Agregar Implemento" onclick="BotonAgregarImplemento_Click" ValidationGroup="Implemento" />
+                </td>
+                <td class="style9" align="center">
+                </td>
+                <td class="style10">
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="El siguiente campo es requerido:"
+                        CssClass="TextoError" Height="31px" Width="174px"/>
+                </td>
+                 <td class="style11">
+                <asp:Label ID="LabelMensaje" runat="server" CssClass="TextoError" ForeColor="Blue"></asp:Label>
+                </td>
+            </tr>
+        </table>
+    </div>
+        <table style="width:177%; margin-bottom: 0px; height: 24px;">
+                        <tr>
+                <td class="style16">
+                    &nbsp;</td>
+            </tr>
+        </table>
+    </asp:Content>

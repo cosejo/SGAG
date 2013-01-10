@@ -15,10 +15,69 @@ namespace ITCR.SGAG.Interfaz
             //ClientScript.RegisterStartupScript(this.GetType(), "myScript", "IniciarTabla();", true);
         }
 
-        protected void obtenerImplementos() 
+        private void obtenerImplementos() 
         {
             cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION,"CA",2,"cosejo");
             Implemento.SeleccionarTodos();
+        }
+
+        private Boolean agregarImplemento() 
+        {
+            /*Falta implementar
+            cSGGIIMPLEMENTONegocios ImplementoNuevo = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+            ImplementoNuevo.DSC_IMPLEMENTO = TextBoxImplementoNuevo.Text;
+            return ImplementoNuevo.Insertar();*/
+            return false;
+        }
+
+        private Boolean agregarDeporte()
+        {
+            cSGGIDEPORTENegocios DeporteNuevo = new (Global.gCOD_APLICACION, "CA", 2, "cosejo");
+            DeporteNuevo.NOM_DEPORTE = TextBoxDeporteNuevo.Text;
+            return DeporteNuevo.Insertar();
+        }
+
+        protected void BotonAgregarImplemento_Click(object sender, EventArgs e)
+        {
+            try {
+                Page.Validate("Implemento");
+
+                if (Page.IsValid)
+                {
+                    if (agregarImplemento())
+                    {
+                    }
+                    else
+                    { 
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        protected void BotonAgregarDeporte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Page.Validate("Deporte");
+
+                if (Page.IsValid)
+                {
+                    if (agregarDeporte())
+                    {
+                    }
+                    else
+                    {
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
