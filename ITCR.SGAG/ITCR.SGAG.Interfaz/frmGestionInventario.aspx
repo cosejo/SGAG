@@ -68,6 +68,59 @@
             height: 55px;
         }
     </style>
+    <style type="text/css">
+        
+     .MultiColumnTextBoxStyle
+        {            
+            border: 1px solid #99bbe8;
+	        padding: 1px 1px 0px 3px;	        
+	        font-size:12px;  
+            font-family:"Calibri","sans-serif"; 
+            background-color:#ffffe1;    
+        }
+     
+        .MultiColumnContextMenuPanel 
+        {
+            height:150px;            
+            overflow:scroll;            
+            overflow-x: hidden;
+	        border: 1px solid #868686;
+	        z-index: 1000;
+	        background: url(menu-bg.gif) repeat-y 0 0 #FAFAFA;
+	        background-color:#FFF;	        
+	        cursor: default;
+	        padding: 1px 1px 0px 1px;
+	        font-size:12px; 
+            font-family:"Calibri","sans-serif"; 
+        }
+ 
+        a.MultiColumnContextMenuItem
+        {            
+	        margin: 1px 0 1px 0;
+	        display: block;
+	        color: #003399;
+	        text-decoration: none;
+	        cursor: pointer;	
+	        padding: 4px 19px 4px 4px;
+	        white-space: nowrap;
+        }
+
+        a.MultiColumnContextMenuItem-Selected
+        {
+	        font-weight: bold;
+        }
+
+        a.MultiColumnContextMenuItem:hover
+        {
+	        background-color: #FFE6A0;
+	        color: #003399;
+	        border: 1px solid #D2B47A;
+	        padding: 3px 18px 3px 3px;
+	        text-decoration:none;
+	        
+        }
+        
+    </style>
     		<script type="text/javascript" charset="utf-8">
     		    $(document).ready(function () {
     		        $('#table_id').dataTable();
@@ -75,7 +128,10 @@
 		</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <div style="width: 690px; margin-left: 0px"> <label title="LabelTituloInventario"> Inventario</label>
+          <div style="width: 690px; margin-left: 0px"> 
+              <asp:ScriptManager ID="ScriptManager1" runat="server">
+              </asp:ScriptManager>
+              <label title="LabelTituloInventario"> Inventario</label>
           <br/>
           <label>Show <select size="1" name="example_length" aria-controls="table_id"><option value="5" selected="selected">5</option><option value="10">10</option><option value="50">50</option><option value="100">100</option></select> entries</label>
             <table id="table_id" class="display">
@@ -218,8 +274,27 @@
                         ErrorMessage="Nombre del Deporte" ControlToValidate="TextBoxDeporteNuevo">*</asp:RequiredFieldValidator>
                 </td>
                 <td class="style6" align="left">
+
+                	<asp:UpdatePanel ID="UPnlComboBoxMultiColumna" runat="server">
+                    <ContentTemplate>
+
+        <asp:Panel ID="PnlComboBoxMultiColumna" runat="server" CssClass="MultiColumnContextMenuPanel" Style="display: none; visibility: hidden;">
+       </asp:Panel>
+
+        <asp:Label ID="LblComboBoxMultiColumna" runat="server" Text="" CssClass="MultiColumnTextBoxStyle"></asp:Label>
+
                     <asp:TextBox ID="TextBoxDeporteNuevo" runat="server" style="margin-left: 22px" ValidationGroup="Deporte"
                         Width="200px"></asp:TextBox>
+                    <asp:TextBoxWatermarkExtender ID="TextBoxDeporteNuevo_TextBoxWatermarkExtender" WatermarkText="Deporte Nuevo"
+                        runat="server" Enabled="True" TargetControlID="TextBoxDeporteNuevo">
+                    </asp:TextBoxWatermarkExtender>
+                    <asp:DropDownExtender ID="TextBoxDeporteNuevo_DropDownExtender" runat="server"
+                        DynamicServicePath="" Enabled="True" TargetControlID="TextBoxDeporteNuevo" DropDownControlID="PnlComboBoxMultiColumna">
+                    </asp:DropDownExtender>
+                    <asp:Label ID="LblSelectedItemComboBoxMultiColumna" runat="server" Text=""></asp:Label> 
+                </ContentTemplate> 
+                </asp:UpdatePanel>
+
                 </td>
                  <td class="style7">
                     <asp:Button ID="BotonAgregarDeporte" runat="server" Text="Agregar Deporte" 
