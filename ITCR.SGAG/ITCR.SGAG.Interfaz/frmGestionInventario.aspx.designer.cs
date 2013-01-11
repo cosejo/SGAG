@@ -91,7 +91,7 @@ namespace ITCR.SGAG.Interfaz {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDeporteNuevo_TextBoxWatermarkExtender;
+        //protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDeporteNuevo_TextBoxWatermarkExtender;
         
         /// <summary>
         /// Control TextBoxDeporteNuevo_DropDownExtender.
@@ -100,7 +100,7 @@ namespace ITCR.SGAG.Interfaz {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.DropDownExtender TextBoxDeporteNuevo_DropDownExtender;
+        //rotected global::AjaxControlToolkit.DropDownExtender TextBoxDeporteNuevo_DropDownExtender;
         
         /// <summary>
         /// Control LblSelectedItemComboBoxMultiColumna.
