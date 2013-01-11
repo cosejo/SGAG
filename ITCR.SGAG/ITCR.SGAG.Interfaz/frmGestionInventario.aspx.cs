@@ -32,7 +32,7 @@ namespace ITCR.SGAG.Interfaz
 
         private Boolean agregarDeporte()
         {
-            cSGGIDEPORTENegocios DeporteNuevo = new (Global.gCOD_APLICACION, "CA", 2, "cosejo");
+            cSGGIDEPORTENegocios DeporteNuevo = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
             DeporteNuevo.NOM_DEPORTE = TextBoxDeporteNuevo.Text;
             return DeporteNuevo.Insertar();
         }

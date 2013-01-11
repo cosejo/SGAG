@@ -64,8 +64,13 @@
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\jquery.ui.autocomplete.css" />
     <Content Include="css\Menu.css" />
+    <Content Include="css\realizarPrestamo.css" />
     <Content Include="css\TableTools.css" />
     <Content Include="css\TableTools_JUI.css" />
+    <Content Include="css\verPrestamos.css" />
+    <Content Include="DataTable_Plugin\css\jquery-ui-1.8.4.custom.css" />
+    <Content Include="DataTable_Plugin\css\jquery.dataTables_themeroller.css" />
+    <Content Include="DataTable_Plugin\jquery.dataTables.js" />
     <Content Include="Default.aspx" />
     <Content Include="FinSesion.aspx" />
     <Content Include="frmAutenticacion.aspx" />
@@ -74,6 +79,8 @@
     <Content Include="frmGestionInventario.aspx" />
     <Content Include="frmIngresoSalaFuerza.aspx" />
     <Content Include="frmMantenimiento.aspx" />
+    <Content Include="frmRealizarPrestamo.aspx" />
+    <Content Include="frmVerPrestamos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="imagenes\candado.png" />
     <Content Include="imagenes\imgIngreso.gif" />
@@ -91,6 +98,7 @@
     <Content Include="js\jquery.menu.js" />
     <Content Include="js\TableTools.js" />
     <Content Include="js\TableTools.min.js" />
+    <Content Include="js\verPrestamos.js" />
     <Content Include="js\ZeroClipboard.js" />
     <Content Include="Prueba.aspx" />
     <Content Include="Scripts\assets\css\simplemodal.css" />
@@ -182,6 +190,20 @@
     </Compile>
     <Compile Include="frmMantenimiento.aspx.designer.cs">
       <DependentUpon>frmMantenimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmRealizarPrestamo.aspx.cs">
+      <DependentUpon>frmRealizarPrestamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmRealizarPrestamo.aspx.designer.cs">
+      <DependentUpon>frmRealizarPrestamo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerPrestamos.aspx.cs">
+      <DependentUpon>frmVerPrestamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmVerPrestamos.aspx.designer.cs">
+      <DependentUpon>frmVerPrestamos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

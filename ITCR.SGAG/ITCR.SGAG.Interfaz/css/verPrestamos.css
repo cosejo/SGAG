@@ -1,0 +1,13 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * General page setup
+ */
+ 
+#dt_prestamos {
+	font: 80%/1.45em "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	text-align:left;
+}
+
+#dt_prestamos #container {
+	width: 800px;
+}
