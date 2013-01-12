@@ -91,6 +91,7 @@
     <Content Include="imagenes\TECAzul.jpg" />
     <Content Include="imagenes\tit-TEC.jpg" />
     <Content Include="js\easyTooltip.js" />
+    <Content Include="js\gestionInventario.js" />
     <Content Include="js\jquery-ui.js" />
     <Content Include="js\jquery.dataTables.js" />
     <Content Include="js\jquery.dataTables.min.js" />
