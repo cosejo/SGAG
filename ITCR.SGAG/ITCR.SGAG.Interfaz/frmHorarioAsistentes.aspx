@@ -14,7 +14,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table style="width: 213%; margin-bottom: 0px; margin-left: 0px;">
+    <table style="width: 142%; margin-bottom: 0px; margin-left: 0px;">
         <tr align = "center">
             <td style="font-size: large">
                 &nbsp;</td>

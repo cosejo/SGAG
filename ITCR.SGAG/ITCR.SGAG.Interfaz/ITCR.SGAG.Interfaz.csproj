@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="frmHorarioAsistentes.aspx.cs">
       <DependentUpon>frmHorarioAsistentes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmHorarioAsistentes.aspx.designer.cs">
       <DependentUpon>frmHorarioAsistentes.aspx</DependentUpon>
