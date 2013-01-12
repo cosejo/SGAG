@@ -12,11 +12,7 @@
         }
         .style5
         {
-            width: 8px;
-        }
-        .style6
-        {
-            width: 104px;
+            width: 19px;
         }
         .style7
         {
@@ -27,19 +23,9 @@
             width: 242px;
             height: 50px;
         }
-        .style9
-        {
-            width: 8px;
-            height: 50px;
-        }
         .style10
         {
-            width: 104px;
-            height: 50px;
-        }
-        .style11
-        {
-            width: 60px;
+            width: 48px;
             height: 50px;
         }
         .style12
@@ -49,17 +35,12 @@
         }
         .style13
         {
-            width: 8px;
+            width: 19px;
             height: 20px;
         }
         .style14
         {
-            width: 104px;
-            height: 20px;
-        }
-        .style15
-        {
-            width: 60px;
+            width: 48px;
             height: 20px;
         }
         .style16
@@ -120,6 +101,27 @@
 	        
         }
         
+        .style17
+        {
+            width: 48px;
+        }
+        
+        .style18
+        {
+            width: 5px;
+        }
+        .style19
+        {
+            width: 5px;
+            height: 20px;
+        }
+        
+        .style20
+        {
+            width: 19px;
+            height: 50px;
+        }
+        
     </style>
     		<script type="text/javascript" charset="utf-8">
     		    $(document).ready(function () {
@@ -128,7 +130,7 @@
 		</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <div style="width: 690px; margin-left: 0px"> 
+          <div style="width: 873px; margin-left: 0px" align="left"> 
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
               <label title="LabelTituloInventario"> Inventario</label>
@@ -254,26 +256,31 @@
     <div style="width: 687px">
     </div>
         <div style="width: 687px">
-            <hr />
+            <hr style="width: 877px" />
     </div>
         <div style="width: 687px">
             <div>
             </div>
     </div>
-    <div style="width: 687px; height: 141px;">
+    <div style="width: 875px; height: 141px;">
         <table style="width:100%; margin-bottom: 0px;">
             <tr>
                 <td class="style2">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
+                        ErrorMessage="Nombre del Implemento" ControlToValidate="TextBoxImplementoNuevo">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" style="margin-left: 32px" ValidationGroup="Implemento"
                         Width="195px"></asp:TextBox>
                                      </td>
-                <td align="left" class="style5">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
-                        ErrorMessage="Nombre del Implemento" ControlToValidate="TextBoxImplementoNuevo">*</asp:RequiredFieldValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="TextoError" ValidationGroup="Deporte"
+                <td align="right" class="style5">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
                         ErrorMessage="Nombre del Deporte" ControlToValidate="TextBoxDeporteNuevo">*</asp:RequiredFieldValidator>
+
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" 
+                        runat="server" CssClass="TextoError" ValidationGroup="Deporte"
+                        ErrorMessage="Nombre del Deporte" ControlToValidate="TextBoxDeporteNuevo">*</asp:RequiredFieldValidator>
+
                 </td>
-                <td class="style6" align="left">
+                <td class="style17" align="left">
 
                 	<asp:UpdatePanel ID="UPnlComboBoxMultiColumna" runat="server">
                     <ContentTemplate>
@@ -281,9 +288,7 @@
         <asp:Panel ID="PnlComboBoxMultiColumna" runat="server" CssClass="MultiColumnContextMenuPanel" Style="display: none; visibility: hidden;">
        </asp:Panel>
 
-        <asp:Label ID="LblComboBoxMultiColumna" runat="server" Text="" CssClass="MultiColumnTextBoxStyle"></asp:Label>
-
-                    <asp:TextBox ID="TextBoxDeporteNuevo" runat="server" style="margin-left: 22px" ValidationGroup="Deporte"
+                    <asp:TextBox ID="TextBoxDeporteNuevo" text="" runat="server" style="margin-left: 22px" ValidationGroup="Deporte"
                         Width="200px"></asp:TextBox>
                     <asp:TextBoxWatermarkExtender ID="TextBoxDeporteNuevo_TextBoxWatermarkExtender" WatermarkText="Deporte Nuevo"
                         runat="server" Enabled="True" TargetControlID="TextBoxDeporteNuevo">
@@ -291,10 +296,8 @@
                     <asp:DropDownExtender ID="TextBoxDeporteNuevo_DropDownExtender" runat="server"
                         DynamicServicePath="" Enabled="True" TargetControlID="TextBoxDeporteNuevo" DropDownControlID="PnlComboBoxMultiColumna">
                     </asp:DropDownExtender>
-                    <asp:Label ID="LblSelectedItemComboBoxMultiColumna" runat="server" Text=""></asp:Label> 
                 </ContentTemplate> 
                 </asp:UpdatePanel>
-
                 </td>
                  <td class="style7">
                     <asp:Button ID="BotonAgregarDeporte" runat="server" Text="Agregar Deporte" 
@@ -307,8 +310,9 @@
                 <td class="style13">
                     </td>
                 <td class="style14">
+                    <asp:Label ID="LblSelectedItemComboBoxMultiColumna" runat="server" Text=""></asp:Label> 
                     </td>
-                 <td class="style15">
+                 <td class="style19">
                      </td>
             </tr>
             <tr>
@@ -316,19 +320,24 @@
                     <asp:Button ID="BotonAgregarImplemento" runat="server" style="margin-left: 50px" 
                         Text="Agregar Implemento" onclick="BotonAgregarImplemento_Click" ValidationGroup="Implemento" />
                 </td>
-                <td class="style9" align="center">
+                <td class="style20" align="center">
                 </td>
-                <td class="style10">
-                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="El siguiente campo es requerido:"
-                        CssClass="TextoError" Height="31px" Width="174px"/>
+                <td class="style10" align="left">
+                    <asp:Label ID="LabelMensaje" runat="server" Text="" CssClass="TextoError" ForeColor="Blue"> </asp:Label>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
+                        HeaderText="El siguiente campo es requerido:" ValidationGroup="Implemento"
+                        CssClass="TextoError" Height="31px" Width="209px"/>
+                                            <asp:ValidationSummary ID="ValidationSummary2" 
+                        runat="server" HeaderText="El siguiente campo es requerido:" ValidationGroup="Deporte"
+                        CssClass="TextoError" Height="31px" Width="207px"/>
                 </td>
-                 <td class="style11">
-                <asp:Label ID="LabelMensaje" runat="server" CssClass="TextoError" ForeColor="Blue"></asp:Label>
+                <td class="style18">
+               
                 </td>
             </tr>
         </table>
     </div>
-        <table style="width:177%; margin-bottom: 0px; height: 24px;">
+        <table style="width:127%; margin-bottom: 0px; height: 24px;">
                         <tr>
                 <td class="style16">
                     &nbsp;</td>
