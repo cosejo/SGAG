@@ -106,11 +106,27 @@ namespace ITCR.SGAG.Interfaz
 
         private void obtenerImplementos() 
         {
-            cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION,"CA",2,"cosejo");
+            cSGGITIPOIMPLEMENTONegocios Implemento = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
             DT_Implementos = Implemento.SeleccionarTodos();
-            DataRow row = DT_Implementos.Rows[0];
+            /*DataRow row = DT_Implementos.Rows[0];
             string e = row[0].ToString();
-            llenarTablaImplementos();
+            llenarTablaImplementos();*/
+            String aDataSet = "[";
+            int cantidadColumnas = DT_Implementos.Columns.Count;
+            for (int IndiceImplementos = 0; IndiceImplementos < DT_Deportes.Rows.Count-2; IndiceImplementos++)
+            {
+                aDataSet+= "['" + DT_Implementos.Rows[IndiceImplementos][0] + "','" + DT_Implementos.Rows[IndiceImplementos][1] + "','" + DT_Implementos.Rows[IndiceImplementos][2] + "']";
+                if (IndiceImplementos + 1 != DT_Deportes.Rows.Count - 2)
+                {
+                    aDataSet += ",";
+                }
+            }
+            aDataSet+= "]";
+            
+            if (!Page.ClientScript.IsStartupScriptRegistered("TablaInventario"))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaInventario", "<script type=\"text/javascript\"> CrearTablaInventario(" + aDataSet + ");</script>");
+            }
         }
 
         private void obtenerDeportes()

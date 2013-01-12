@@ -138,122 +138,13 @@
           <div style="width: 873px; margin-left: 0px" align="left"> 
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
-              <label title="LabelTituloInventario"> Inventario</label>
-          <br/>
-          <label>Show <select size="1" name="example_length" aria-controls="table_id"><option value="5" selected="selected">5</option><option value="10">10</option><option value="50">50</option><option value="100">100</option></select> entries</label>
-            <table id="table_id" class="display">
-                <thead>
-                    <tr align="center">
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>etc</th>
-                        <th>etc</th>
-                        <th>etc</th>
-                    </tr>
-                </thead>
-                <tbody>
-          <tr class="odd gradeA" align"center">
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-            <td>etc</td>
-             <td>etc</td>
-              <td>etc</td>
-          </tr>
-                    <tr class="even gradeA">
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>etc</td>
-                         <td>etc</td>
-                          <td>etc</td>
-                    </tr>
 
-                    <tr class="even gradeA">
-			<td>Trident</td>
-			<td>AOL browser (AOL desktop)</td>
-			<td>Win XP</td>
-			<td class="center">6</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Firefox 1.0</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Firefox 1.5</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Firefox 2.0</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Firefox 3.0</td>
-			<td>Win 2k+ / OSX.3+</td>
-			<td class="center">1.9</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Camino 1.0</td>
-			<td>OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Camino 1.5</td>
-			<td>OSX.3+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Netscape 7.2</td>
-			<td>Win 95+ / Mac OS 8.6-9.2</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Netscape Browser 8</td>
-			<td>Win 98SE+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Netscape Navigator 9</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Mozilla 1.0</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr class="gradeA">
-			<td>Gecko</td>
-			<td>Mozilla 1.1</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.1</td>
-			<td class="center">A</td>
-		</tr>
-                </tbody>
-            </table>
-    </div>
+            <div id="dt_prestamos">
+                <div id="container">
+                    <div id="dynamic"></div>
+                        <div class="spacer"></div>
+                        </div>
+        </div>
     <div style="width: 856px">
     </div>
         <div style="width: 687px">
