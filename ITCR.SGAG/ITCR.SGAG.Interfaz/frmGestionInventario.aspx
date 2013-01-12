@@ -253,17 +253,13 @@
 		</tr>
                 </tbody>
             </table>
-            <div class="dataTables_paginate paging_two_button" id="example_paginate">
-                <a class="paginate_disabled_previous" tabindex="0" role="button" id="example_previous" aria-controls="table_id">Previous</a>
-                <a class="paginate_enabled_next" tabindex="0" role="button" id="example_next" aria-controls="table_id">Next</a>
-                </div>
     </div>
-    <div style="width: 687px">
+    <div style="width: 856px">
     </div>
         <div style="width: 687px">
             <hr style="width: 877px" />
     </div>
-        <div style="width: 687px">
+        <div style="width: 856px; height: 36px;">
             <div>
             </div>
     </div>
@@ -275,6 +271,9 @@
                         ErrorMessage="Nombre del Implemento" ControlToValidate="TextBoxImplementoNuevo">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" style="margin-left: 32px" ValidationGroup="Implemento"
                         Width="195px"></asp:TextBox>
+                                     <asp:TextBoxWatermarkExtender ID="TextBoxImplementoNuevo_TextBoxWatermarkExtender" WatermarkText="Tipo de Implemento Nuevo"
+                        runat="server" Enabled="True" TargetControlID="TextBoxImplementoNuevo">
+                    </asp:TextBoxWatermarkExtender>
                                      </td>
                 <td align="right" class="style5">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
@@ -333,7 +332,7 @@
                         HeaderText="El siguiente campo es requerido:" ValidationGroup="Implemento"
                         CssClass="TextoError" Height="31px" Width="209px"/>
                                             <asp:ValidationSummary ID="ValidationSummary2" 
-                        runat="server" HeaderText="El siguiente campo es requerido:" ValidationGroup="Deporte"
+                        runat="server" HeaderText="Es requerido que seleccione el siguiente campo:" ValidationGroup="Deporte"
                         CssClass="TextoError" Height="31px" Width="207px"/>
                 </td>
                 <td class="style18">

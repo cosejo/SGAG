@@ -40,6 +40,15 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.TextBox TextBoxImplementoNuevo;
         
         /// <summary>
+        /// Control TextBoxImplementoNuevo_TextBoxWatermarkExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxImplementoNuevo_TextBoxWatermarkExtender;
+        
+        /// <summary>
         /// Control RequiredFieldValidator3.
         /// </summary>
         /// <remarks>
