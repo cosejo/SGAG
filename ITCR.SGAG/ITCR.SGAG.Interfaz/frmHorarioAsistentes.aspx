@@ -1,15 +1,53 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmHorarioAsistentes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmHorarioAsistentes" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <link href="DataTable_Plugin/css/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css" />
-    <link href="DataTable_Plugin/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />
-    <script src="js/jquery.js" type="text/javascript"></script>
-    <script src="DataTable_Plugin/jquery.dataTables.js" type="text/javascript"></script>
-    <script src="js/HorarioAsistentes.js" type="text/javascript"></script>
+  <style type='text/css'>
+  body {
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    margin: 0;
+  }
+
+  h1 {
+    margin: 0 0 1em;
+    padding: 0.5em;
+  }
+
+  p.description {
+    font-size: 0.8em;
+    padding: 1em;
+    position: absolute;
+    top: 3.2em;
+    margin-right: 400px;
+  }
+
+  #message {
+    font-size: 0.7em;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    width: 350px;
+    display: none;
+    padding: 1em;
+    background: #ffc;
+    border: 1px solid #dda;
+  }
+  </style>
+
+  <script type='text/javascript' src='js/jquery-1.4.4.min.js'></script>
+  <script type='text/javascript' src='js/jquery-ui-1.8.11.custom.min.js'></script>
+  <link href="css/jquery-ui-1.8.11.custom.css" rel="stylesheet" type="text/css" />
+  <link href="css/jquery.weekcalendar.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="js/date.js"></script>
+  <script type='text/javascript' src='js/jquery.weekcalendar.js'></script>
+  <script src="js/HorarioAsistentes.js" type="text/javascript"></script>
     <style type="text/css">
         .style2
         {
             width: 605px;
+        }
+        #calendar
+        {
+            width: 973px;
         }
     </style>
 </asp:Content>
@@ -19,6 +57,8 @@
             <td style="font-size: large">
                 &nbsp;</td>
             <td style="font-size: large" class="style2">
+                <asp:ScriptManager ID="ScriptManager" runat="server">
+                </asp:ScriptManager>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Horario de Asistentes</td>
             <td>
@@ -76,4 +116,6 @@
 
         </tr>
     </table>
+
+    <div id="calendar"></div>
 </asp:Content>
