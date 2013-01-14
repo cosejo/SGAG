@@ -257,5 +257,20 @@ namespace ITCR.SGAG.Negocios
 				throw ex;
 			}
 		}
+
+        // ========================================
+
+        public override DataTable ConocerProxDevolucion()
+        {
+            try
+            {
+                return base.ConocerProxDevolucion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+         
 	} //class
 } //namespace

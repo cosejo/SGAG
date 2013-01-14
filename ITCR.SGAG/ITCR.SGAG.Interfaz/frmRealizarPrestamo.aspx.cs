@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using ITCR.SGAG.Negocios;
+using System.Web.UI.HtmlControls;
 
 namespace ITCR.SGAG.Interfaz
 {
@@ -12,6 +14,10 @@ namespace ITCR.SGAG.Interfaz
     {
         static List<Control> _implementos;
         static int _sigIdImplemento;
+        static DataTable _inventario;
+
+        const Boolean _PENDIENTE = false;
+        const Boolean _DEVUELTO = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +25,12 @@ namespace ITCR.SGAG.Interfaz
             {
                 _implementos = new List<Control>();
                 _sigIdImplemento = 0;
+                ObtenerImplementos();
                 AgregarImplemento();
+
+                Char[] delimiter = { ' ' };
+                string fechaHoy = String.Format("{0:dd-MM-yyyy}", DateTime.Today.AddDays(1));
+                cldFechaDevolucionGeneral.Value = fechaHoy;
             }
             else
             {
@@ -30,7 +41,15 @@ namespace ITCR.SGAG.Interfaz
                         implementos.Controls.Add(panelImplemento);
                         foreach (Control elementoHijo in panelImplemento.Controls)
                         {
-                            if (elementoHijo is Button) { ((Button)elementoHijo).Click += new EventHandler(btnQuitar_Click); }
+                            if (elementoHijo is Button) 
+                            { 
+                                ((Button)elementoHijo).Click += new EventHandler(btnQuitar_Click); 
+                            }
+                            else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpImplemento_"))
+                            {
+                                ((DropDownList)elementoHijo).SelectedIndexChanged += new EventHandler(drpImplemento_IndexChanged); 
+                            }
+
                         }
                     }
                 }
@@ -39,20 +58,6 @@ namespace ITCR.SGAG.Interfaz
 
         private void AgregarImplemento()
         {
-            //Panel nuevoImplemento = new Panel();
-            //nuevoImplemento.ID = "implemento_" + _sigIdImplemento;
-            //TextBox txt;
-            //txt = new TextBox();
-            //txt.ID = _sigIdImplemento + "";
-            //txt.Text = txt.ID;
-            //nuevoImplemento.Controls.Add(txt);
-            //_implementos.Add(nuevoImplemento);
-            //implementos.Controls.Add(nuevoImplemento);
-            //_sigIdImplemento++;
-
-            //((TextBox)_implementos[0].Controls[0]).Text = "BIEEEN";
-
-            // ==============================================================================================
 
             #region Generación dinámica de un panel para agregar un implemento a la lista
             String html;
@@ -71,28 +76,33 @@ namespace ITCR.SGAG.Interfaz
             DropDownList drpImplemento = new DropDownList();
             drpImplemento.ID = "drpImplemento_" + _sigIdImplemento;
             drpImplemento.CssClass = "CampoCombo";
+            drpImplemento.AutoPostBack = true;
             drpImplemento.Items.Insert(0, "-- Seleccione un implemento --");
             nuevoImplemento.Controls.Add(drpImplemento);
             html = "</p><p><b>Disponible: </b>";
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             Label lblDisponible = new Label();
             lblDisponible.ID = "lblDisponible_" + _sigIdImplemento;
+            lblDisponible.Text = "---";
             nuevoImplemento.Controls.Add(lblDisponible);
             html = "</p><p><b>Próxima devolución: </b>";
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             Label lblProxDevolucion = new Label();
-            lblDisponible.ID = "lblProxDevolucion_" + _sigIdImplemento;
+            lblProxDevolucion.ID = "lblProxDevolucion_" + _sigIdImplemento;
+            lblProxDevolucion.Text = "---";
             nuevoImplemento.Controls.Add(lblProxDevolucion);
             html = "</p><p><b>Cantidad solicitada: </b>";
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             DropDownList drpCantSolicitada = new DropDownList();
-            drpImplemento.ID = "drpCantSolicitada_" + _sigIdImplemento;
-            drpImplemento.CssClass = "CampoCombo";
+            drpCantSolicitada.ID = "drpCantSolicitada_" + _sigIdImplemento;
+            drpCantSolicitada.CssClass = "CampoCombo";
+            drpCantSolicitada.Items.Add("---");
             nuevoImplemento.Controls.Add(drpCantSolicitada);
             html = "</p><p id='pDurante'><b>Durante: </b>";
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             TextBox txtDurante = new TextBox();
             txtDurante.ID = "txtDurante_" + _sigIdImplemento;
+            txtDurante.Text = "1"; // ===============================================================
             txtDurante.CssClass = "CampoTextoNumerico";
             nuevoImplemento.Controls.Add(txtDurante);
             DropDownList drpUnidDurante = new DropDownList();
@@ -101,7 +111,7 @@ namespace ITCR.SGAG.Interfaz
             drpUnidDurante.Items.Insert(0, "Días");
             drpUnidDurante.Items.Insert(1, "Horas");
             nuevoImplemento.Controls.Add(drpUnidDurante);
-            html = "</p><p><b>Tipo de préstamo: </b>";
+            html = " a partir de la hora en que se realice el préstamo (hora del sistema).</p><p><b>Tipo de préstamo: </b>";
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             DropDownList drpTipoPrestamo = new DropDownList();
             drpTipoPrestamo.ID = "drpTipoPrestamo_" + _sigIdImplemento;
@@ -112,31 +122,159 @@ namespace ITCR.SGAG.Interfaz
             html = "</fieldset>";
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             _implementos.Add(nuevoImplemento);
+            LlenarComboImplementos(_sigIdImplemento);
             implementos.Controls.Add(nuevoImplemento);
             _sigIdImplemento++;
             btnRealizar.Enabled = true;
             #endregion
         }
 
+        private void ObtenerImplementos()
+        {
+            cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            _inventario = tempImplemento.SeleccionarTodos();        
+        }
+
+        private void LlenarComboImplementos(int pIndexImplemento)
+        {
+            Control panelImplemento = _implementos[pIndexImplemento];
+            foreach (Control elementoHijo in panelImplemento.Controls)
+            {
+                if (elementoHijo is DropDownList && String.Equals(elementoHijo.ID, "drpImplemento_" + pIndexImplemento)) 
+                {
+                    DropDownList drpImplementos = (DropDownList)elementoHijo;
+                    foreach (DataRow regImplemento in _inventario.Rows)
+                    {
+                        drpImplementos.Items.Add(regImplemento["NOM_TIPOIMPLEMENTO"] + " de " + regImplemento["NOM_DEPORTE"] + ": " + regImplemento["DSC_IMPLEMENTO"]);
+                    }
+                    break;
+                }
+            }
+        }
+
         private cSGMUUSUARIONegocios Verificar()
         {
-            return null;
+            cSGMUUSUARIONegocios usuarioSolicitante = new cSGMUUSUARIONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            usuarioSolicitante.CAR_USUARIO = txtIdentificacion.Text;
+            usuarioSolicitante.NOM_USUARIO = "Mauricio M. Chaves";
+            return usuarioSolicitante;
         }
 
-        private bool VerificarHabilitado(cSGMUUSUARIONegocios pUsuarioGimnasio)
+        private String VerificarHabilitado(cSGMUUSUARIONegocios pUsuarioGimnasio)
         {
-            return true;
-        }
-        
-        private bool RealizarPrestamo()
-        {
+            cSGPRPRESTAMONegocios tempPrestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            tempPrestamo.CAR_USUARIOGIMNASIO = pUsuarioGimnasio.CAR_USUARIO;
+            tempPrestamo.ESTADO = _PENDIENTE;
+            DataTable prestamosPendientes = tempPrestamo.Buscar();
+            if (prestamosPendientes.Rows.Count == 0)
+            {
+                return "No tiene préstamos pendientes";
+            }
 
-            return true;
+            return "Tiene préstamos pendientes";
         }
 
         protected void btnVerificar_Click(object sender, EventArgs e)
         {
+            cSGMUUSUARIONegocios usuarioSolicitante = Verificar();
+            if (usuarioSolicitante != null)
+            {
+                lblEstadoUsuario.Text = VerificarHabilitado(usuarioSolicitante);
+                lblNombreUsuario.Text = usuarioSolicitante.NOM_USUARIO.ToString();
+            }
+            else
+            {
+                lblEstadoUsuario.Text = "---";
+                lblNombreUsuario.Text = "Usuario no identificado";
+            }
+            
+        }
 
+        private bool RealizarPrestamo()
+        {
+            //body.at
+            HtmlGenericControl body = this.Master.FindControl("body") as HtmlGenericControl;
+
+            //body.Attributes["bgcolor"] = "lightblue";
+            
+            body.Attributes.Add("onLoad", "alert('Hello');");
+            //if (!Page.ClientScript.IsStartupScriptRegistered("Alerta"))
+            //{
+            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alerta", "<script type=\"text/javascript\"> onload = alert('HOLA MUNDO'); </script>");
+            //}
+            return true;
+        }
+
+        protected void drpImplemento_IndexChanged(object sender, EventArgs e)
+        {
+            DropDownList drpSender = (DropDownList)sender;
+
+            if (drpSender.SelectedIndex < 0)
+            {
+                // limpiar
+            }
+
+            else
+            {
+                Char[] delimiter = { '_' };
+                string idCombo = drpSender.ID;
+                string idPanel = idCombo.Split(delimiter)[1];
+
+                int indexSeleccionado = drpSender.SelectedIndex-1;
+
+                DataRow implemento = (drpSender.SelectedIndex == 0) ? null : _inventario.Rows[indexSeleccionado];
+
+                Control panelImplemento = _implementos[int.Parse(idPanel)];
+                foreach (Control elementoHijo in panelImplemento.Controls)
+                {
+                    if (elementoHijo is Label && elementoHijo.ID.StartsWith("lblDisponible_"))
+                    {
+                        Label lblDisponible = (Label)elementoHijo;
+
+                        lblDisponible.Text = (implemento == null) ? "---" : implemento["CAN_DISPONIBLE"].ToString();
+                    }
+                    else if (elementoHijo is Label && elementoHijo.ID.StartsWith("lblProxDevolucion_"))
+                    {
+                        Label lblProxDevolucion = (Label)elementoHijo;
+                        cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+
+                        if (implemento != null)
+                        {
+                            tempImplemento.ID_IMPLEMENTO = Convert.ToInt32(implemento["ID_IMPLEMENTO"]);
+                            DataTable tblProxDevolucion = tempImplemento.ConocerProxDevolucion();
+                            if (tblProxDevolucion.Rows.Count > 0)
+                            {
+                                lblProxDevolucion.Text = tblProxDevolucion.Rows[0]["PROX_DEVOLUCION"].ToString();
+                            }
+                            else
+                            {
+                                lblProxDevolucion.Text = "No hay pendientes por devolver";
+                            }
+                        }
+                        else
+                        {
+                            lblProxDevolucion.Text = "---";
+                        }
+                    }
+                    else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpCantSolicitada_"))
+                    {
+                        DropDownList drpCantSolicitada = (DropDownList)elementoHijo;
+                        drpCantSolicitada.Items.Clear();
+                        if (implemento != null)
+                        {
+                            for (int i = 1; i <= Convert.ToInt32(implemento["CAN_DISPONIBLE"]); i++)
+                            {
+                                drpCantSolicitada.Items.Add(i + "");
+                            }
+                        }
+                        else
+                        {
+                            drpCantSolicitada.Items.Add("---");
+                        }
+                    }
+                }
+                
+            }
         }
 
         protected void btnAgregarImplemento_Click(object sender, EventArgs e)

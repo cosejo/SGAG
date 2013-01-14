@@ -82,7 +82,7 @@ namespace ITCR.SGAG.Interfaz {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender TextBox3_CalendarExtender;
+        //protected global::AjaxControlToolkit.CalendarExtender TextBox3_CalendarExtender;
         
         /// <summary>
         /// Control Label5.
@@ -109,6 +109,6 @@ namespace ITCR.SGAG.Interfaz {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender TextBox4_CalendarExtender;
+        //protected global::AjaxControlToolkit.CalendarExtender TextBox4_CalendarExtender;
     }
 }
