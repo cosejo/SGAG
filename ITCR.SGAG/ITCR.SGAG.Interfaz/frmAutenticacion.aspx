@@ -127,7 +127,7 @@
 			        <asp:Label id="lblMensajeError" runat="server" CssClass="TextoError" 
 				        ForeColor="Red"></asp:Label>
 			        <img id="ManContent_imgProcesando" alt="Procesando" style="width: 32px; height: 32px; visibility:hidden;" 
-				        src="../imagenes/Procesando.gif" />
+				        src="../imagenes/procesando.png" />
                 </TD>
 		    </TR>
         </TABLE>

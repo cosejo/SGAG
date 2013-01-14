@@ -96,6 +96,7 @@
     <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery.menu.js" />
+    <Content Include="js\realizarPrestamo.js" />
     <Content Include="js\TableTools.js" />
     <Content Include="js\TableTools.min.js" />
     <Content Include="js\verPrestamos.js" />

@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Empresa:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Empresa:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGPRPRESTAMO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:35 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -24,7 +24,8 @@ namespace ITCR.SGAG.Base
 	public class cSGPRPRESTAMOBase : cBDInteraccionBase
 	{
 		#region Declaraciones de miembros de la clase
-			private SqlDateTime		_fEC_PRESTAMO, _fEC_INGRESADO;
+			private SqlBoolean		_eSTADO;
+			private SqlDateTime		_fEC_INGRESADO, _fEC_PRESTAMO;
 			private SqlInt32		_iD_PRESTAMO, _fK_IDTIPOPRESTAMO, _fK_IDTIPOPRESTAMOOld;
 			private SqlString		_dSC_PRESTAMO, _cAR_USUARIOGIMNASIO;
 		#endregion
@@ -51,6 +52,7 @@ namespace ITCR.SGAG.Base
 		///		 <LI>FK_IDTIPOPRESTAMO</LI>
 		///		 <LI>DSC_PRESTAMO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>ESTADO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -74,6 +76,7 @@ namespace ITCR.SGAG.Base
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDTIPOPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDTIPOPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@sDSC_PRESTAMO", SqlDbType.VarChar, 100, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _dSC_PRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@sCAR_USUARIOGIMNASIO", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _cAR_USUARIOGIMNASIO));
+				cmdAEjecutar.Parameters.Add(new SqlParameter("@bESTADO", SqlDbType.Bit, 1, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _eSTADO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iID_PRESTAMO", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _iD_PRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
 
@@ -133,6 +136,7 @@ namespace ITCR.SGAG.Base
 		///		 <LI>FK_IDTIPOPRESTAMO</LI>
 		///		 <LI>DSC_PRESTAMO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>ESTADO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -156,6 +160,7 @@ namespace ITCR.SGAG.Base
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDTIPOPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDTIPOPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@sDSC_PRESTAMO", SqlDbType.VarChar, 100, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _dSC_PRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@sCAR_USUARIOGIMNASIO", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _cAR_USUARIOGIMNASIO));
+				cmdAEjecutar.Parameters.Add(new SqlParameter("@bESTADO", SqlDbType.Bit, 1, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _eSTADO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
 
 				if(_conexionBDEsCreadaLocal)
@@ -433,6 +438,7 @@ namespace ITCR.SGAG.Base
 		///		 <LI>FK_IDTIPOPRESTAMO</LI>
 		///		 <LI>DSC_PRESTAMO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>ESTADO</LI>
 		/// </UL>
 		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
 		/// </remarks>
@@ -483,6 +489,7 @@ namespace ITCR.SGAG.Base
 					_fK_IDTIPOPRESTAMO = (Int32)toReturn.Rows[0]["FK_IDTIPOPRESTAMO"];
 					_dSC_PRESTAMO = (string)toReturn.Rows[0]["DSC_PRESTAMO"];
 					_cAR_USUARIOGIMNASIO = (string)toReturn.Rows[0]["CAR_USUARIOGIMNASIO"];
+					_eSTADO = (bool)toReturn.Rows[0]["ESTADO"];
 				}
 				return toReturn;
 			}
@@ -658,6 +665,7 @@ namespace ITCR.SGAG.Base
 		///		 <LI>FK_IDTIPOPRESTAMO</LI>
 		///		 <LI>DSC_PRESTAMO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>ESTADO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -683,6 +691,7 @@ namespace ITCR.SGAG.Base
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDTIPOPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDTIPOPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@sDSC_PRESTAMO", SqlDbType.VarChar, 100, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _dSC_PRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@sCAR_USUARIOGIMNASIO", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _cAR_USUARIOGIMNASIO));
+				cmdAEjecutar.Parameters.Add(new SqlParameter("@bESTADO", SqlDbType.Bit, 1, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _eSTADO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
 
 				if(_conexionBDEsCreadaLocal)
@@ -849,6 +858,24 @@ namespace ITCR.SGAG.Base
 					throw new ArgumentOutOfRangeException("CAR_USUARIOGIMNASIO", "CAR_USUARIOGIMNASIO can't be NULL");
 				}
 				_cAR_USUARIOGIMNASIO = value;
+			}
+		}
+
+
+		public SqlBoolean ESTADO
+		{
+			get
+			{
+				return _eSTADO;
+			}
+			set
+			{
+				SqlBoolean eSTADOTmp = (SqlBoolean)value;
+				if(eSTADOTmp.IsNull)
+				{
+					throw new ArgumentOutOfRangeException("ESTADO", "ESTADO can't be NULL");
+				}
+				_eSTADO = value;
 			}
 		}
 		#endregion

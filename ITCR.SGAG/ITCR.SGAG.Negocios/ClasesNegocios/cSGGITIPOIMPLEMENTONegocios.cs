@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Cliente:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Cliente:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de LOGICA DE NEGOCIOS para tabla 'SGGITIPOIMPLEMENTO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:34 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
 
@@ -15,7 +15,7 @@ using System.Data.SqlTypes;
 using System.Data.SqlClient;
 using ITCR.SGAG.Base;
 using ITCR.SGAG.Datos;
-//using ITCR.SGAG.Negocios.wsSeguridad;
+using ITCR.SGAG.Negocios.wsSeguridad;
 
 namespace ITCR.SGAG.Negocios
 {
@@ -51,8 +51,6 @@ namespace ITCR.SGAG.Negocios
 		/// Propiedades necesarias para este método: 
 		/// <UL>
 		///		 <LI>NOM_TIPOIMPLEMENTO</LI>
-		///		 <LI>FK_IDDEPORTE</LI>
-		///		 <LI>DSP_IMPLEMENTO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -63,22 +61,20 @@ namespace ITCR.SGAG.Negocios
 		public override bool Insertar()
 		{
 			string operacion;
-			//SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
 				operacion = "Insertar cSGGITIPOIMPLEMENTO;"
-					+"NOM_TIPOIMPLEMENTO:"+NOM_TIPOIMPLEMENTO.ToString()+";"
-					+"FK_IDDEPORTE:"+FK_IDDEPORTE.ToString()+";"
-					+"DSP_IMPLEMENTO:"+DSP_IMPLEMENTO.ToString()+";";
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+					+"NOM_TIPOIMPLEMENTO:"+NOM_TIPOIMPLEMENTO.ToString()+";";
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Insertar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Insertar cSGGITIPOIMPLEMENTO;"+ex.Message;
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
 		}
@@ -93,8 +89,6 @@ namespace ITCR.SGAG.Negocios
 		/// <UL>
 		///		 <LI>ID_TIPOIMPLEMENTO</LI>
 		///		 <LI>NOM_TIPOIMPLEMENTO</LI>
-		///		 <LI>FK_IDDEPORTE</LI>
-		///		 <LI>DSP_IMPLEMENTO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -104,23 +98,21 @@ namespace ITCR.SGAG.Negocios
 		public override bool Actualizar()
 		{
 			string operacion;
-			//SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
 				operacion = "Actualizar cSGGITIPOIMPLEMENTO;"
 					+"ID_TIPOIMPLEMENTO:"+ID_TIPOIMPLEMENTO.ToString()+";"
-					+"NOM_TIPOIMPLEMENTO:"+NOM_TIPOIMPLEMENTO.ToString()+";"
-					+"FK_IDDEPORTE:"+FK_IDDEPORTE.ToString()+";"
-					+"DSP_IMPLEMENTO:"+DSP_IMPLEMENTO.ToString()+";";
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+					+"NOM_TIPOIMPLEMENTO:"+NOM_TIPOIMPLEMENTO.ToString()+";";
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Actualizar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Actualizar cSGGITIPOIMPLEMENTO;"+ex.Message;
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
 		}
@@ -143,20 +135,20 @@ namespace ITCR.SGAG.Negocios
 		public override bool Eliminar()
 		{
 			string operacion;
-			//SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
 				operacion = "Eliminar cSGGITIPOIMPLEMENTO;"
 					+"ID_TIPOIMPLEMENTO:"+ID_TIPOIMPLEMENTO.ToString()+";";
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Eliminar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Eliminar cSGGITIPOIMPLEMENTO;"+ex.Message;
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
 		}
@@ -176,8 +168,6 @@ namespace ITCR.SGAG.Negocios
 		///		 <LI>CodError</LI>
 		///		 <LI>ID_TIPOIMPLEMENTO</LI>
 		///		 <LI>NOM_TIPOIMPLEMENTO</LI>
-		///		 <LI>FK_IDDEPORTE</LI>
-		///		 <LI>DSP_IMPLEMENTO</LI>
 		/// </UL>
 		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
 		/// </remarks>
@@ -226,8 +216,6 @@ namespace ITCR.SGAG.Negocios
 		/// <UL>
 		///		 <LI>ID_TIPOIMPLEMENTO</LI>
 		///		 <LI>NOM_TIPOIMPLEMENTO</LI>
-		///		 <LI>FK_IDDEPORTE</LI>
-		///		 <LI>DSP_IMPLEMENTO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>

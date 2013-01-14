@@ -1,45 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmRealizarPrestamo.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmRealizarPrestamo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-    <link href="css/realizarPrestamo.css" rel="stylesheet" type="text/css" />
     <link href="css/itcr.css" rel="stylesheet" type="text/css" />
+    <link href="css/realizarPrestamo.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
+    <script src="js/realizarPrestamo.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+        var cantImplementos = 0;
         $(function () {
-            $("#cldFechaDevolucionGeneral").datepicker();
+            $("#MainContent_cldFechaDevolucionGeneral").datepicker();
         });
     </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="content">
-        <div id="encabezado">
-            <asp:TextBox ID="txtIdentificacion" class="CampoTexto" runat="server" Text="Identificación"></asp:TextBox>
-            <asp:Button ID="btnVerificar" runat="server" Text="Verificar" /><br />
-            <asp:Label ID="lblNombreUsuario" runat="server" Text="Nombre: "></asp:Label>
-            <asp:Label ID="lblEstadoUsuario" runat="server" Text="Estado: "></asp:Label>
-            <p>Fecha de devolución general: <input type="text" id="cldFechaDevolucionGeneral" /></p>
-        </div>
+<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"> 
+        </asp:ScriptManager>
 
-        <div id="implemento">
-            <asp:DropDownList ID="drpImplemento" class="CampoCombo" runat="server">
-                <asp:ListItem>-- Elige un implemento --</asp:ListItem>
-            </asp:DropDownList>
-            <asp:Label ID="lblDisponible" runat="server" Text="Disponible: "></asp:Label>
-            <asp:Label ID="lblProxDevolucion" runat="server" Text="Próxima devolución: "></asp:Label>
-            <p>Cantidad solicitada: 
-            <asp:DropDownList ID="drpCantSolicitada" class="CampoCombo" runat="server">
-                <asp:ListItem>0</asp:ListItem>
-            </asp:DropDownList></p>
-            <p>Durante: <asp:TextBox ID="txtDurante" class="CampoTextoNumerico" runat="server"></asp:TextBox></p>
-            <p>Tipo de préstamo: 
-            <asp:DropDownList ID="drpTipoPrestamo" class="CampoCombo" runat="server">
-                <asp:ListItem>Normal</asp:ListItem>
-                <asp:ListItem>Especial</asp:ListItem>
-            </asp:DropDownList></p>
+    <div id="content">
+        <div id="dRealizarPrestamo"><asp:Label ID="lblRealizarPrestamo" class="SubTituloPagina" runat="server" Text="Realizar Prestamo"></asp:Label></div>
+
+        <div id="encabezado">
+            <div id="dIdentificacion">
+                <asp:TextBox ID="txtIdentificacion" class="CampoTexto" runat="server" value="Identificación" onfocus="if(this.value=='Identificación') this.value=''" onblur="if(this.value=='') this.value='Identificación'"></asp:TextBox>
+                <asp:Button ID="btnVerificar" runat="server" Text="Verificar" OnClick="btnVerificar_Click" />
+            </div>
+            <p id="pInfoUsuario"><b>Nombre: </b><asp:Label ID="lblNombreUsuario" class="lblNombreUsuario" runat="server" Text="Mauricio Muñoz Chaves"></asp:Label>
+            <b>Estado: </b><asp:Label ID="lblEstadoUsuario" runat="server" Text="Habilitado"></asp:Label></p>
+            <p><b>Fecha de devolución general: </b><input type="text"  class="CampoTexto" id="cldFechaDevolucionGeneral" runat="server" /></p>
         </div>
+        
+        <asp:Panel ID="implementos" runat="server">
+        </asp:Panel>
+
+        <asp:Button ID="btnAgregarImplemento" runat="server" Text="Agregar más" onclick="btnAgregarImplemento_Click" />
+        <div id="dRealizar"><asp:Button ID="btnRealizar" runat="server" Text="Realizar" onclick="btnRealizar_Click" /></div>
     </div>
+    
 </asp:Content>

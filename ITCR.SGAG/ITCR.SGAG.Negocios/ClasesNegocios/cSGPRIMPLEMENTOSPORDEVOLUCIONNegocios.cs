@@ -2,7 +2,7 @@
 ///////////////////////////////////////////////////////////////////////////
 // Cliente:  Instituto Tecnológico de Costa Rica
 // Proyecto: Sistema de Gestión del Área del Gimnasio
-// Descripción: Clase de LOGICA DE NEGOCIOS para tabla 'SGPRDANOPORDEVOLUCION'
+// Descripción: Clase de LOGICA DE NEGOCIOS para tabla 'SGPRIMPLEMENTOSPORDEVOLUCION'
 // Generado por ITCR Gen v2010.0.0.0 
 // Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 ///////////////////////////////////////////////////////////////////////////
@@ -20,9 +20,9 @@ using ITCR.SGAG.Negocios.wsSeguridad;
 namespace ITCR.SGAG.Negocios
 {
 	/// <summary>
-	/// Propósito: Clase de lógica de negocios para tabla 'SGPRDANOPORDEVOLUCION'.
+	/// Propósito: Clase de lógica de negocios para tabla 'SGPRIMPLEMENTOSPORDEVOLUCION'.
 	/// </summary>
-	public class cSGPRDANOPORDEVOLUCIONNegocios : cSGPRDANOPORDEVOLUCIONDatos
+	public class cSGPRIMPLEMENTOSPORDEVOLUCIONNegocios : cSGPRIMPLEMENTOSPORDEVOLUCIONDatos
 	{
 		#region Declaraciones de miembros de la clase
 		private int				_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora;
@@ -33,7 +33,7 @@ namespace ITCR.SGAG.Negocios
 		/// <summary>
 		/// Propósito: Constructor de la clase.
 		/// </summary>
-		public cSGPRDANOPORDEVOLUCIONNegocios(int COD_APLICACIONBitacora, string COD_SEDEBitacora, int COD_FUNCIONALIDADBitacora, string ID_USUARIOBitacora) : base()
+		public cSGPRIMPLEMENTOSPORDEVOLUCIONNegocios(int COD_APLICACIONBitacora, string COD_SEDEBitacora, int COD_FUNCIONALIDADBitacora, string ID_USUARIOBitacora) : base()
 		{
 			//asignacion de las propiedades privadas para manejo de bitacoras
 			_COD_APLICACIONBitacora = COD_APLICACIONBitacora;
@@ -50,8 +50,9 @@ namespace ITCR.SGAG.Negocios
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>FK_IDDEVOLUCION</LI>
-		///		 <LI>FK_IDDANO</LI>
+		///		 <LI>FK_IMPLEMENTO</LI>
+		///		 <LI>FK_DEVOLUCION</LI>
+		///		 <LI>CANT_DEVUELTOS</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -65,16 +66,17 @@ namespace ITCR.SGAG.Negocios
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
-				operacion = "Insertar cSGPRDANOPORDEVOLUCION;"
-					+"FK_IDDEVOLUCION:"+FK_IDDEVOLUCION.ToString()+";"
-					+"FK_IDDANO:"+FK_IDDANO.ToString()+";";
+				operacion = "Insertar cSGPRIMPLEMENTOSPORDEVOLUCION;"
+					+"FK_IMPLEMENTO:"+FK_IMPLEMENTO.ToString()+";"
+					+"FK_DEVOLUCION:"+FK_DEVOLUCION.ToString()+";"
+					+"CANT_DEVUELTOS:"+CANT_DEVUELTOS.ToString()+";";
 				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Insertar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
-				operacion = "Error Insertar cSGPRDANOPORDEVOLUCION;"+ex.Message;
+				operacion = "Error Insertar cSGPRIMPLEMENTOSPORDEVOLUCION;"+ex.Message;
 				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
@@ -111,8 +113,9 @@ namespace ITCR.SGAG.Negocios
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>FK_IDDEVOLUCION</LI>
-		///		 <LI>FK_IDDANO</LI>
+		///		 <LI>FK_IMPLEMENTO</LI>
+		///		 <LI>FK_DEVOLUCION</LI>
+		///		 <LI>CANT_DEVUELTOS</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>

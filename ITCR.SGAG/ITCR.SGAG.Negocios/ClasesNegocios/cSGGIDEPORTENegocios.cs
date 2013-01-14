@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Cliente:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Cliente:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de LOGICA DE NEGOCIOS para tabla 'SGGIDEPORTE'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:34 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
 
@@ -15,7 +15,7 @@ using System.Data.SqlTypes;
 using System.Data.SqlClient;
 using ITCR.SGAG.Base;
 using ITCR.SGAG.Datos;
-//using ITCR.SGAG.Negocios.wsSeguridad;
+using ITCR.SGAG.Negocios.wsSeguridad;
 
 namespace ITCR.SGAG.Negocios
 {
@@ -61,20 +61,20 @@ namespace ITCR.SGAG.Negocios
 		public override bool Insertar()
 		{
 			string operacion;
-			//SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
 				operacion = "Insertar cSGGIDEPORTE;"
 					+"NOM_DEPORTE:"+NOM_DEPORTE.ToString()+";";
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Insertar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Insertar cSGGIDEPORTE;"+ex.Message;
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
 		}
@@ -98,21 +98,21 @@ namespace ITCR.SGAG.Negocios
 		public override bool Actualizar()
 		{
 			string operacion;
-			//SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
 				operacion = "Actualizar cSGGIDEPORTE;"
 					+"ID_DEPORTE:"+ID_DEPORTE.ToString()+";"
 					+"NOM_DEPORTE:"+NOM_DEPORTE.ToString()+";";
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Actualizar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Actualizar cSGGIDEPORTE;"+ex.Message;
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
 		}
@@ -135,20 +135,20 @@ namespace ITCR.SGAG.Negocios
 		public override bool Eliminar()
 		{
 			string operacion;
-			//SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
 				operacion = "Eliminar cSGGIDEPORTE;"
 					+"ID_DEPORTE:"+ID_DEPORTE.ToString()+";";
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Eliminar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Eliminar cSGGIDEPORTE;"+ex.Message;
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
 		}

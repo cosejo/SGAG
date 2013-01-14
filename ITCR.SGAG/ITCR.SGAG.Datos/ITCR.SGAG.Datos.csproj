@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cBDInteraccionBase.cs" />
-    <Compile Include="ClasesBase\cSGGIDANOBase.cs" />
     <Compile Include="ClasesBase\cSGGIDANOPORIMPLEMENTOBase.cs" />
     <Compile Include="ClasesBase\cSGGIDEPORTEBase.cs" />
     <Compile Include="ClasesBase\cSGGIIMPLEMENTOBase.cs" />
@@ -58,12 +57,12 @@
     <Compile Include="ClasesBase\cSGPRDEVOLUCIONBase.cs" />
     <Compile Include="ClasesBase\cSGPRDEVOLUCIONPORPRESTAMOBase.cs" />
     <Compile Include="ClasesBase\cSGPRIMPLEMENTOPORPRESTAMOBase.cs" />
+    <Compile Include="ClasesBase\cSGPRIMPLEMENTOSPORDEVOLUCIONBase.cs" />
     <Compile Include="ClasesBase\cSGPRINGRESOBase.cs" />
     <Compile Include="ClasesBase\cSGPRPRESTAMOBase.cs" />
     <Compile Include="ClasesBase\cSGPRTIPOPRESTAMOBase.cs" />
     <Compile Include="ClasesBase\cSGPRUSUARIOGIMNASIOBase.cs" />
     <Compile Include="ClasesBase\cSysdiagramsBase.cs" />
-    <Compile Include="ClasesDatos\cSGGIDANODatos.cs" />
     <Compile Include="ClasesDatos\cSGGIDANOPORIMPLEMENTODatos.cs" />
     <Compile Include="ClasesDatos\cSGGIDEPORTEDatos.cs" />
     <Compile Include="ClasesDatos\cSGGIIMPLEMENTODatos.cs" />
@@ -80,6 +79,7 @@
     <Compile Include="ClasesDatos\cSGPRDEVOLUCIONDatos.cs" />
     <Compile Include="ClasesDatos\cSGPRDEVOLUCIONPORPRESTAMODatos.cs" />
     <Compile Include="ClasesDatos\cSGPRIMPLEMENTOPORPRESTAMODatos.cs" />
+    <Compile Include="ClasesDatos\cSGPRIMPLEMENTOSPORDEVOLUCIONDatos.cs" />
     <Compile Include="ClasesDatos\cSGPRINGRESODatos.cs" />
     <Compile Include="ClasesDatos\cSGPRPRESTAMODatos.cs" />
     <Compile Include="ClasesDatos\cSGPRTIPOPRESTAMODatos.cs" />

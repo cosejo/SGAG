@@ -2,7 +2,7 @@
 ///////////////////////////////////////////////////////////////////////////
 // Cliente:  Instituto Tecnológico de Costa Rica
 // Proyecto: Sistema de Gestión del Área del Gimnasio
-// Descripción: Clase de acceso a datos para tabla 'SGGIDEPORTE'
+// Descripción: Clase de acceso a datos para tabla 'SGPRIMPLEMENTOSPORDEVOLUCION'
 // Generado por ITCR Gen v2010.0.0.0 
 // Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
@@ -19,16 +19,16 @@ using ITCR.SGAG.Base;
 namespace ITCR.SGAG.Datos
 {
 	/// <summary>
-	/// Propósito: Clase de acceso a datos derivada para tabla 'SGGIDEPORTE'.
+	/// Propósito: Clase de acceso a datos derivada para tabla 'SGPRIMPLEMENTOSPORDEVOLUCION'.
 	/// </summary>
-	public class cSGGIDEPORTEDatos : cSGGIDEPORTEBase
+	public class cSGPRIMPLEMENTOSPORDEVOLUCIONDatos : cSGPRIMPLEMENTOSPORDEVOLUCIONBase
 	{
 
 
 		/// <summary>
 		/// Propósito: Constructor de la clase.
 		/// </summary>
-		public cSGGIDEPORTEDatos() : base()
+		public cSGPRIMPLEMENTOSPORDEVOLUCIONDatos() : base()
 		{
 			// Agregar código aquí.
 		}
@@ -41,81 +41,18 @@ namespace ITCR.SGAG.Datos
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>NOM_DEPORTE</LI>
+		///		 <LI>FK_IMPLEMENTO</LI>
+		///		 <LI>FK_DEVOLUCION</LI>
+		///		 <LI>CANT_DEVUELTOS</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
-		///		 <LI>ID_DEPORTE</LI>
 		///		 <LI>CodError</LI>
 		/// </UL>
 		/// </remarks>
 		public override bool Insertar()
 		{
 			return base.Insertar();
-		}
-
-
-		/// <summary>
-		/// Propósito: Método Update. Actualiza una fila existente en la base de datos.
-		/// </summary>
-		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
-		/// <remarks>
-		/// Propiedades necesarias para este método: 
-		/// <UL>
-		///		 <LI>ID_DEPORTE</LI>
-		///		 <LI>NOM_DEPORTE</LI>
-		/// </UL>
-		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
-		/// <UL>
-		///		 <LI>CodError</LI>
-		/// </UL>
-		/// </remarks>
-		public override bool Actualizar()
-		{
-			return base.Actualizar();
-		}
-
-
-		/// <summary>
-		/// Propósito: Método Eliminar. Borra una fila en la base de datos, basado en la llave primaria.
-		/// </summary>
-		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
-		/// <remarks>
-		/// Propiedades necesarias para este método: 
-		/// <UL>
-		///		 <LI>ID_DEPORTE</LI>
-		/// </UL>
-		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
-		/// <UL>
-		///		 <LI>CodError</LI>
-		/// </UL>
-		/// </remarks>
-		public override bool Eliminar()
-		{
-			return base.Eliminar();
-		}
-
-
-		/// <summary>
-		/// Propósito: Método SELECT. Este método hace Select de una fila existente en la base de datos, basado en la llave primaria.
-		/// </summary>
-		/// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
-		/// <remarks>
-		/// Propiedades necesarias para este método: 
-		/// <UL>
-		///		 <LI>ID_DEPORTE</LI>
-		/// </UL>
-		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
-		/// <UL>
-		///		 <LI>CodError</LI>
-		///		 <LI>ID_DEPORTE</LI>
-		///		 <LI>NOM_DEPORTE</LI>
-		/// </UL>
-		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
-		/// </remarks>
-		public override DataTable SeleccionarUno()
-		{
-			return base.SeleccionarUno();
 		}
 
 
@@ -142,8 +79,9 @@ namespace ITCR.SGAG.Datos
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>ID_DEPORTE</LI>
-		///		 <LI>NOM_DEPORTE</LI>
+		///		 <LI>FK_IMPLEMENTO</LI>
+		///		 <LI>FK_DEVOLUCION</LI>
+		///		 <LI>CANT_DEVUELTOS</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>

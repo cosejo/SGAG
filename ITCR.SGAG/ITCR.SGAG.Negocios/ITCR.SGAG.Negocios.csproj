@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClasesNegocios\cSGGIDANONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGGIDANOPORIMPLEMENTONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGGIDEPORTENegocios.cs" />
     <Compile Include="ClasesNegocios\cSGGIIMPLEMENTONegocios.cs" />
@@ -60,6 +59,7 @@
     <Compile Include="ClasesNegocios\cSGPRDEVOLUCIONNegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRDEVOLUCIONPORPRESTAMONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRIMPLEMENTOPORPRESTAMONegocios.cs" />
+    <Compile Include="ClasesNegocios\cSGPRIMPLEMENTOSPORDEVOLUCIONNegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRINGRESONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRPRESTAMONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRTIPOPRESTAMONegocios.cs" />

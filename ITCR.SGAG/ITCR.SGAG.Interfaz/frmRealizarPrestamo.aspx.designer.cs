@@ -13,6 +13,24 @@ namespace ITCR.SGAG.Interfaz {
     public partial class frmRealizarPrestamo {
         
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// lblRealizarPrestamo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRealizarPrestamo;
+        
+        /// <summary>
         /// txtIdentificacion control.
         /// </summary>
         /// <remarks>
@@ -49,57 +67,39 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.Label lblEstadoUsuario;
         
         /// <summary>
-        /// drpImplemento control.
+        /// cldFechaDevolucionGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpImplemento;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText cldFechaDevolucionGeneral;
         
         /// <summary>
-        /// lblDisponible control.
+        /// implementos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDisponible;
+        protected global::System.Web.UI.WebControls.Panel implementos;
         
         /// <summary>
-        /// lblProxDevolucion control.
+        /// btnAgregarImplemento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProxDevolucion;
+        protected global::System.Web.UI.WebControls.Button btnAgregarImplemento;
         
         /// <summary>
-        /// drpCantSolicitada control.
+        /// btnRealizar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpCantSolicitada;
-        
-        /// <summary>
-        /// txtDurante control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDurante;
-        
-        /// <summary>
-        /// drpTipoPrestamo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpTipoPrestamo;
+        protected global::System.Web.UI.WebControls.Button btnRealizar;
     }
 }

@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Cliente:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Cliente:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGPRIMPLEMENTOPORPRESTAMO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:35 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -43,6 +43,7 @@ namespace ITCR.SGAG.Datos
 		/// <UL>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -66,6 +67,7 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>ID_IMPLEMENTOPORPRESTAMO</LI>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -113,6 +115,7 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>ID_IMPLEMENTOPORPRESTAMO</LI>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
 		/// </remarks>
@@ -148,6 +151,7 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>ID_IMPLEMENTOPORPRESTAMO</LI>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>

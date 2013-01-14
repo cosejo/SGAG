@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Cliente:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Cliente:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGGIDANOPORIMPLEMENTO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:34 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:22 p.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -41,17 +41,90 @@ namespace ITCR.SGAG.Datos
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>FK_IDDANO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
+		///		 <LI>ID_DANO</LI>
 		///		 <LI>CodError</LI>
 		/// </UL>
 		/// </remarks>
 		public override bool Insertar()
 		{
 			return base.Insertar();
+		}
+
+
+		/// <summary>
+		/// Propósito: Método Update. Actualiza una fila existente en la base de datos.
+		/// </summary>
+		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
+		/// <remarks>
+		/// Propiedades necesarias para este método: 
+		/// <UL>
+		///		 <LI>ID_DANO</LI>
+		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
+		/// </UL>
+		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
+		/// <UL>
+		///		 <LI>CodError</LI>
+		/// </UL>
+		/// </remarks>
+		public override bool Actualizar()
+		{
+			return base.Actualizar();
+		}
+
+
+		/// <summary>
+		/// Propósito: Método Eliminar. Borra una fila en la base de datos, basado en la llave primaria.
+		/// </summary>
+		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
+		/// <remarks>
+		/// Propiedades necesarias para este método: 
+		/// <UL>
+		///		 <LI>ID_DANO</LI>
+		/// </UL>
+		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
+		/// <UL>
+		///		 <LI>CodError</LI>
+		/// </UL>
+		/// </remarks>
+		public override bool Eliminar()
+		{
+			return base.Eliminar();
+		}
+
+
+		/// <summary>
+		/// Propósito: Método SELECT. Este método hace Select de una fila existente en la base de datos, basado en la llave primaria.
+		/// </summary>
+		/// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
+		/// <remarks>
+		/// Propiedades necesarias para este método: 
+		/// <UL>
+		///		 <LI>ID_DANO</LI>
+		/// </UL>
+		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
+		/// <UL>
+		///		 <LI>CodError</LI>
+		///		 <LI>ID_DANO</LI>
+		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
+		/// </UL>
+		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
+		/// </remarks>
+		public override DataTable SeleccionarUno()
+		{
+			return base.SeleccionarUno();
 		}
 
 
@@ -78,8 +151,11 @@ namespace ITCR.SGAG.Datos
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>FK_IDDANO</LI>
+		///		 <LI>ID_DANO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>

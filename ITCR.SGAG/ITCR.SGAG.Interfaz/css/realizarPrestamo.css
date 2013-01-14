@@ -1,10 +1,52 @@
-﻿p
-{
-    margin: 0px;
-    padding: 0px;
-}
-
-#content
+﻿#content
 {
     text-align: left;
+}
+
+#dRealizarPrestamo
+{
+    padding: 10px 0 20px 0;
+}
+
+#dIdentificacion 
+{
+    margin-bottom: 10px;
+}
+
+#dIdentificacion .CampoTexto
+{
+    margin-right: 10px;
+}
+
+.lblNombreUsuario, .lblEstadoUsuario
+{
+    margin-right: 30px;
+}
+
+#pInfoUsuario
+{
+    margin-top: 0px;
+}
+
+legend
+{
+    font-weight: normal;
+    color: #696969;
+}
+
+#pDurante input
+{
+    width: 40px;
+    margin-right: 5px;
+}
+
+.btnQuitar
+{
+    float: right;
+}
+
+#dRealizar 
+{
+    text-align: center;
+    margin-top: 20px;
 }

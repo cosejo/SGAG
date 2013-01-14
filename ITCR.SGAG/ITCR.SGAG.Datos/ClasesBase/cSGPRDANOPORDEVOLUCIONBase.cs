@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Empresa:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Empresa:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGPRDANOPORDEVOLUCION'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:35 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -24,7 +24,7 @@ namespace ITCR.SGAG.Base
 	public class cSGPRDANOPORDEVOLUCIONBase : cBDInteraccionBase
 	{
 		#region Declaraciones de miembros de la clase
-			private SqlInt32		_fK_IDDEVOLUCION, _fK_IDDEVOLUCIONOld, _fK_IDDANO, _fK_IDDANOOld;
+			private SqlInt32		_fK_IDDANO, _fK_IDDANOOld, _fK_IDDEVOLUCION, _fK_IDDEVOLUCIONOld;
 		#endregion
 
 

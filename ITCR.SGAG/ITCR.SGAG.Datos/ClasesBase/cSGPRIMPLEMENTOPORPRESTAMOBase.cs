@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Empresa:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Empresa:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGPRIMPLEMENTOPORPRESTAMO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:35 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -24,7 +24,7 @@ namespace ITCR.SGAG.Base
 	public class cSGPRIMPLEMENTOPORPRESTAMOBase : cBDInteraccionBase
 	{
 		#region Declaraciones de miembros de la clase
-			private SqlInt32		_iD_IMPLEMENTOPORPRESTAMO, _fK_IDPRESTAMO, _fK_IDPRESTAMOOld, _fK_IDIMPLEMENTO, _fK_IDIMPLEMENTOOld;
+			private SqlInt32		_fK_IDIMPLEMENTO, _fK_IDIMPLEMENTOOld, _cAN_SOLICITADA, _iD_IMPLEMENTOPORPRESTAMO, _fK_IDPRESTAMO, _fK_IDPRESTAMOOld;
 		#endregion
 
 
@@ -46,6 +46,7 @@ namespace ITCR.SGAG.Base
 		/// <UL>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -66,6 +67,7 @@ namespace ITCR.SGAG.Base
 			{
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDIMPLEMENTO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDIMPLEMENTO));
+				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCAN_SOLICITADA", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _cAN_SOLICITADA));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iID_IMPLEMENTOPORPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _iD_IMPLEMENTOPORPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
 
@@ -122,6 +124,7 @@ namespace ITCR.SGAG.Base
 		///		 <LI>ID_IMPLEMENTOPORPRESTAMO</LI>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -142,6 +145,7 @@ namespace ITCR.SGAG.Base
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iID_IMPLEMENTOPORPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _iD_IMPLEMENTOPORPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDIMPLEMENTO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDIMPLEMENTO));
+				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCAN_SOLICITADA", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _cAN_SOLICITADA));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
 
 				if(_conexionBDEsCreadaLocal)
@@ -561,6 +565,7 @@ namespace ITCR.SGAG.Base
 		///		 <LI>ID_IMPLEMENTOPORPRESTAMO</LI>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
 		/// </remarks>
@@ -608,6 +613,7 @@ namespace ITCR.SGAG.Base
 					_iD_IMPLEMENTOPORPRESTAMO = (Int32)toReturn.Rows[0]["ID_IMPLEMENTOPORPRESTAMO"];
 					_fK_IDPRESTAMO = (Int32)toReturn.Rows[0]["FK_IDPRESTAMO"];
 					_fK_IDIMPLEMENTO = (Int32)toReturn.Rows[0]["FK_IDIMPLEMENTO"];
+					_cAN_SOLICITADA = (Int32)toReturn.Rows[0]["CAN_SOLICITADA"];
 				}
 				return toReturn;
 			}
@@ -853,6 +859,7 @@ namespace ITCR.SGAG.Base
 		///		 <LI>ID_IMPLEMENTOPORPRESTAMO</LI>
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>CAN_SOLICITADA</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -875,6 +882,7 @@ namespace ITCR.SGAG.Base
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iID_IMPLEMENTOPORPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _iD_IMPLEMENTOPORPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDPRESTAMO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDPRESTAMO));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iFK_IDIMPLEMENTO", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _fK_IDIMPLEMENTO));
+				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCAN_SOLICITADA", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, _cAN_SOLICITADA));
 				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
 
 				if(_conexionBDEsCreadaLocal)
@@ -1003,6 +1011,24 @@ namespace ITCR.SGAG.Base
 					throw new ArgumentOutOfRangeException("FK_IDIMPLEMENTOOld", "FK_IDIMPLEMENTOOld can't be NULL");
 				}
 				_fK_IDIMPLEMENTOOld = value;
+			}
+		}
+
+
+		public SqlInt32 CAN_SOLICITADA
+		{
+			get
+			{
+				return _cAN_SOLICITADA;
+			}
+			set
+			{
+				SqlInt32 cAN_SOLICITADATmp = (SqlInt32)value;
+				if(cAN_SOLICITADATmp.IsNull)
+				{
+					throw new ArgumentOutOfRangeException("CAN_SOLICITADA", "CAN_SOLICITADA can't be NULL");
+				}
+				_cAN_SOLICITADA = value;
 			}
 		}
 		#endregion

@@ -152,8 +152,9 @@ namespace ITCR.SGAG.Interfaz
             cSGGITIPOIMPLEMENTONegocios tipoImplementoNuevo = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
             cSGGIDEPORTENegocios Deporte = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
             tipoImplementoNuevo.NOM_TIPOIMPLEMENTO = TextBoxImplementoNuevo.Text;
-            tipoImplementoNuevo.DSP_IMPLEMENTO = true;
-            tipoImplementoNuevo.FK_IDDEPORTE = int.Parse(DT_Deportes.Rows[Ind_Id][Ind_Id].ToString());//Cambiar cuando haya el extender
+            // ERROR POR CAMBIOS EN LA BASE => SE LE QUITARON CAMPOS A ESTA TABLA Y SE PUESIERON EN LA DE IMPLEMENTOS
+            //tipoImplementoNuevo.DSP_IMPLEMENTO = true;
+            //tipoImplementoNuevo.FK_IDDEPORTE = int.Parse(DT_Deportes.Rows[Ind_Id][Ind_Id].ToString());//Cambiar cuando haya el extender
             return tipoImplementoNuevo.Insertar();
         }
 

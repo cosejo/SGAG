@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Cliente:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Cliente:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de LOGICA DE NEGOCIOS para tabla 'SGGIDANOPORIMPLEMENTO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:34 p.m.
+// Fecha: domingo, 13 de enero de 2013, 10:54:22 p.m.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
 
@@ -15,7 +15,7 @@ using System.Data.SqlTypes;
 using System.Data.SqlClient;
 using ITCR.SGAG.Base;
 using ITCR.SGAG.Datos;
-//using ITCR.SGAG.Negocios.wsSeguridad;
+using ITCR.SGAG.Negocios.wsSeguridad;
 
 namespace ITCR.SGAG.Negocios
 {
@@ -50,32 +50,150 @@ namespace ITCR.SGAG.Negocios
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>FK_IDDANO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
+		///		 <LI>ID_DANO</LI>
 		///		 <LI>CodError</LI>
 		/// </UL>
 		/// </remarks>
 		public override bool Insertar()
 		{
 			string operacion;
-			//SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
 			try
 			{
 				//Construir aqui el string a guardar en la bitacora.
 				operacion = "Insertar cSGGIDANOPORIMPLEMENTO;"
-					+"FK_IDDANO:"+FK_IDDANO.ToString()+";"
-					+"FK_IDIMPLEMENTO:"+FK_IDIMPLEMENTO.ToString()+";";
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+					+"FK_IDIMPLEMENTO:"+FK_IDIMPLEMENTO.ToString()+";"
+					+"DSC_DANO:"+DSC_DANO.ToString()+";"
+					+"CAN_IMPLEMENTOS:"+CAN_IMPLEMENTOS.ToString()+";"
+					+"FEC_REPORTE:"+FEC_REPORTE.ToString()+";";
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Insertar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Insertar cSGGIDANOPORIMPLEMENTO;"+ex.Message;
-				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				throw ex;
+			}
+		}
+
+
+		/// <summary>
+		/// Propósito: Método Update. Actualiza una fila existente en la base de datos.
+		/// </summary>
+		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
+		/// <remarks>
+		/// Propiedades necesarias para este método: 
+		/// <UL>
+		///		 <LI>ID_DANO</LI>
+		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
+		/// </UL>
+		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
+		/// <UL>
+		///		 <LI>CodError</LI>
+		/// </UL>
+		/// </remarks>
+		public override bool Actualizar()
+		{
+			string operacion;
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			try
+			{
+				//Construir aqui el string a guardar en la bitacora.
+				operacion = "Actualizar cSGGIDANOPORIMPLEMENTO;"
+					+"ID_DANO:"+ID_DANO.ToString()+";"
+					+"FK_IDIMPLEMENTO:"+FK_IDIMPLEMENTO.ToString()+";"
+					+"DSC_DANO:"+DSC_DANO.ToString()+";"
+					+"CAN_IMPLEMENTOS:"+CAN_IMPLEMENTOS.ToString()+";"
+					+"FEC_REPORTE:"+FEC_REPORTE.ToString()+";";
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+				return base.Actualizar();
+			}
+			catch (Exception ex)
+			{
+				//Construir el string a guardar en la bitácora en caso de error.
+				operacion = "Error Actualizar cSGGIDANOPORIMPLEMENTO;"+ex.Message;
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				throw ex;
+			}
+		}
+
+
+		/// <summary>
+		/// Propósito: Método Eliminar de lógica de negocios. Borra una fila en la base de datos, basado en la llave primaria.
+		/// </summary>
+		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
+		/// <remarks>
+		/// Propiedades necesarias para este método: 
+		/// <UL>
+		///		 <LI>ID_DANO</LI>
+		/// </UL>
+		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
+		/// <UL>
+		///		 <LI>CodError</LI>
+		/// </UL>
+		/// </remarks>
+		public override bool Eliminar()
+		{
+			string operacion;
+			SeguridadSoapClient wsseg = new SeguridadSoapClient();
+			try
+			{
+				//Construir aqui el string a guardar en la bitacora.
+				operacion = "Eliminar cSGGIDANOPORIMPLEMENTO;"
+					+"ID_DANO:"+ID_DANO.ToString()+";";
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+				return base.Eliminar();
+			}
+			catch (Exception ex)
+			{
+				//Construir el string a guardar en la bitácora en caso de error.
+				operacion = "Error Eliminar cSGGIDANOPORIMPLEMENTO;"+ex.Message;
+				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				throw ex;
+			}
+		}
+
+
+		/// <summary>
+		/// Propósito: Método SELECT. Este método hace Select de una fila existente en la base de datos, basado en la llave primaria.
+		/// </summary>
+		/// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
+		/// <remarks>
+		/// Propiedades necesarias para este método: 
+		/// <UL>
+		///		 <LI>ID_DANO</LI>
+		/// </UL>
+		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
+		/// <UL>
+		///		 <LI>CodError</LI>
+		///		 <LI>ID_DANO</LI>
+		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
+		/// </UL>
+		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
+		/// </remarks>
+		public override DataTable SeleccionarUno()
+		{
+			try
+			{
+				return base.SeleccionarUno();
+			}
+			catch (Exception ex)
+			{
 				throw ex;
 			}
 		}
@@ -111,8 +229,11 @@ namespace ITCR.SGAG.Negocios
 		/// <remarks>
 		/// Propiedades necesarias para este método: 
 		/// <UL>
-		///		 <LI>FK_IDDANO</LI>
+		///		 <LI>ID_DANO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
+		///		 <LI>DSC_DANO</LI>
+		///		 <LI>CAN_IMPLEMENTOS</LI>
+		///		 <LI>FEC_REPORTE</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
