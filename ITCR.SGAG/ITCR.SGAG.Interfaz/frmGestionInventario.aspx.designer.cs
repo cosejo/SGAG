@@ -22,15 +22,6 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// Control TextBoxImplementoNuevo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxImplementoNuevo;
-        
-        /// <summary>
         /// Control RequiredFieldValidator1.
         /// </summary>
         /// <remarks>
@@ -40,13 +31,40 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// Control RequiredFieldValidator2.
+        /// Control TextBoxImplementoNuevo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxImplementoNuevo;
+        
+        /// <summary>
+        /// Control TextBoxImplementoNuevo_TextBoxWatermarkExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxImplementoNuevo_TextBoxWatermarkExtender;
+        
+        /// <summary>
+        /// Control RequiredFieldValidator3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
+        /// Control RequiredFieldValidator4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
         /// Control UPnlComboBoxMultiColumna.
@@ -67,15 +85,6 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.Panel PnlComboBoxMultiColumna;
         
         /// <summary>
-        /// Control LblComboBoxMultiColumna.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblComboBoxMultiColumna;
-        
-        /// <summary>
         /// Control TextBoxDeporteNuevo.
         /// </summary>
         /// <remarks>
@@ -91,7 +100,7 @@ namespace ITCR.SGAG.Interfaz {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        //protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDeporteNuevo_TextBoxWatermarkExtender;
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDeporteNuevo_TextBoxWatermarkExtender;
         
         /// <summary>
         /// Control TextBoxDeporteNuevo_DropDownExtender.
@@ -100,16 +109,7 @@ namespace ITCR.SGAG.Interfaz {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        //rotected global::AjaxControlToolkit.DropDownExtender TextBoxDeporteNuevo_DropDownExtender;
-        
-        /// <summary>
-        /// Control LblSelectedItemComboBoxMultiColumna.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblSelectedItemComboBoxMultiColumna;
+        protected global::AjaxControlToolkit.DropDownExtender TextBoxDeporteNuevo_DropDownExtender;
         
         /// <summary>
         /// Control BotonAgregarDeporte.
@@ -121,6 +121,15 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.Button BotonAgregarDeporte;
         
         /// <summary>
+        /// Control LblSelectedItemComboBoxMultiColumna.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblSelectedItemComboBoxMultiColumna;
+        
+        /// <summary>
         /// Control BotonAgregarImplemento.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace ITCR.SGAG.Interfaz {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BotonAgregarImplemento;
+        
+        /// <summary>
+        /// Control LabelMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelMensaje;
         
         /// <summary>
         /// Control ValidationSummary1.
@@ -139,12 +157,12 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
-        /// Control LabelMensaje.
+        /// Control ValidationSummary2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMensaje;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
     }
 }
