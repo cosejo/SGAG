@@ -85,6 +85,15 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.TextBox TextBoxNombre;
         
         /// <summary>
+        /// Control TextBoxNombre_TextBoxWatermarkExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxNombre_TextBoxWatermarkExtender;
+        
+        /// <summary>
         /// Control RequiredFieldValidator5.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace ITCR.SGAG.Interfaz {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxCantidad;
+        
+        /// <summary>
+        /// Control TextBoxCantidad_TextBoxWatermarkExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxCantidad_TextBoxWatermarkExtender;
         
         /// <summary>
         /// Control RequiredFieldValidator6.

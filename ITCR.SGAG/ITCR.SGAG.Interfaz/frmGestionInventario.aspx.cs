@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.SqlTypes;
 using ITCR.SGAG.Negocios;
 
 namespace ITCR.SGAG.Interfaz
@@ -20,6 +21,11 @@ namespace ITCR.SGAG.Interfaz
         private const int Ind_Id = 0;
         private const int Ind_Nombre = 1;
         private static Boolean _Modificacion = false;
+        private static Boolean Contrapeso = true;
+        private static SqlInt32 IdDeporte = 0;
+        private static SqlInt32 IdTipoImplemento = 0;
+        private static String _DatosSeleccionados = "";
+        private static String _DatosSeleccionadosActuales = "";
 
         #endregion
 
@@ -27,10 +33,20 @@ namespace ITCR.SGAG.Interfaz
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            BotonModificar.Attributes.Add("onclick", "javascritp:ObtenerDatos();");
+            if (IsPostBack) 
+            {
+                _DatosSeleccionados = Request["__EVENTARGUMENT"];
+                if ((_DatosSeleccionados != null && _DatosSeleccionados != ""))
+                {
+                    BotonModificar_Click();
+                }
+            }
             obtenerDeportes();
             obtenerTiposImplementos();
             obtenerImplementos();
             LabelMensaje.Text = "";
+
         }
 
         protected void BotonAgregarTipoImplemento_Click(object sender, EventArgs e)
@@ -100,15 +116,171 @@ namespace ITCR.SGAG.Interfaz
            TextBoxImplementoNuevo.Text = Nombre;
         }
 
+        protected void BotonGuardar_Click(object sender, EventArgs e)
+        {
+            String MensajeDevuelto = "";
+            try
+            {
+                int resultado;
+                if(! int.TryParse(TextBoxCantidad.Text, out resultado))
+                {
+                    throw new Exception("Debe digitar un número válido en el campo Cantidad");
+                }
+
+                if (!_Modificacion)
+                {
+                    if (agregarImplemento())
+                    {
+                        MensajeDevuelto = "El Implemento ha sido agregado satisfactoriamente";
+                        TextBoxCantidad.Text = "";
+                        TextBoxNombre.Text = "";
+                        TextBoxImplementoNuevo.Text = "";
+                        TextBoxDeporteNuevo.Text = "";
+                        obtenerImplementos();
+                    }
+                    else
+                    {
+                        MensajeDevuelto = "El Implemento no ha podido ser agregado, intentelo nuevamente";
+                    }
+                }
+                else 
+                {
+                    if (modificarImplemento())
+                    {
+                        _Modificacion = false;
+                        Contrapeso = false;
+                        MensajeDevuelto = "El Implemento ha sido modificado satisfactoriamente";
+                        TextBoxCantidad.Text = "";
+                        TextBoxNombre.Text = "";
+                        TextBoxImplementoNuevo.Text = "";
+                        TextBoxDeporteNuevo.Text = "";
+                        obtenerImplementos();
+                    }
+                    else 
+                    {
+                        MensajeDevuelto = "El Implemento no ha podido ser modificado";
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MensajeDevuelto = ex.Message;
+            }
+            LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+            LabelMensaje.Text = MensajeDevuelto;
+        }
+
+        protected void BotonModificar_Click()
+        {
+            try 
+            {
+                if (_DatosSeleccionados == "")
+                    throw new Exception("Debe seleccionar una fila para ser modificada");
+                _DatosSeleccionadosActuales = _DatosSeleccionados;
+                _Modificacion = true;
+                llenarCamposImplemento();
+            }
+            catch(Exception ex)
+            {
+                LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+                LabelMensaje.Text = ex.Message;
+            }
+        }
+
+        protected void BotonEliminar_Click(object sender, EventArgs e)
+        {
+            String MensajeDevuelto = "";
+            LabelMensaje.Text = MensajeDevuelto;
+            try 
+            {
+                if (eliminarImplemento())
+                {
+                    MensajeDevuelto = "El Implemento ha sido eliminado satisfactoriamente";
+                }
+                else 
+                {
+                    MensajeDevuelto = "El Implemento no ha podido ser eliminado";
+                }
+            }
+            catch(Exception ex)
+            {
+                MensajeDevuelto = ex.Message;
+            }
+            LabelMensaje.ForeColor = LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+            LabelMensaje.Text = MensajeDevuelto;
+        }
+
         #endregion
 
         #region Metodos
+
+        private Boolean modificarImplemento()
+        {
+            try
+            {
+                cSGGIIMPLEMENTONegocios ImplementoNuevo = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                ImplementoNuevo.CAN_DISPONIBLE = int.Parse(TextBoxCantidad.Text.ToString());
+                ImplementoNuevo.CAN_ENINVENTARIO = ImplementoNuevo.CAN_DISPONIBLE;
+                ImplementoNuevo.DSC_IMPLEMENTO = TextBoxNombre.Text;
+                ImplementoNuevo.ID_IMPLEMENTO = int.Parse(_DatosSeleccionadosActuales.Split(',').First());
+                if (!verificarNombreDeporte(TextBoxDeporteNuevo.Text))
+                {
+                    throw new Exception("El Deporte ingresado no existe en el sistema, intente de nuevo con uno válido");
+                }
+
+                ImplementoNuevo.FK_IDDEPORTE = IdDeporte;
+
+                if (!verificarTipoImplemento(TextBoxImplementoNuevo.Text))
+                {
+                    throw new Exception("El Tipo de Implemento ingresado no existe en el sistema, intente de nuevo con uno válido");
+                }
+
+                ImplementoNuevo.FK_IDTIPOIMPLEMENTO = IdTipoImplemento;
+
+                return ImplementoNuevo.Actualizar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private Boolean eliminarImplemento()
+        {
+            try
+            {
+                cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                Implemento.ID_IMPLEMENTO = int.Parse(_DatosSeleccionadosActuales.Split(',').First());
+                return Implemento.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void llenarCamposImplemento()
+        {
+            String datos = _DatosSeleccionadosActuales;
+            String[] arregloDatos = datos.Split(',');
+            TextBoxImplementoNuevo.Text = arregloDatos[1];
+            TextBoxDeporteNuevo.Text = arregloDatos[arregloDatos.Length - 1];
+            TextBoxCantidad.Text = arregloDatos[arregloDatos.Length - 2];
+            TextBoxNombre.Text="";
+            int diferencia = (arregloDatos.Length - 2);
+            for (int i = 2; i < diferencia;i++ )
+            {
+                TextBoxNombre.Text+= arregloDatos[i];
+            }
+        }
 
         private void obtenerImplementos() 
         {
             try
             {
                 cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DT_Implementos = new DataTable();
                 DT_Implementos = Implemento.SeleccionarTodos();
                 String aDataSet = "[";
                 int cantidadColumnas = DT_Implementos.Columns.Count;
@@ -139,6 +311,7 @@ namespace ITCR.SGAG.Interfaz
             try
             {
                 cSGGIDEPORTENegocios Deporte = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DT_Deportes = new DataTable();
                 DT_Deportes = Deporte.SeleccionarTodos();
                 llenarComboBoxDeportes();
             }
@@ -153,6 +326,7 @@ namespace ITCR.SGAG.Interfaz
             try
             {
                 cSGGITIPOIMPLEMENTONegocios TipoImplemento = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DT_TipoImplementos = new DataTable();
                 DT_TipoImplementos = TipoImplemento.SeleccionarTodos();
                 llenarComboBoxTipoImplemento();
             }
@@ -236,7 +410,7 @@ namespace ITCR.SGAG.Interfaz
                 {
                     return TipoImplementoIngresado.Insertar();
                 }
-                return false;
+                throw new Exception("El Nombre digitado ya se encuentra dentro del sistema");
             }
             catch (Exception ex)
             {
@@ -250,10 +424,17 @@ namespace ITCR.SGAG.Interfaz
             {
                 cSGGITIPOIMPLEMENTONegocios TipoImplementoIngresado = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
                 TipoImplementoIngresado.NOM_TIPOIMPLEMENTO = TextBoxImplementoNuevo.Text;
-                if (TipoImplementoIngresado.Buscar().Rows.Count>0)
+                DataTable busqueda = TipoImplementoIngresado.Buscar();
+                if (busqueda.Rows.Count > 0)
+                {
+                    IdTipoImplemento = Int32.Parse(busqueda.Rows[0][0].ToString());
                     return true;
+                }
                 else
+                {
+                    IdTipoImplemento = -1;
                     return false;
+                }
             }
             catch (Exception ex)
             {
@@ -271,7 +452,7 @@ namespace ITCR.SGAG.Interfaz
                 {
                     return DeporteNuevo.Insertar();
                 }
-                return false;
+                throw new Exception("El Nombre digitado ya se encuentra dentro del sistema");
             }
             catch (Exception ex)
             {
@@ -285,10 +466,17 @@ namespace ITCR.SGAG.Interfaz
             {
                 cSGGIDEPORTENegocios DeporteNuevo = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
                 DeporteNuevo.NOM_DEPORTE = pNombreDeporte;
-                if (DeporteNuevo.Buscar().Rows.Count > 0)
+                DataTable busqueda = DeporteNuevo.Buscar();
+                if (busqueda.Rows.Count > 0)
+                {
+                    IdDeporte = Int32.Parse(busqueda.Rows[0][0].ToString());
                     return true;
+                }
                 else
+                {
+                    IdDeporte = -1;
                     return false;
+                }
             }
             catch (Exception ex)
             {
@@ -300,37 +488,33 @@ namespace ITCR.SGAG.Interfaz
         {
             try 
             {
-                return true;
-            }
-            catch(Exception ex)
-            {
-                return false;
-            }
-        }
-  
-        #endregion
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            String nuevo = TextBoxInfo.Text;
-            Response.Write(nuevo);
-        }
-
-        protected void BotonGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
                 cSGGIIMPLEMENTONegocios ImplementoNuevo = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
                 ImplementoNuevo.CAN_DISPONIBLE = int.Parse(TextBoxCantidad.Text.ToString());
                 ImplementoNuevo.CAN_ENINVENTARIO = ImplementoNuevo.CAN_DISPONIBLE;
                 ImplementoNuevo.DSC_IMPLEMENTO = TextBoxNombre.Text;
-               /* ImplementoNuevo.FK_IDDEPORTE = IdDeporte;
-                ImplementoNuevo.FK_IDTIPOIMPLEMENTO = IdTipoImplemento;*/
-            }
-            catch (Exception ex)
-            { 
-            }
-         }
+                if (!verificarNombreDeporte(TextBoxDeporteNuevo.Text))
+                {
+                    throw new Exception("El Deporte ingresado no existe en el sistema, intente de nuevo con uno válido");
+                }
 
+                ImplementoNuevo.FK_IDDEPORTE = IdDeporte;
+
+                if (!verificarTipoImplemento(TextBoxImplementoNuevo.Text))
+                {
+                    throw new Exception("El Tipo de Implemento ingresado no existe en el sistema, intente de nuevo con uno válido");
+                }
+
+                ImplementoNuevo.FK_IDTIPOIMPLEMENTO = IdTipoImplemento;
+
+                return ImplementoNuevo.Insertar();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+  
+        #endregion
+   
     }
 }

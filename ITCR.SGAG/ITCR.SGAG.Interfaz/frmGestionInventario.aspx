@@ -58,6 +58,13 @@
     </style>
     <style type="text/css">
         
+     .TextoMarcaAgua
+     {
+         font-size:12px; 
+         font-family:"Calibri","sans-serif";
+         font-style:italic;
+         color:Gray;
+      }   
      .MultiColumnTextBoxStyle
         {            
             border: 1px solid #99bbe8;
@@ -174,13 +181,15 @@
                     <tr>
                         <td>
                             &nbsp;
-                            <asp:Button ID="BotonModificar" runat="server" Text="Modificar" />
+                            <asp:Button ID="BotonModificar" runat="server" Text="Modificar" 
+                                />
                         </td>
                         <td>
                             &nbsp;
                         </td>
                         <td>
-                            <asp:Button ID="BotonEliminar" runat="server" Text="Eliminar" />
+                            <asp:Button ID="BotonEliminar" runat="server" Text="Eliminar"
+                                onclick="BotonEliminar_Click" />
                             &nbsp;
                         </td>
                     </tr>
@@ -245,6 +254,9 @@
               <td class="style22" align="left">
                   <asp:TextBox ID="TextBoxNombre" runat="server" Width="200px" 
                       style="margin-left: 29px"></asp:TextBox>
+                  <asp:TextBoxWatermarkExtender ID="TextBoxNombre_TextBoxWatermarkExtender" WatermarkText="Digite una descripción, máximo 30 caractéres"
+                      runat="server" Enabled="True" TargetControlID="TextBoxNombre" WatermarkCssClass="TextoMarcaAgua">
+                  </asp:TextBoxWatermarkExtender>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
                         ErrorMessage="Cantidad de Implementos" ControlToValidate="TextBoxNombre">*</asp:RequiredFieldValidator>
               </td>
@@ -269,6 +281,9 @@
               <td class="style22" align="left">
                   <asp:TextBox ID="TextBoxCantidad" runat="server" Width="200px" 
                       style="margin-left: 30px"></asp:TextBox>
+                  <asp:TextBoxWatermarkExtender ID="TextBoxCantidad_TextBoxWatermarkExtender" WatermarkText="Digite un número ej: 8, 14, 5"
+                      runat="server" Enabled="True" TargetControlID="TextBoxCantidad" WatermarkCssClass="TextoMarcaAgua">
+                  </asp:TextBoxWatermarkExtender>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
                       CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxCantidad"
                         ErrorMessage="Nombre de Implemento">*</asp:RequiredFieldValidator>
@@ -298,7 +313,7 @@
                         TargetControlID="TextBoxImplementoNuevo">
                     </asp:DropDownExtender>
                                      <asp:TextBoxWatermarkExtender ID="TextBoxImplementoNuevo_TextBoxWatermarkExtender" WatermarkText="Tipo de Implemento Nuevo"
-                        runat="server" Enabled="True" TargetControlID="TextBoxImplementoNuevo">
+                        runat="server" Enabled="True" TargetControlID="TextBoxImplementoNuevo" WatermarkCssClass="TextoMarcaAgua">
                     </asp:TextBoxWatermarkExtender>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
                       CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxImplementoNuevo"
@@ -329,7 +344,7 @@
                             style="margin-left: 12px" ValidationGroup="Deporte"
                         Width="200px"></asp:TextBox>
                     <asp:TextBoxWatermarkExtender ID="TextBoxDeporteNuevo_TextBoxWatermarkExtender" WatermarkText="Deporte Nuevo"
-                        runat="server" Enabled="True" TargetControlID="TextBoxDeporteNuevo">
+                        runat="server" Enabled="True" TargetControlID="TextBoxDeporteNuevo" WatermarkCssClass="TextoMarcaAgua">
                     </asp:TextBoxWatermarkExtender>
                     <asp:DropDownExtender ID="TextBoxDeporteNuevo_DropDownExtender" runat="server"
                         DynamicServicePath="" Enabled="True" TargetControlID="TextBoxDeporteNuevo" DropDownControlID="PnlComboBoxMultiColumna">

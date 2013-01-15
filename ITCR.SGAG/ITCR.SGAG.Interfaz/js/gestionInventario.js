@@ -1,4 +1,5 @@
-﻿ var oTable;
+﻿var oTable;
+var informacion;
 
 function CrearTablaInventario(aDataSet) {
     $('#dynamic').html('<table cellpadding="0" cellspacing="0" border="0" class="display" id="example"></table>');
@@ -20,10 +21,16 @@ function CrearTablaInventario(aDataSet) {
 					]
     });
 
-     oTable.$('tr').click( function () {
-    var data = oTable.fnGetData( this );
-       $('#MainContent_TextBoxInfo').value = data[0];
-      // alert('The cell clicked on had the value of '+ data[0]);  
-  } );
+    oTable.$('tr').click(function () {
+        var data = oTable.fnGetData(this);
+        informacion = data;
+        //$('#MainContent_TextBoxInfo').value = data[0];
+        //alert('The cell clicked on had the value of '+ data[0]);  
+    });
     oTable.fnSetColumnVis( 0, false );
 };
+
+function ObtenerDatos()
+{
+    __doPostBack('otable ', informacion)
+}

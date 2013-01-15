@@ -19,35 +19,48 @@ namespace ITCR.SGAG.Interfaz
 
         protected void ButVerificar_Click(object sender, EventArgs e)
         {
-            /*wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-            wsseg.ComprobarEstudiante(out Nombre, TextBoxId.Text);*/
-            if (Nombre == "")
+            try
             {
-                /* wsseg.ComprobarUsuarioAD(out Nombre, TextBoxId.Text);*/
+                wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+                wsseg.ComprobarEstudiante(out Nombre, TextBoxId.Text);
                 if (Nombre == "")
                 {
-                    LabelNombre.Text = "Identificación no registrada";
-                    LabelNombre.ForeColor = System.Drawing.ColorTranslator.FromHtml("#CC0000");
+                    wsseg.ComprobarUsuarioAD(out Nombre, TextBoxId.Text);
+                    if (Nombre == "")
+                    {
+                        LabelNombre.Text = "Identificación no registrada";
+                        LabelNombre.ForeColor = System.Drawing.ColorTranslator.FromHtml("#CC0000");
+                    }
                 }
+                else
+                {
+                    LabelNombre.Text = "Nombre: " + Nombre;
+                    ButRegistrar.Enabled = true;
+                }
+                LabelNombre.Visible = true;
             }
-            else
+            catch (Exception ex) 
             {
-                LabelNombre.Text = "Nombre: " + Nombre;
-                ButRegistrar.Enabled = true;
+                Response.Write("<SCRIPT>alert(''" + ex.Message +")</SCRIPT>");
             }
-             LabelNombre.Visible = true;
-             
         }
 
         protected void ButRegistrar_Click(object sender, EventArgs e)
         {
+             try
+            {
             cSGPRINGRESONegocios Negocios = new cSGPRINGRESONegocios(Global.gCOD_APLICACION, "CA", 1, "naquiros");
             string[] stringFecha = TextBoxFecha.Text.Split('/');
             DateTime fecha = new DateTime(Int32.Parse(stringFecha[2]), Int32.Parse(stringFecha[0]), Int32.Parse(stringFecha[1]));
             Negocios.FEC_INGRESO = fecha;
             Negocios.FEC_SISTEMA = DateTime.Now.Date;
-            Negocios.CAR_USUARIOGIMNASIO = Nombre;
+            Negocios.CAR_USUARIOGIMNASIO = TextBoxId.Text;
             Response.Write("<SCRIPT>alert('Se ha registrado correctamente dentro del sistema.')</SCRIPT>");
+            }
+             catch (Exception ex)
+             {
+                 Response.Write("<SCRIPT>alert(''" + ex.Message + ")</SCRIPT>");
+             }
         }
     }
 }
