@@ -15,11 +15,11 @@
     }
         .style2
         {
-            width: 242px;
+            width: 243px;
         }
         .style5
         {
-            width: 19px;
+            width: 9px;
         }
         .style7
         {
@@ -27,27 +27,27 @@
         }
         .style8
         {
-            width: 242px;
+            width: 243px;
             height: 50px;
         }
         .style10
         {
-            width: 48px;
+            width: 12px;
             height: 50px;
         }
         .style12
         {
-            width: 242px;
+            width: 243px;
             height: 20px;
         }
         .style13
         {
-            width: 19px;
+            width: 9px;
             height: 20px;
         }
         .style14
         {
-            width: 48px;
+            width: 12px;
             height: 20px;
         }
         .style16
@@ -108,11 +108,6 @@
 	        
         }
         
-        .style17
-        {
-            width: 48px;
-        }
-        
         .style18
         {
             width: 5px;
@@ -125,18 +120,33 @@
         
         .style20
         {
-            width: 19px;
+            width: 9px;
             height: 50px;
         }
         
         .style21
         {
-            width: 350px;
+            width: 351px;
         }
         
         .style22
         {
             width: 307px;
+        }
+        
+        #dynamic
+        {
+            width: 872px;
+        }
+        .spacer
+        {
+            width: 868px;
+            height: 23px;
+        }
+        
+        .style23
+        {
+            width: 12px;
         }
         
     </style>
@@ -147,21 +157,60 @@
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
                 </div>
+
+            <div style="width: 869px"> 
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                            <asp:Button ID="BotonModificar" runat="server" Text="Modificar" />
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <asp:Button ID="BotonEliminar" runat="server" Text="Eliminar" />
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+                </div>
             <div id="dt_prestamos">
                 <div id="container">
                     <div id="dynamic"></div>
                         <div class="spacer"></div>
                         </div>
         </div>
-    <div style="width: 856px">
+    <div style="width: 870px; height: 20px;">
     </div>
         <div style="width: 687px">
             <hr style="width: 877px" />
     </div>
         <div style="width: 871px; height: 36px;">
         <input id="inpHide" type="hidden" runat="server" />  
-            <div>
-                <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+            <div style="height: 31px">
                 <div style="visibility:hidden"> 
                     <asp:TextBox ID="TextBoxInfo" runat="server"></asp:TextBox>
                    </div>
@@ -173,12 +222,11 @@
       <table style="width: 100%; height: 74px;">
           <tr>
               <td align="center" class="style21">
-                  <asp:Button ID="BotonVisibilidad" runat="server" 
-                      Text="Mostrar Información Implemento" style="margin-left: 0px" 
-                      Width="228px" />
-              </td>
-              <td class="style22">
                   &nbsp;</td>
+              <td class="style22" align="center">
+                  <asp:Label ID="Label3" runat="server" Font-Size="Medium" 
+                      Text="Agregar Implementos"></asp:Label>
+              </td>
               <td>
                   &nbsp;</td>
           </tr>
@@ -195,8 +243,10 @@
                   <asp:Label ID="Label1" runat="server" Text="Nombre: "></asp:Label>
               </td>
               <td class="style22" align="left">
-                  <asp:TextBox ID="TextBox1" runat="server" Width="200px" 
+                  <asp:TextBox ID="TextBoxNombre" runat="server" Width="200px" 
                       style="margin-left: 29px"></asp:TextBox>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
+                        ErrorMessage="Cantidad de Implementos" ControlToValidate="TextBoxNombre">*</asp:RequiredFieldValidator>
               </td>
               <td>
                   &nbsp;</td>
@@ -207,7 +257,9 @@
               <td class="style22">
                   &nbsp;</td>
               <td align="center">
-                  <asp:Button ID="BotonGuardar" runat="server" Text="Guardar Cambios" />
+                  <asp:Button ID="BotonGuardar" runat="server" Text="Guardar Cambios" 
+                      ValidationGroup="Implemento" onclick="BotonGuardar_Click" 
+                      style="margin-left: 1px" />
               </td>
           </tr>
           <tr>
@@ -215,8 +267,11 @@
                   <asp:Label ID="Label2" runat="server" Text="Cantidad:"></asp:Label>
               </td>
               <td class="style22" align="left">
-                  <asp:TextBox ID="TextBox2" runat="server" Width="200px" 
+                  <asp:TextBox ID="TextBoxCantidad" runat="server" Width="200px" 
                       style="margin-left: 30px"></asp:TextBox>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+                      CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxCantidad"
+                        ErrorMessage="Nombre de Implemento">*</asp:RequiredFieldValidator>
               </td>
               <td>
                   &nbsp;</td>
@@ -228,17 +283,28 @@
         <table style="width:100%; margin-bottom: 0px;">
             <tr>
                 <td class="style2">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
+                 	<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+
+        <asp:Panel ID="Panel1" runat="server" CssClass="MultiColumnContextMenuPanel" Style="display: none; visibility: hidden;">
+       </asp:Panel>
+
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="TipoImplemento"
                         ErrorMessage="Nombre del Implemento" ControlToValidate="TextBoxImplementoNuevo">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" style="margin-left: 32px" ValidationGroup="TipoImplemento"
-                        Width="195px"></asp:TextBox>
+                        Width="195px" ></asp:TextBox>
                                      <asp:DropDownExtender ID="TextBoxImplementoNuevo_DropDownExtender" 
-                        runat="server" DynamicServicePath="" Enabled="True" 
+                        runat="server" DynamicServicePath="" Enabled="True" DropDownControlID="Panel1"
                         TargetControlID="TextBoxImplementoNuevo">
                     </asp:DropDownExtender>
                                      <asp:TextBoxWatermarkExtender ID="TextBoxImplementoNuevo_TextBoxWatermarkExtender" WatermarkText="Tipo de Implemento Nuevo"
                         runat="server" Enabled="True" TargetControlID="TextBoxImplementoNuevo">
                     </asp:TextBoxWatermarkExtender>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+                      CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxImplementoNuevo"
+                        ErrorMessage="Tipo del Implemento">*</asp:RequiredFieldValidator>
+                                        </ContentTemplate> 
+                </asp:UpdatePanel>
                                      </td>
                 <td align="right" class="style5">
 
@@ -246,8 +312,12 @@
                         runat="server" CssClass="TextoError" ValidationGroup="Deporte"
                         ErrorMessage="Nombre del Deporte" ControlToValidate="TextBoxDeporteNuevo">*</asp:RequiredFieldValidator>
 
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                      CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxDeporteNuevo"
+                        ErrorMessage="Deporte del Implemento">*</asp:RequiredFieldValidator>
+
                 </td>
-                <td class="style17" align="left">
+                <td class="style23" align="left">
 
                 	<asp:UpdatePanel ID="UPnlComboBoxMultiColumna" runat="server">
                     <ContentTemplate>
@@ -255,7 +325,8 @@
         <asp:Panel ID="PnlComboBoxMultiColumna" runat="server" CssClass="MultiColumnContextMenuPanel" Style="display: none; visibility: hidden;">
        </asp:Panel>
 
-                    <asp:TextBox ID="TextBoxDeporteNuevo" text="" runat="server" style="margin-left: 22px" ValidationGroup="Deporte"
+                    <asp:TextBox ID="TextBoxDeporteNuevo" text="" runat="server" 
+                            style="margin-left: 12px" ValidationGroup="Deporte"
                         Width="200px"></asp:TextBox>
                     <asp:TextBoxWatermarkExtender ID="TextBoxDeporteNuevo_TextBoxWatermarkExtender" WatermarkText="Deporte Nuevo"
                         runat="server" Enabled="True" TargetControlID="TextBoxDeporteNuevo">
@@ -266,9 +337,10 @@
                 </ContentTemplate> 
                 </asp:UpdatePanel>
                 </td>
-                 <td class="style7">
+                 <td class="style7" align="left">
                     <asp:Button ID="BotonAgregarDeporte" runat="server" Text="Agregar Deporte" 
-                        style="margin-left: 25px" onclick="BotonAgregarDeporte_Click" ValidationGroup="Deporte"/>
+                        style="margin-left: 14px" onclick="BotonAgregarDeporte_Click" 
+                         ValidationGroup="Deporte"/>
                 </td>
             </tr>
             <tr>
@@ -298,6 +370,9 @@
                         CssClass="TextoError" Height="31px" Width="209px"/>
                                             <asp:ValidationSummary ID="ValidationSummary2" 
                         runat="server" HeaderText="Es requerido que seleccione el siguiente campo:" ValidationGroup="Deporte"
+                        CssClass="TextoError" Height="31px" Width="207px"/>
+                        <asp:ValidationSummary ID="ValidationSummary3" 
+                        runat="server" HeaderText="Es requerido que seleccione el siguiente campo:" ValidationGroup="TipoImplemento"
                         CssClass="TextoError" Height="31px" Width="207px"/>
                 </td>
                 <td class="style18">

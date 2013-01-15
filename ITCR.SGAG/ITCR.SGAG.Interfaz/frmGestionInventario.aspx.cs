@@ -14,10 +14,12 @@ namespace ITCR.SGAG.Interfaz
         #region Atributos
 
         private static DataTable DT_Deportes;
+        private static DataTable DT_TipoImplementos;
         private static DataTable DT_Implementos;
         private static int Ind_Deporte = -1;
         private const int Ind_Id = 0;
         private const int Ind_Nombre = 1;
+        private static Boolean _Modificacion = false;
 
         #endregion
 
@@ -25,17 +27,8 @@ namespace ITCR.SGAG.Interfaz
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           /* cSGGIDEPORTENegocios DeporteNuevo = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
-            DeporteNuevo.NOM_DEPORTE = TextBoxDeporteNuevo.Text;
-            DeporteNuevo.Insertar();*/
-            //ClientScript.RegisterStartupScript(this.GetType(), "myScript", "IniciarTabla();", true);
-          /*  if (!Page.IsPostBack)
-            {
-                obtenerDeportes();
-                obtenerImplementos();
-            }*/
-
             obtenerDeportes();
+            obtenerTiposImplementos();
             obtenerImplementos();
             LabelMensaje.Text = "";
         }
@@ -100,6 +93,13 @@ namespace ITCR.SGAG.Interfaz
             TextBoxDeporteNuevo.Text = Nombre;
         }
 
+        protected void ComboBoxMultiColumnaItemImp_onClick(object sender, EventArgs e)
+        {
+            string linkButtonText = ((LinkButton)sender).Text;
+            string Nombre = linkButtonText.Split('\u00A0')[1];
+           TextBoxImplementoNuevo.Text = Nombre;
+        }
+
         #endregion
 
         #region Metodos
@@ -148,6 +148,50 @@ namespace ITCR.SGAG.Interfaz
             }
         }
 
+        private void obtenerTiposImplementos()
+        {
+            try
+            {
+                cSGGITIPOIMPLEMENTONegocios TipoImplemento = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DT_TipoImplementos = TipoImplemento.SeleccionarTodos();
+                llenarComboBoxTipoImplemento();
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta4", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
+            }
+        }
+
+        private void llenarComboBoxTipoImplemento()
+        {
+            try
+            {
+                List<String> listaTipoImplementos = new List<String>();
+                for (int IndiceDeportes = 0; IndiceDeportes < DT_TipoImplementos.Rows.Count; IndiceDeportes++)
+                {
+                    listaTipoImplementos.Add(DT_TipoImplementos.Rows[IndiceDeportes][Ind_Nombre].ToString());
+                }
+
+                foreach (String tipo in listaTipoImplementos)
+                {
+                    LinkButton lb = new LinkButton();
+                    lb.ID = "Lbl" + tipo + "ComboBoxMultiColumnaImp";
+                    lb.CssClass = "MultiColumnContextMenuItem";
+                    lb.Click += new EventHandler(ComboBoxMultiColumnaItemImp_onClick);
+
+                    lb.Text = "<div>";
+                    lb.Text += "<span style=\"width: 40px;\">" + '\u00A0' + tipo + '\u00A0' + "</span>";
+                    lb.Text += "</div>";
+
+                    Panel1.Controls.Add(lb);
+                }
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta5", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
+            }
+        }
+
         private void llenarTablaImplementos() 
         { 
         }
@@ -188,12 +232,32 @@ namespace ITCR.SGAG.Interfaz
             {
                 cSGGITIPOIMPLEMENTONegocios TipoImplementoIngresado = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
                 TipoImplementoIngresado.NOM_TIPOIMPLEMENTO = TextBoxImplementoNuevo.Text;
-                TipoImplementoIngresado.Buscar();
-                return TipoImplementoIngresado.Insertar();
+                if (!verificarTipoImplemento(TextBoxImplementoNuevo.Text))
+                {
+                    return TipoImplementoIngresado.Insertar();
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public Boolean verificarTipoImplemento(String pTipoImplemento)
+        {
+            try
+            {
+                cSGGITIPOIMPLEMENTONegocios TipoImplementoIngresado = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                TipoImplementoIngresado.NOM_TIPOIMPLEMENTO = TextBoxImplementoNuevo.Text;
+                if (TipoImplementoIngresado.Buscar().Rows.Count>0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
@@ -203,12 +267,32 @@ namespace ITCR.SGAG.Interfaz
             {
                 cSGGIDEPORTENegocios DeporteNuevo = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
                 DeporteNuevo.NOM_DEPORTE = TextBoxDeporteNuevo.Text;
-                DeporteNuevo.Buscar();
-                return DeporteNuevo.Insertar();
+                if (!verificarNombreDeporte(TextBoxDeporteNuevo.Text))
+                {
+                    return DeporteNuevo.Insertar();
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public Boolean verificarNombreDeporte(String pNombreDeporte) 
+        {
+            try
+            {
+                cSGGIDEPORTENegocios DeporteNuevo = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DeporteNuevo.NOM_DEPORTE = pNombreDeporte;
+                if (DeporteNuevo.Buscar().Rows.Count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
@@ -231,6 +315,22 @@ namespace ITCR.SGAG.Interfaz
             String nuevo = TextBoxInfo.Text;
             Response.Write(nuevo);
         }
+
+        protected void BotonGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cSGGIIMPLEMENTONegocios ImplementoNuevo = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                ImplementoNuevo.CAN_DISPONIBLE = int.Parse(TextBoxCantidad.Text.ToString());
+                ImplementoNuevo.CAN_ENINVENTARIO = ImplementoNuevo.CAN_DISPONIBLE;
+                ImplementoNuevo.DSC_IMPLEMENTO = TextBoxNombre.Text;
+               /* ImplementoNuevo.FK_IDDEPORTE = IdDeporte;
+                ImplementoNuevo.FK_IDTIPOIMPLEMENTO = IdTipoImplemento;*/
+            }
+            catch (Exception ex)
+            { 
+            }
+         }
 
     }
 }
