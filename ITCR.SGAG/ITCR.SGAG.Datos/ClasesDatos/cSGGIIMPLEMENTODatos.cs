@@ -173,5 +173,14 @@ namespace ITCR.SGAG.Datos
 				//    base.DescripcionCF = "{0}" + base.DescripcionCF + "{0}"; }
 			return base.Buscar();
 		}
+
+        // ============================
+
+        public override DataTable ConocerProxDevolucion()
+        {
+            return base.ConocerProxDevolucion();
+        }
+
+
 	} //class
 } //namespace

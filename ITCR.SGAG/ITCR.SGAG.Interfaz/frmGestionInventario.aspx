@@ -5,6 +5,8 @@
     <link href="DataTable_Plugin/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="DataTable_Plugin/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="js/TableTools.js" type="text/javascript"></script>
+    <script src="js/ZeroClipboard.js" type="text/javascript"></script>
     <script src="js/gestionInventario.js" type="text/javascript"></script>
     <style type="text/css">
     #table_id
@@ -127,18 +129,24 @@
             height: 50px;
         }
         
+        .style21
+        {
+            width: 350px;
+        }
+        
+        .style22
+        {
+            width: 307px;
+        }
+        
     </style>
-    		<script type="text/javascript" charset="utf-8">
-    		    $(document).ready(function () {
-    		        $('#table_id').dataTable();
-    		    });
-		</script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
           <div style="width: 873px; margin-left: 0px" align="left"> 
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
-
+                </div>
             <div id="dt_prestamos">
                 <div id="container">
                     <div id="dynamic"></div>
@@ -150,25 +158,89 @@
         <div style="width: 687px">
             <hr style="width: 877px" />
     </div>
-        <div style="width: 856px; height: 36px;">
+        <div style="width: 871px; height: 36px;">
+        <input id="inpHide" type="hidden" runat="server" />  
             <div>
+                <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+                <div style="visibility:hidden"> 
+                    <asp:TextBox ID="TextBoxInfo" runat="server"></asp:TextBox>
+                   </div>
             </div>
     </div>
+  
+  <div style="width: 872px; height: 157px">
+   
+      <table style="width: 100%; height: 74px;">
+          <tr>
+              <td align="center" class="style21">
+                  <asp:Button ID="BotonVisibilidad" runat="server" 
+                      Text="Mostrar Información Implemento" style="margin-left: 0px" 
+                      Width="228px" />
+              </td>
+              <td class="style22">
+                  &nbsp;</td>
+              <td>
+                  &nbsp;</td>
+          </tr>
+          <tr>
+              <td class="style21">
+                  &nbsp;</td>
+              <td class="style22">
+                  &nbsp;</td>
+              <td>
+                  &nbsp;</td>
+          </tr>
+          <tr>
+              <td class="style21">
+                  <asp:Label ID="Label1" runat="server" Text="Nombre: "></asp:Label>
+              </td>
+              <td class="style22" align="left">
+                  <asp:TextBox ID="TextBox1" runat="server" Width="200px" 
+                      style="margin-left: 29px"></asp:TextBox>
+              </td>
+              <td>
+                  &nbsp;</td>
+          </tr>
+          <tr>
+              <td class="style21">
+                  &nbsp;</td>
+              <td class="style22">
+                  &nbsp;</td>
+              <td align="center">
+                  <asp:Button ID="BotonGuardar" runat="server" Text="Guardar Cambios" />
+              </td>
+          </tr>
+          <tr>
+              <td class="style21">
+                  <asp:Label ID="Label2" runat="server" Text="Cantidad:"></asp:Label>
+              </td>
+              <td class="style22" align="left">
+                  <asp:TextBox ID="TextBox2" runat="server" Width="200px" 
+                      style="margin-left: 30px"></asp:TextBox>
+              </td>
+              <td>
+                  &nbsp;</td>
+          </tr>
+      </table>
+   
+  </div>
     <div style="width: 875px; height: 141px;">
         <table style="width:100%; margin-bottom: 0px;">
             <tr>
                 <td class="style2">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
                         ErrorMessage="Nombre del Implemento" ControlToValidate="TextBoxImplementoNuevo">*</asp:RequiredFieldValidator>
-                    <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" style="margin-left: 32px" ValidationGroup="Implemento"
+                    <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" style="margin-left: 32px" ValidationGroup="TipoImplemento"
                         Width="195px"></asp:TextBox>
+                                     <asp:DropDownExtender ID="TextBoxImplementoNuevo_DropDownExtender" 
+                        runat="server" DynamicServicePath="" Enabled="True" 
+                        TargetControlID="TextBoxImplementoNuevo">
+                    </asp:DropDownExtender>
                                      <asp:TextBoxWatermarkExtender ID="TextBoxImplementoNuevo_TextBoxWatermarkExtender" WatermarkText="Tipo de Implemento Nuevo"
                         runat="server" Enabled="True" TargetControlID="TextBoxImplementoNuevo">
                     </asp:TextBoxWatermarkExtender>
                                      </td>
                 <td align="right" class="style5">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
-                        ErrorMessage="Nombre del Deporte" ControlToValidate="TextBoxDeporteNuevo">*</asp:RequiredFieldValidator>
 
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" 
                         runat="server" CssClass="TextoError" ValidationGroup="Deporte"
@@ -200,7 +272,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="style12">
+                <td class="style12" align="center">
+                    <asp:Label ID="LblSelectedItemComboBoxMultiColumnaImp" runat="server" Text=""></asp:Label> 
                     </td>
                 <td class="style13">
                     </td>
@@ -213,7 +286,8 @@
             <tr>
                 <td class="style8">
                     <asp:Button ID="BotonAgregarImplemento" runat="server" style="margin-left: 50px" 
-                        Text="Agregar Implemento" onclick="BotonAgregarImplemento_Click" ValidationGroup="Implemento" />
+                        Text="Agregar Tipo Implemento" onclick="BotonAgregarTipoImplemento_Click" 
+                        ValidationGroup="TipoImplemento" />
                 </td>
                 <td class="style20" align="center">
                 </td>

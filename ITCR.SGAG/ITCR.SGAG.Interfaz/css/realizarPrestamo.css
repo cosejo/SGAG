@@ -18,6 +18,12 @@
     margin-right: 10px;
 }
 
+#encabezado p span.warning
+{
+    color: navy;
+    font-size: 12px;
+}
+
 .lblNombreUsuario, .lblEstadoUsuario
 {
     margin-right: 30px;

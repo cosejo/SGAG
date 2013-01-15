@@ -11,13 +11,13 @@
     <script type="text/javascript">
         var cantImplementos = 0;
         $(function () {
-            $("#MainContent_cldFechaDevolucionGeneral").datepicker();
+            $("#MainContent_cldFechaDevolucionGeneral").datepicker({ dateFormat: 'dd-mm-yy', minDate: 0 });
         });
     </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"> 
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"> 
         </asp:ScriptManager>
 
     <div id="content">
@@ -25,15 +25,18 @@
 
         <div id="encabezado">
             <div id="dIdentificacion">
-                <asp:TextBox ID="txtIdentificacion" class="CampoTexto" runat="server" value="Identificación" onfocus="if(this.value=='Identificación') this.value=''" onblur="if(this.value=='') this.value='Identificación'"></asp:TextBox>
+                <asp:TextBox ID="txtIdentificacion" class="CampoTexto" runat="server" value="Identificación" 
+                    onfocus="if(this.value=='Identificación') this.value=''" onblur="if(this.value=='') this.value='Identificación'"></asp:TextBox>
                 <asp:Button ID="btnVerificar" runat="server" Text="Verificar" OnClick="btnVerificar_Click" />
             </div>
-            <p id="pInfoUsuario"><b>Nombre: </b><asp:Label ID="lblNombreUsuario" class="lblNombreUsuario" runat="server" Text="Mauricio Muñoz Chaves"></asp:Label>
-            <b>Estado: </b><asp:Label ID="lblEstadoUsuario" runat="server" Text="Habilitado"></asp:Label></p>
-            <p><b>Fecha de devolución general: </b><input type="text"  class="CampoTexto" id="cldFechaDevolucionGeneral" runat="server" /></p>
+            <p id="pInfoUsuario"><b>Nombre: </b><asp:Label ID="lblNombreUsuario" class="lblNombreUsuario" runat="server" Text="---"></asp:Label>
+            <b>Estado: </b><asp:Label ID="lblEstadoUsuario" runat="server" Text="---"></asp:Label></p>
+            <p><b>Fecha de devolución general: </b><asp:TextBox ID="cldFechaDevolucionGeneral" CssClass="CampoTexto" runat="server" AutoPostBack="true" OnTextChanged="cldFechaDevolucionGeneral_OnChange"></asp:TextBox><br />
+                <span class="warning">* Si modifica este campo se calculará automáticamente la cantidad de días del préstamo para cada implemento.</span></p>
         </div>
         
-        <asp:Panel ID="implementos" runat="server">
+        <asp:Panel ID="implementos" runat="server"> 
+
         </asp:Panel>
 
         <asp:Button ID="btnAgregarImplemento" runat="server" Text="Agregar más" onclick="btnAgregarImplemento_Click" />

@@ -40,19 +40,19 @@ namespace ITCR.SGAG.Interfaz
             LabelMensaje.Text = "";
         }
 
-        protected void BotonAgregarImplemento_Click(object sender, EventArgs e)
+        protected void BotonAgregarTipoImplemento_Click(object sender, EventArgs e)
         {
             String MensajeDevuelto = "";
             LabelMensaje.Text = MensajeDevuelto;
             try
             {
-                Page.Validate("Implemento");
+                Page.Validate("TipoImplemento");
 
                 if (Page.IsValid)
                 {
-                    if (agregarImplemento())
+                    if (agregarTipoImplemento())
                     {
-                        MensajeDevuelto = "El Implemento ha sido agregado satisfactoriamente";
+                        MensajeDevuelto = "El Tipo Implemento ha sido agregado satisfactoriamente";
                         LabelMensaje.ForeColor = System.Drawing.Color.Blue;
                     }
                 }
@@ -106,34 +106,46 @@ namespace ITCR.SGAG.Interfaz
 
         private void obtenerImplementos() 
         {
-            cSGGITIPOIMPLEMENTONegocios Implemento = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
-            DT_Implementos = Implemento.SeleccionarTodos();
-            /*DataRow row = DT_Implementos.Rows[0];
-            string e = row[0].ToString();
-            llenarTablaImplementos();*/
-            String aDataSet = "[";
-            int cantidadColumnas = DT_Implementos.Columns.Count;
-            for (int IndiceImplementos = 0; IndiceImplementos < DT_Deportes.Rows.Count-2; IndiceImplementos++)
+            try
             {
-                aDataSet+= "['" + DT_Implementos.Rows[IndiceImplementos][0] + "','" + DT_Implementos.Rows[IndiceImplementos][1] + "','" + DT_Implementos.Rows[IndiceImplementos][2] + "']";
-                if (IndiceImplementos + 1 != DT_Deportes.Rows.Count - 2)
+                cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DT_Implementos = Implemento.SeleccionarTodos();
+                String aDataSet = "[";
+                int cantidadColumnas = DT_Implementos.Columns.Count;
+                for (int IndiceImplementos = 0; IndiceImplementos < DT_Implementos.Rows.Count; IndiceImplementos++)
                 {
-                    aDataSet += ",";
+
+                    aDataSet += "['" + DT_Implementos.Rows[IndiceImplementos][0] + "','" + DT_Implementos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Implementos.Rows[IndiceImplementos][3].ToString() + "','" + DT_Implementos.Rows[IndiceImplementos][4] + "','" + DT_Implementos.Rows[IndiceImplementos][2].ToString() + "']";
+                    if (IndiceImplementos + 1 != DT_Deportes.Rows.Count - 2)
+                    {
+                        aDataSet += ",";
+                    }
+                }
+                aDataSet += "]";
+
+                if (!Page.ClientScript.IsStartupScriptRegistered("TablaInventario"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaInventario", "<script type=\"text/javascript\"> CrearTablaInventario(" + aDataSet + ");</script>");
                 }
             }
-            aDataSet+= "]";
-            
-            if (!Page.ClientScript.IsStartupScriptRegistered("TablaInventario"))
+            catch (Exception ex)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaInventario", "<script type=\"text/javascript\"> CrearTablaInventario(" + aDataSet + ");</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
             }
         }
 
         private void obtenerDeportes()
         {
-            cSGGIDEPORTENegocios Deporte = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
-            DT_Deportes = Deporte.SeleccionarTodos();
-            llenarComboBoxDeportes();
+            try
+            {
+                cSGGIDEPORTENegocios Deporte = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DT_Deportes = Deporte.SeleccionarTodos();
+                llenarComboBoxDeportes();
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta2", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
+            }
         }
 
         private void llenarTablaImplementos() 
@@ -142,12 +154,14 @@ namespace ITCR.SGAG.Interfaz
 
         private void llenarComboBoxDeportes() 
         {
-            List<String> listaDeportes = new List<String>();
-            for (int IndiceDeportes = 0; IndiceDeportes < DT_Deportes.Rows.Count; IndiceDeportes++)
+            try
             {
-                listaDeportes.Add(DT_Deportes.Rows[IndiceDeportes][Ind_Nombre].ToString());
-            }
-              
+                List<String> listaDeportes = new List<String>();
+                for (int IndiceDeportes = 0; IndiceDeportes < DT_Deportes.Rows.Count; IndiceDeportes++)
+                {
+                    listaDeportes.Add(DT_Deportes.Rows[IndiceDeportes][Ind_Nombre].ToString());
+                }
+
                 foreach (String deporte in listaDeportes)
                 {
                     LinkButton lb = new LinkButton();
@@ -161,57 +175,62 @@ namespace ITCR.SGAG.Interfaz
 
                     PnlComboBoxMultiColumna.Controls.Add(lb);
                 }
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta3", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
+            }
         }
 
-        // ERRORES POR CAMBIOS EN LA BASE => SE LE QUITARON CAMPOS A TIPO IMPLEMENTO Y SE PUESIERON EN LA DE IMPLEMENTOS
-        private Boolean agregarImplemento() 
+        private Boolean agregarTipoImplemento() 
         {
-            //Ind_Deporte = -1;
-            //cSGGITIPOIMPLEMENTONegocios tipoImplementoNuevo = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
-            //cSGGIDEPORTENegocios Deporte = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
-            //tipoImplementoNuevo.NOM_TIPOIMPLEMENTO = TextBoxImplementoNuevo.Text;
-
-            //tipoImplementoNuevo.DSP_IMPLEMENTO = true;
-            //tipoImplementoNuevo.FK_IDDEPORTE = int.Parse(DT_Deportes.Rows[Ind_Id][Ind_Id].ToString());//Cambiar cuando haya el extender
-            //return tipoImplementoNuevo.Insertar();
-
-            //tipoImplementoNuevo.DSP_IMPLEMENTO = true;
-            //if(ExisteDeporte(TextBoxDeporteNuevo.Text))
-            //{
-            //    tipoImplementoNuevo.FK_IDDEPORTE = int.Parse(DT_Deportes.Rows[Ind_Deporte][Ind_Id].ToString());//Cambiar cuando haya el extender
-            //    return tipoImplementoNuevo.Insertar();
-            //}
-            //throw new Exception("Debe seleccionar uno de los deportes del Sistema para agregar el Implemento");
-
-            // >>>>>> Solo para que no de error con todo lo anterior comentado <<<<<<<
-            return true;
-            // ===========================================================
-
+            try
+            {
+                cSGGITIPOIMPLEMENTONegocios TipoImplementoIngresado = new cSGGITIPOIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                TipoImplementoIngresado.NOM_TIPOIMPLEMENTO = TextBoxImplementoNuevo.Text;
+                TipoImplementoIngresado.Buscar();
+                return TipoImplementoIngresado.Insertar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private Boolean agregarDeporte()
         {
-            cSGGIDEPORTENegocios DeporteNuevo = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
-            DeporteNuevo.NOM_DEPORTE = TextBoxDeporteNuevo.Text;
-            if (!ExisteDeporte(DeporteNuevo.NOM_DEPORTE.ToString()))
-                return DeporteNuevo.Insertar();
-            throw new Exception("El Deporte que se intenta ingresar ya existe en el Sistema");
-            
-        }
-
-        private Boolean ExisteDeporte(String pNombreDeporte) 
-        {
-            for (int IndiceDeportes = 0; IndiceDeportes < DT_Deportes.Rows.Count; IndiceDeportes++)
+            try 
             {
-                if (pNombreDeporte.ToLower() == DT_Deportes.Rows[IndiceDeportes][Ind_Nombre].ToString().ToLower())
-                {
-                    Ind_Deporte = IndiceDeportes;
-                    return true;
-                }
+                cSGGIDEPORTENegocios DeporteNuevo = new cSGGIDEPORTENegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DeporteNuevo.NOM_DEPORTE = TextBoxDeporteNuevo.Text;
+                DeporteNuevo.Buscar();
+                return DeporteNuevo.Insertar();
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
+        private Boolean agregarImplemento() 
+        {
+            try 
+            {
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+  
         #endregion
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            String nuevo = TextBoxInfo.Text;
+            Response.Write(nuevo);
+        }
+
     }
 }
