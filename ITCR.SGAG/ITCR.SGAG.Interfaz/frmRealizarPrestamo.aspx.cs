@@ -15,6 +15,7 @@ namespace ITCR.SGAG.Interfaz
         static List<Control> _implementos;
         static int _sigIdImplemento;
         static DataTable _inventario;
+        static int _diferenciaDias;
 
         const Boolean _PENDIENTE = false;
         const Boolean _DEVUELTO = true;
@@ -25,12 +26,16 @@ namespace ITCR.SGAG.Interfaz
             {
                 _implementos = new List<Control>();
                 _sigIdImplemento = 0;
+                _diferenciaDias = 1;
                 ObtenerImplementos();
                 AgregarImplemento();
 
                 Char[] delimiter = { ' ' };
                 string fechaHoy = String.Format("{0:dd-MM-yyyy}", DateTime.Today.AddDays(1));
-                cldFechaDevolucionGeneral.Value = fechaHoy;
+                cldFechaDevolucionGeneral.Text = fechaHoy;
+
+                HtmlGenericControl body = this.Master.FindControl("body") as HtmlGenericControl;
+                body.Attributes.Add("onLoad", "OnLoad();");
             }
             else
             {
@@ -58,7 +63,6 @@ namespace ITCR.SGAG.Interfaz
 
         private void AgregarImplemento()
         {
-
             #region Generación dinámica de un panel para agregar un implemento a la lista
             String html;
 
@@ -102,7 +106,7 @@ namespace ITCR.SGAG.Interfaz
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             TextBox txtDurante = new TextBox();
             txtDurante.ID = "txtDurante_" + _sigIdImplemento;
-            txtDurante.Text = "1"; // ===============================================================
+            txtDurante.Text = _diferenciaDias + "";
             txtDurante.CssClass = "CampoTextoNumerico";
             nuevoImplemento.Controls.Add(txtDurante);
             DropDownList drpUnidDurante = new DropDownList();
@@ -192,88 +196,117 @@ namespace ITCR.SGAG.Interfaz
 
         private bool RealizarPrestamo()
         {
-            //body.at
-            HtmlGenericControl body = this.Master.FindControl("body") as HtmlGenericControl;
-
-            //body.Attributes["bgcolor"] = "lightblue";
-            
-            body.Attributes.Add("onLoad", "alert('Hello');");
-            //if (!Page.ClientScript.IsStartupScriptRegistered("Alerta"))
-            //{
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alerta", "<script type=\"text/javascript\"> onload = alert('HOLA MUNDO'); </script>");
-            //}
             return true;
+        }
+
+        protected void ActualizarCantidadDiasPrestamo(DateTime pFechaHoy, DateTime pFechaIngresada)
+        {
+            _diferenciaDias = pFechaIngresada.Subtract(pFechaHoy).Days;
+
+            foreach (Control panelImplemento in _implementos)
+            {
+                if (panelImplemento != null)
+                {
+                    foreach (Control elementoHijo in panelImplemento.Controls)
+                    {
+                        if (elementoHijo is TextBox && elementoHijo.ID.StartsWith("txtDurante_"))
+                        {
+                            ((TextBox)elementoHijo).Text = _diferenciaDias + "";
+                        }
+                        else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpUnidDurante_"))
+                        {
+                            ((DropDownList)elementoHijo).SelectedIndex = 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void cldFechaDevolucionGeneral_OnChange(object sender, EventArgs e)
+        {
+            DateTime fechaIngresada = DateTime.Parse(cldFechaDevolucionGeneral.Text);
+            DateTime fechaHoy = DateTime.Today;
+            int resultado = fechaHoy.CompareTo(fechaIngresada);
+
+            if (resultado == 1)
+            {
+                if (!Page.ClientScript.IsStartupScriptRegistered("AlertaFechaInvalida"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertaFechaInvalida", "<script type=\"text/javascript\"> _MensajeAlerta = 'La fecha ingresada es inválida. El campo se actualizará con la fecha hoy.'; </script>");
+                }
+                cldFechaDevolucionGeneral.Text = String.Format("{0:dd-MM-yyyy}", fechaHoy);
+                fechaIngresada = fechaHoy.AddDays(1);
+            }
+
+            ActualizarCantidadDiasPrestamo(fechaHoy, fechaIngresada);
         }
 
         protected void drpImplemento_IndexChanged(object sender, EventArgs e)
         {
             DropDownList drpSender = (DropDownList)sender;
 
-            if (drpSender.SelectedIndex < 0)
+            Char[] delimiter = { '_' };
+            string idCombo = drpSender.ID;
+            string idPanel = idCombo.Split(delimiter)[1];
+
+            int indexSeleccionado = drpSender.SelectedIndex-1;
+
+            DataRow implemento = (drpSender.SelectedIndex == 0) ? null : _inventario.Rows[indexSeleccionado];
+
+            Control panelImplemento = _implementos[int.Parse(idPanel)];
+            foreach (Control elementoHijo in panelImplemento.Controls)
             {
-                // limpiar
-            }
-
-            else
-            {
-                Char[] delimiter = { '_' };
-                string idCombo = drpSender.ID;
-                string idPanel = idCombo.Split(delimiter)[1];
-
-                int indexSeleccionado = drpSender.SelectedIndex-1;
-
-                DataRow implemento = (drpSender.SelectedIndex == 0) ? null : _inventario.Rows[indexSeleccionado];
-
-                Control panelImplemento = _implementos[int.Parse(idPanel)];
-                foreach (Control elementoHijo in panelImplemento.Controls)
+                #region Actualización lblDisponible
+                if (elementoHijo is Label && elementoHijo.ID.StartsWith("lblDisponible_"))
                 {
-                    if (elementoHijo is Label && elementoHijo.ID.StartsWith("lblDisponible_"))
-                    {
-                        Label lblDisponible = (Label)elementoHijo;
+                    Label lblDisponible = (Label)elementoHijo;
 
-                        lblDisponible.Text = (implemento == null) ? "---" : implemento["CAN_DISPONIBLE"].ToString();
-                    }
-                    else if (elementoHijo is Label && elementoHijo.ID.StartsWith("lblProxDevolucion_"))
-                    {
-                        Label lblProxDevolucion = (Label)elementoHijo;
-                        cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                    lblDisponible.Text = (implemento == null) ? "---" : implemento["CAN_DISPONIBLE"].ToString();
+                }
+                #endregion
+                #region Actualización lblProxDevolucion
+                else if (elementoHijo is Label && elementoHijo.ID.StartsWith("lblProxDevolucion_"))
+                {
+                    Label lblProxDevolucion = (Label)elementoHijo;
+                    cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
 
-                        if (implemento != null)
+                    if (implemento != null)
+                    {
+                        tempImplemento.ID_IMPLEMENTO = Convert.ToInt32(implemento["ID_IMPLEMENTO"]);
+                        DataTable tblProxDevolucion = tempImplemento.ConocerProxDevolucion();
+                        if (tblProxDevolucion.Rows.Count > 0)
                         {
-                            tempImplemento.ID_IMPLEMENTO = Convert.ToInt32(implemento["ID_IMPLEMENTO"]);
-                            DataTable tblProxDevolucion = tempImplemento.ConocerProxDevolucion();
-                            if (tblProxDevolucion.Rows.Count > 0)
-                            {
-                                lblProxDevolucion.Text = tblProxDevolucion.Rows[0]["PROX_DEVOLUCION"].ToString();
-                            }
-                            else
-                            {
-                                lblProxDevolucion.Text = "No hay pendientes por devolver";
-                            }
+                            lblProxDevolucion.Text = tblProxDevolucion.Rows[0]["PROX_DEVOLUCION"].ToString();
                         }
                         else
                         {
-                            lblProxDevolucion.Text = "---";
+                            lblProxDevolucion.Text = "No hay pendientes por devolver";
                         }
                     }
-                    else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpCantSolicitada_"))
+                    else
                     {
-                        DropDownList drpCantSolicitada = (DropDownList)elementoHijo;
-                        drpCantSolicitada.Items.Clear();
-                        if (implemento != null)
-                        {
-                            for (int i = 1; i <= Convert.ToInt32(implemento["CAN_DISPONIBLE"]); i++)
-                            {
-                                drpCantSolicitada.Items.Add(i + "");
-                            }
-                        }
-                        else
-                        {
-                            drpCantSolicitada.Items.Add("---");
-                        }
+                        lblProxDevolucion.Text = "---";
                     }
                 }
-                
+                #endregion
+                #region Actualización drpCantSolicitada
+                else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpCantSolicitada_"))
+                {
+                    DropDownList drpCantSolicitada = (DropDownList)elementoHijo;
+                    drpCantSolicitada.Items.Clear();
+                    if (implemento != null)
+                    {
+                        for (int i = 1; i <= Convert.ToInt32(implemento["CAN_DISPONIBLE"]); i++)
+                        {
+                            drpCantSolicitada.Items.Add(i + "");
+                        }
+                    }
+                    else
+                    {
+                        drpCantSolicitada.Items.Add("---");
+                    }
+                }
+                #endregion
             }
         }
 
