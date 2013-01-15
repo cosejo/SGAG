@@ -31,12 +31,18 @@ namespace ITCR.SGAG.Interfaz
                         LabelNombre.Text = "Identificación no registrada";
                         LabelNombre.ForeColor = System.Drawing.ColorTranslator.FromHtml("#CC0000");
                     }
+                    else
+                    {
+                        LabelNombre.Text = "Nombre: " + Nombre;
+                        ButRegistrar.Enabled = true;
+                    }
                 }
                 else
                 {
                     LabelNombre.Text = "Nombre: " + Nombre;
                     ButRegistrar.Enabled = true;
                 }
+
                 LabelNombre.Visible = true;
             }
             catch (Exception ex) 

@@ -32,5 +32,5 @@ function CrearTablaInventario(aDataSet) {
 
 function ObtenerDatos()
 {
-    __doPostBack('otable ', informacion)
+    |__doPostBack('otable ', informacion)
 }
