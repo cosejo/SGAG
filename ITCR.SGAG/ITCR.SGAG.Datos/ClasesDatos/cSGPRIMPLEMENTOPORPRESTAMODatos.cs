@@ -4,7 +4,7 @@
 // Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGPRIMPLEMENTOPORPRESTAMO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: domingo, 13 de enero de 2013, 10:54:23 p.m.
+// Fecha: martes, 15 de enero de 2013, 02:38:21 a.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -44,6 +44,7 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
 		///		 <LI>CAN_SOLICITADA</LI>
+		///		 <LI>FEC_ENTREGA. May be SqlDateTime.Null</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -68,6 +69,7 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
 		///		 <LI>CAN_SOLICITADA</LI>
+		///		 <LI>FEC_ENTREGA. May be SqlDateTime.Null</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -116,6 +118,7 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
 		///		 <LI>CAN_SOLICITADA</LI>
+		///		 <LI>FEC_ENTREGA</LI>
 		/// </UL>
 		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
 		/// </remarks>
@@ -152,6 +155,7 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>FK_IDPRESTAMO</LI>
 		///		 <LI>FK_IDIMPLEMENTO</LI>
 		///		 <LI>CAN_SOLICITADA</LI>
+		///		 <LI>FEC_ENTREGA. May be SqlDateTime.Null</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>

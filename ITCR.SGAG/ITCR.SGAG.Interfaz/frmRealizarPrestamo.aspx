@@ -33,8 +33,13 @@
             <b>Estado: </b><asp:Label ID="lblEstadoUsuario" runat="server" Text="---"></asp:Label></p>
             <p><b>Fecha de devolución general: </b><asp:TextBox ID="cldFechaDevolucionGeneral" CssClass="CampoTexto" runat="server" AutoPostBack="true" OnTextChanged="cldFechaDevolucionGeneral_OnChange"></asp:TextBox><br />
                 <span class="warning">* Si modifica este campo se calculará automáticamente la cantidad de días del préstamo para cada implemento.</span></p>
+            <p><b>Tipo de préstamo: </b>
+            <asp:DropDownList ID="drpTipoPrestamo" CssClass="CampoCombo" runat="server">
+                <asp:ListItem Value="0">Normal</asp:ListItem>
+                <asp:ListItem Value="0">Especial</asp:ListItem>
+            </asp:DropDownList><br /></p>
         </div>
-        
+
         <asp:Panel ID="implementos" runat="server"> 
 
         </asp:Panel>
