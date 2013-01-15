@@ -20,6 +20,8 @@ namespace ITCR.SGAG.Interfaz
         const Boolean _PENDIENTE = false;
         const Boolean _DEVUELTO = true;
 
+        String textBoxDurante = "['nulo'";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -54,10 +56,21 @@ namespace ITCR.SGAG.Interfaz
                             {
                                 ((DropDownList)elementoHijo).SelectedIndexChanged += new EventHandler(drpImplemento_IndexChanged); 
                             }
+                            else if (elementoHijo is TextBox && elementoHijo.ID.StartsWith("txtDurante_"))
+                            {
+                                textBoxDurante += ", '" + elementoHijo.ID + "'";
+                            }
 
                         }
                     }
                 }
+            }
+            
+            textBoxDurante += "]";
+            if (!Page.ClientScript.IsStartupScriptRegistered("AgregarVerificacionTxtDurante"))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "AgregarVerificacionTxtDurante",
+                    "<script type=\"text/javascript\"> _ListaTextBoxDurante = " + textBoxDurante + "; </script>");
             }
         }
 
@@ -106,6 +119,7 @@ namespace ITCR.SGAG.Interfaz
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             TextBox txtDurante = new TextBox();
             txtDurante.ID = "txtDurante_" + _sigIdImplemento;
+            txtDurante.AutoPostBack = true;
             txtDurante.Text = _diferenciaDias + "";
             txtDurante.CssClass = "CampoTextoNumerico";
             nuevoImplemento.Controls.Add(txtDurante);
@@ -115,15 +129,7 @@ namespace ITCR.SGAG.Interfaz
             drpUnidDurante.Items.Insert(0, "Días");
             drpUnidDurante.Items.Insert(1, "Horas");
             nuevoImplemento.Controls.Add(drpUnidDurante);
-            html = " a partir de la hora en que se realice el préstamo (hora del sistema).</p><p><b>Tipo de préstamo: </b>";
-            nuevoImplemento.Controls.Add(new LiteralControl(html));
-            DropDownList drpTipoPrestamo = new DropDownList();
-            drpTipoPrestamo.ID = "drpTipoPrestamo_" + _sigIdImplemento;
-            drpTipoPrestamo.CssClass = "CampoCombo";
-            drpTipoPrestamo.Items.Insert(0, "Normal");
-            drpTipoPrestamo.Items.Insert(1, "Especial");
-            nuevoImplemento.Controls.Add(drpTipoPrestamo);
-            html = "</fieldset>";
+            html = " a partir de la hora en que se realice el préstamo (hora del sistema).</p></fieldset>";
             nuevoImplemento.Controls.Add(new LiteralControl(html));
             _implementos.Add(nuevoImplemento);
             LlenarComboImplementos(_sigIdImplemento);
@@ -158,13 +164,17 @@ namespace ITCR.SGAG.Interfaz
 
         private cSGMUUSUARIONegocios Verificar()
         {
+            // SE DEBE VERIFICAR QUE EL USUARIO_SOLICITANTE ESTÁ ACTIVO. 
+            // ESTO SE HACE CON EL WEB SERVICE.
+            // SI NO ESTÁ ACTIVO DEBE RETORNAR NULL.
+
             cSGMUUSUARIONegocios usuarioSolicitante = new cSGMUUSUARIONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
             usuarioSolicitante.CAR_USUARIO = txtIdentificacion.Text;
             usuarioSolicitante.NOM_USUARIO = "Mauricio M. Chaves";
             return usuarioSolicitante;
         }
 
-        private String VerificarHabilitado(cSGMUUSUARIONegocios pUsuarioGimnasio)
+        private String VerificarEstado(cSGMUUSUARIONegocios pUsuarioGimnasio)
         {
             cSGPRPRESTAMONegocios tempPrestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
             tempPrestamo.CAR_USUARIOGIMNASIO = pUsuarioGimnasio.CAR_USUARIO;
@@ -183,20 +193,103 @@ namespace ITCR.SGAG.Interfaz
             cSGMUUSUARIONegocios usuarioSolicitante = Verificar();
             if (usuarioSolicitante != null)
             {
-                lblEstadoUsuario.Text = VerificarHabilitado(usuarioSolicitante);
+                lblEstadoUsuario.Text = VerificarEstado(usuarioSolicitante);
                 lblNombreUsuario.Text = usuarioSolicitante.NOM_USUARIO.ToString();
             }
             else
             {
                 lblEstadoUsuario.Text = "---";
-                lblNombreUsuario.Text = "Usuario no identificado";
+                lblNombreUsuario.Text = "---";
+                if (!Page.ClientScript.IsStartupScriptRegistered("UsuarioInvalidoVerificar"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "UsuarioInvalidoVerificar",
+                        "<script type=\"text/javascript\"> _MensajeAlerta = 'El Usuario ingresado no fue identificado o no está autorizado.'; </script>");
+                }
             }
             
         }
 
-        private bool RealizarPrestamo()
+        private void IniciarVentana()
         {
-            return true;
+            _implementos = new List<Control>();
+            implementos.Controls.Clear();
+            _sigIdImplemento = 0;
+            _diferenciaDias = 1;
+            ObtenerImplementos();
+            AgregarImplemento();
+            txtIdentificacion.Text = "Identificación";
+            lblNombreUsuario.Text = "---";
+            lblEstadoUsuario.Text = "---";
+            drpTipoPrestamo.SelectedIndex = 0;
+
+            Char[] delimiter = { ' ' };
+            string fechaHoy = String.Format("{0:dd-MM-yyyy}", DateTime.Today.AddDays(1));
+            cldFechaDevolucionGeneral.Text = fechaHoy;
+        }
+
+        private void RealizarPrestamo()
+        {
+            cSGPRPRESTAMONegocios nuevoPrestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            nuevoPrestamo.ESTADO = _PENDIENTE;
+            nuevoPrestamo.FEC_PRESTAMO = DateTime.Now;
+            nuevoPrestamo.FK_IDTIPOPRESTAMO = drpTipoPrestamo.SelectedIndex + 1;
+            nuevoPrestamo.CAR_USUARIOGIMNASIO = txtIdentificacion.Text;
+            nuevoPrestamo.Insertar();
+
+            AgregarImplementosPrestamo((int)nuevoPrestamo.ID_PRESTAMO);
+
+            IniciarVentana();
+
+        }
+
+        private void AgregarImplementosPrestamo(int pIdPrestamo)
+        {
+            foreach (Control panelImplemento in _implementos)
+            {
+                if (panelImplemento != null)
+                {
+                    cSGPRIMPLEMENTOPORPRESTAMONegocios nuevoImplemento = new cSGPRIMPLEMENTOPORPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                    nuevoImplemento.FK_IDPRESTAMO = pIdPrestamo;
+                    int durante = 1;
+                    int disponible = 0;
+
+                    foreach (Control elementoHijo in panelImplemento.Controls)
+                    {
+
+                        if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpImplemento_"))
+                        {
+                            DropDownList drpImplemento = (DropDownList)elementoHijo;
+                            DataRow implementoElegido = _inventario.Rows[drpImplemento.SelectedIndex-1];
+                            nuevoImplemento.FK_IDIMPLEMENTO = (int)implementoElegido["ID_IMPLEMENTO"];
+                            disponible = (int)implementoElegido["CAN_DISPONIBLE"];
+                        }
+                        else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpCantSolicitada_"))
+                        {
+                            DropDownList drpCantSolicitada = (DropDownList)elementoHijo;
+                            nuevoImplemento.CAN_SOLICITADA = int.Parse(drpCantSolicitada.SelectedValue);
+                            cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                            tempImplemento.ID_IMPLEMENTO = nuevoImplemento.FK_IDIMPLEMENTO;
+                            tempImplemento.CAN_DISPONIBLE = disponible - nuevoImplemento.CAN_SOLICITADA;
+                            tempImplemento.Actualizar();
+                        }
+                        else if (elementoHijo is TextBox)
+                        {
+                            durante = int.Parse(((TextBox)elementoHijo).Text);
+                        }
+                        else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpUnidDurante_"))
+                        {
+                            DropDownList unidadElegida = (DropDownList)elementoHijo;
+                            DateTime fechaHoy = DateTime.Now;
+                            DateTime fechaDevolucion;
+                            if (unidadElegida.SelectedIndex == 0) { fechaDevolucion = fechaHoy.AddDays(durante); }
+                            else { fechaDevolucion = fechaHoy.AddHours(durante); }
+                            nuevoImplemento.FEC_ENTREGA = fechaDevolucion;
+                            break;
+                        }
+                    }
+                    nuevoImplemento.Insertar();
+                }
+            }
         }
 
         protected void ActualizarCantidadDiasPrestamo(DateTime pFechaHoy, DateTime pFechaIngresada)
@@ -224,9 +317,19 @@ namespace ITCR.SGAG.Interfaz
 
         protected void cldFechaDevolucionGeneral_OnChange(object sender, EventArgs e)
         {
-            DateTime fechaIngresada = DateTime.Parse(cldFechaDevolucionGeneral.Text);
             DateTime fechaHoy = DateTime.Today;
-            int resultado = fechaHoy.CompareTo(fechaIngresada);
+            DateTime fechaIngresada = new DateTime();
+            int resultado;
+
+            try
+            {
+                fechaIngresada = DateTime.Parse(cldFechaDevolucionGeneral.Text);
+                resultado = fechaHoy.CompareTo(fechaIngresada);
+            }
+            catch (Exception ex)
+            {
+                resultado = 1;
+            }
 
             if (resultado == 1)
             {
@@ -317,7 +420,53 @@ namespace ITCR.SGAG.Interfaz
 
         protected void btnRealizar_Click(object sender, EventArgs e)
         {
+            #region Verificar Usuario
+            cSGMUUSUARIONegocios usuarioSolicitante = Verificar();
+            if (usuarioSolicitante != null)
+            {
+                lblEstadoUsuario.Text = VerificarEstado(usuarioSolicitante);
+                lblNombreUsuario.Text = usuarioSolicitante.NOM_USUARIO.ToString();
+            }
+            else
+            {
+                lblEstadoUsuario.Text = "---";
+                lblNombreUsuario.Text = "---";
+                if (!Page.ClientScript.IsStartupScriptRegistered("UsuarioInvalidoRealizar"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "UsuarioInvalidoRealizar",
+                        "<script type=\"text/javascript\"> _MensajeAlerta = 'El Usuario ingresado no fue identificado o no está autorizado.'; </script>");
+                }
+                return;
+            }
+            #endregion
+            #region Verificar Implementos
+            foreach (Control panelImplemento in _implementos)
+            {
+                if (panelImplemento != null)
+                {
+                    foreach (Control elementoHijo in panelImplemento.Controls)
+                    {
+                        if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpImplemento_"))
+                        {
+                            if ( ((DropDownList)elementoHijo).SelectedIndex == 0 ) {
+                                if (!Page.ClientScript.IsStartupScriptRegistered("ImplementoInvalido"))
+                                {
+                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ImplementoInvalido",
+                                        "<script type=\"text/javascript\"> _MensajeAlerta = 'Aún existen implementos sin elegir. Eliminelos de la lista si no son parte del préstamo.'; </script>");
+                                }
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
             RealizarPrestamo();
+            if (!Page.ClientScript.IsStartupScriptRegistered("ConfirmacionPrestamo"))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ConfirmacionPrestamo",
+                    "<script type=\"text/javascript\"> _MensajeAlerta = 'El préstamo se registró satisfactoriamente'; </script>");
+            }
         }
 
         protected void btnQuitar_Click(object sender, EventArgs e)
