@@ -34,9 +34,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\..\Visual Studio 2010\Ajax\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\packages\AjaxControlToolkit.4.1.60919\lib\40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\AjaxControlToolkit.4.1.60919\lib\40\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SanitizerProviders">
+      <HintPath>..\packages\AjaxControlToolkit.4.1.60919\lib\40\SanitizerProviders\SanitizerProviders.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -131,6 +137,7 @@
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Service References\wsSeguridad\Seguridad.disco" />
     <None Include="Service References\wsSeguridad\configuration91.svcinfo" />
