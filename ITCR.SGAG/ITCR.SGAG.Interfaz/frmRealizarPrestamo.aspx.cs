@@ -244,28 +244,50 @@ namespace ITCR.SGAG.Interfaz
 
         private void AgregarImplementosPrestamo(int pIdPrestamo)
         {
-
-            //private SqlDateTime		_fEC_ENTREGA;
-            //private SqlInt32		_cAN_SOLICITADA, _iD_IMPLEMENTOPORPRESTAMO, _fK_IDPRESTAMO, _fK_IDPRESTAMOOld, _fK_IDIMPLEMENTO, _fK_IDIMPLEMENTOOld;
-
             foreach (Control panelImplemento in _implementos)
             {
                 if (panelImplemento != null)
                 {
+                    cSGPRIMPLEMENTOPORPRESTAMONegocios nuevoImplemento = new cSGPRIMPLEMENTOPORPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                    nuevoImplemento.FK_IDPRESTAMO = pIdPrestamo;
+                    int durante = 1;
+                    int disponible = 0;
+
                     foreach (Control elementoHijo in panelImplemento.Controls)
                     {
-                        //if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpImplemento_"))
-                        //{
-                        //    if (((DropDownList)elementoHijo).SelectedIndex == 0)
-                        //    {
-                        //        if (!Page.ClientScript.IsStartupScriptRegistered("ImplementoInvalido"))
-                        //        {
-                        //            Page.ClientScript.RegisterStartupScript(this.GetType(), "ImplementoInvalido",
-                        //                "<script type=\"text/javascript\"> _MensajeAlerta = 'Aún existen implementos sin elegir. Eliminelos de la lista si no son parte del préstamo.'; </script>");
-                        //        }
-                        //    }
-                        //}
+
+                        if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpImplemento_"))
+                        {
+                            DropDownList drpImplemento = (DropDownList)elementoHijo;
+                            DataRow implementoElegido = _inventario.Rows[drpImplemento.SelectedIndex-1];
+                            nuevoImplemento.FK_IDIMPLEMENTO = (int)implementoElegido["ID_IMPLEMENTO"];
+                            disponible = (int)implementoElegido["CAN_DISPONIBLE"];
+                        }
+                        else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpCantSolicitada_"))
+                        {
+                            DropDownList drpCantSolicitada = (DropDownList)elementoHijo;
+                            nuevoImplemento.CAN_SOLICITADA = int.Parse(drpCantSolicitada.SelectedValue);
+                            cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                            tempImplemento.ID_IMPLEMENTO = nuevoImplemento.FK_IDIMPLEMENTO;
+                            tempImplemento.CAN_DISPONIBLE = disponible - nuevoImplemento.CAN_SOLICITADA;
+                            tempImplemento.Actualizar();
+                        }
+                        else if (elementoHijo is TextBox)
+                        {
+                            durante = int.Parse(((TextBox)elementoHijo).Text);
+                        }
+                        else if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpUnidDurante_"))
+                        {
+                            DropDownList unidadElegida = (DropDownList)elementoHijo;
+                            DateTime fechaHoy = DateTime.Now;
+                            DateTime fechaDevolucion;
+                            if (unidadElegida.SelectedIndex == 0) { fechaDevolucion = fechaHoy.AddDays(durante); }
+                            else { fechaDevolucion = fechaHoy.AddHours(durante); }
+                            nuevoImplemento.FEC_ENTREGA = fechaDevolucion;
+                            break;
+                        }
                     }
+                    nuevoImplemento.Insertar();
                 }
             }
         }
@@ -440,6 +462,11 @@ namespace ITCR.SGAG.Interfaz
             }
             #endregion
             RealizarPrestamo();
+            if (!Page.ClientScript.IsStartupScriptRegistered("ConfirmacionPrestamo"))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ConfirmacionPrestamo",
+                    "<script type=\"text/javascript\"> _MensajeAlerta = 'El préstamo se registró satisfactoriamente'; </script>");
+            }
         }
 
         protected void btnQuitar_Click(object sender, EventArgs e)
