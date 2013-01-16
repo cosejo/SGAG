@@ -17,7 +17,7 @@ function CrearTablaInventario(aDataSet) {
 						{ "sTitle": "Tipo Implemento", "sClass": "center"},
 						{ "sTitle": "Implemento", "sClass": "center" },
 						{ "sTitle": "Cantidad Inventario", "sClass": "center" },
-                        { "sTitle": "Deporte", "sClass": "center" },
+                        { "sTitle": "Deporte", "sClass": "center" }
 					]
     });
 
@@ -30,7 +30,19 @@ function CrearTablaInventario(aDataSet) {
     oTable.fnSetColumnVis( 0, false );
 };
 
-function ObtenerDatos()
+function ObtenerDatosModificar()
 {
-    |__doPostBack('otable ', informacion)
-}
+    __doPostBack('Modificar', informacion)
+};
+
+function ObtenerDatosEliminar() {
+    __doPostBack('Eliminar', informacion)
+};
+
+function ObtenerDatosDanos() {
+    __doPostBack('Danos', informacion)
+};
+
+function RedibujarTabla() {
+    oTable.fnDraw();
+ };

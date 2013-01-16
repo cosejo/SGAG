@@ -33,14 +33,10 @@ namespace ITCR.SGAG.Interfaz
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            BotonModificar.Attributes.Add("onclick", "javascritp:ObtenerDatos();");
+            agregarFuncionesJSBotones();
             if (IsPostBack) 
             {
-                _DatosSeleccionados = Request["__EVENTARGUMENT"];
-                if ((_DatosSeleccionados != null && _DatosSeleccionados != ""))
-                {
-                    BotonModificar_Click();
-                }
+                verificarComandoPostBack();
             }
             obtenerDeportes();
             obtenerTiposImplementos();
@@ -188,7 +184,7 @@ namespace ITCR.SGAG.Interfaz
             }
         }
 
-        protected void BotonEliminar_Click(object sender, EventArgs e)
+        protected void BotonEliminar_Click()
         {
             String MensajeDevuelto = "";
             LabelMensaje.Text = MensajeDevuelto;
@@ -211,9 +207,98 @@ namespace ITCR.SGAG.Interfaz
             LabelMensaje.Text = MensajeDevuelto;
         }
 
+        private void BotonReportarDano_Click()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void BotonCancelar_Click(object sender, EventArgs e)
+        {
+            try 
+            { 
+             _Modificacion = false;
+             IdDeporte = 0;
+             IdTipoImplemento = 0;
+             _DatosSeleccionados = "";
+             _DatosSeleccionadosActuales = "";
+             TextBoxImplementoNuevo.Text = "";
+             TextBoxDeporteNuevo.Text = "";
+             TextBoxNombre.Text = "";
+             TextBoxCantidad.Text = "";
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Metodos
+
+        private void agregarFuncionesJSBotones() 
+        {
+            try
+            {
+                BotonModificar.Attributes.Add("onclick", "javascritp:ObtenerDatosModificar();");
+                BotonEliminar.Attributes.Add("onclick", "javascritp:ObtenerDatosEliminar();");
+                BotonReportarDano.Attributes.Add("onclick", "javascritp:ObtenerDatosDanos();");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void verificarComandoPostBack()
+        {
+            try
+            {
+                if (Request["__EVENTTARGET"] == "Modificar")
+                {
+                    _DatosSeleccionados = Request["__EVENTARGUMENT"];
+                    if (verificarDatosSeleccionados(_DatosSeleccionados))
+                        BotonModificar_Click();
+                    return;
+                }
+
+                if (Request["__EVENTTARGET"] == "Eliminar")
+                {
+                    _DatosSeleccionados = Request["__EVENTARGUMENT"];
+                    if (verificarDatosSeleccionados(_DatosSeleccionados))
+                        BotonEliminar_Click();
+                    return;
+                }
+
+                if (Request["__EVENTTARGET"] == "Danos")
+                {
+                    _DatosSeleccionados = Request["__EVENTARGUMENT"];
+                    if(verificarDatosSeleccionados(_DatosSeleccionados))
+                        BotonReportarDano_Click();
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
+            }
+        }
+
+        private bool verificarDatosSeleccionados(string _DatosSeleccionados)
+        {
+            try 
+            {
+                if (_DatosSeleccionados != null && _DatosSeleccionados != "" && _DatosSeleccionados != "undefined")
+                    return true;
+                else
+                    throw new Exception("No se ha seleccionado ninguna columna para realizar esta acción");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private Boolean modificarImplemento()
         {
@@ -288,7 +373,7 @@ namespace ITCR.SGAG.Interfaz
                 {
 
                     aDataSet += "['" + DT_Implementos.Rows[IndiceImplementos][0] + "','" + DT_Implementos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Implementos.Rows[IndiceImplementos][3].ToString() + "','" + DT_Implementos.Rows[IndiceImplementos][4] + "','" + DT_Implementos.Rows[IndiceImplementos][2].ToString() + "']";
-                    if (IndiceImplementos + 1 != DT_Deportes.Rows.Count - 2)
+                    if (IndiceImplementos + 1 != DT_Implementos.Rows.Count)
                     {
                         aDataSet += ",";
                     }
@@ -299,6 +384,7 @@ namespace ITCR.SGAG.Interfaz
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaInventario", "<script type=\"text/javascript\"> CrearTablaInventario(" + aDataSet + ");</script>");
                 }
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta", "<script type=\"text/javascript\"> RedibujarTabla();</script>");
             }
             catch (Exception ex)
             {
