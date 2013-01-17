@@ -289,6 +289,16 @@ namespace ITCR.SGAG.Interfaz
             }
         }
 
+        protected void LinkButtonInventario_Click(object sender, EventArgs e)
+        {
+            MultiViewInventario.ActiveViewIndex = 0;
+        }
+
+        protected void LinkButtonDanos_Click(object sender, EventArgs e)
+        {
+            MultiViewInventario.ActiveViewIndex = 1;
+        }
+
         #endregion
 
         #region Metodos

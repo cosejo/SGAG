@@ -118,191 +118,216 @@
           <div style="width: 866px; margin-left: 0px" align="left"> 
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
-                </div>
-
-            <div style="width: 866px"> 
-                <table style="width: 99%;">
-                    <tr>
-                        <td class="style26">
-                            &nbsp;
-                        </td>
-                        <td class="style27">
-                            &nbsp;
-                        <asp:Label ID="Label3" runat="server" Font-Size="Large" 
-                      Text="Gestión de Inventario"></asp:Label>
-                        </td>
-                        <td class="style28">
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="style24">
-                            &nbsp;
-                            <asp:Button ID="BotonModificar" runat="server" Text="Modificar" 
-                                />
-                        </td>
-                        <td class="style25">
-                            <asp:Button ID="BotonReportarDano" runat="server" Text="Reportar Daño" 
-                                />
-                            &nbsp;
-                        </td>
-                        <td>
-                            <asp:Button ID="BotonEliminar" runat="server" Text="Eliminar"/>
-                            &nbsp;
-                        </td>
-                    </tr>
-                </table>
-                </div>
-            <div id="dt_prestamos">
-                <div id="container">
-                    <div id="dynamic"></div>
-                        <div class="spacer"></div>
+              <div align="center">
+                  <asp:LinkButton ID="LinkButtonInventario" runat="server" 
+                      style="margin-right:30px" onclick="LinkButtonInventario_Click">Gestión Inventario</asp:LinkButton>
+                  <asp:LinkButton ID="LinkButtonDanos" runat="server" style="margin-left:20px" 
+                      onclick="LinkButtonDanos_Click">Gestión Daños</asp:LinkButton>
+                  <br />
+              </div>
+                <asp:MultiView ID="MultiViewInventario" runat="server" ActiveViewIndex="0">
+                    <asp:View ID="ViewInventario" runat="server">
+                        <div style="width: 866px">
+                            <table align="center" style="width: 99%;">
+                                <tr>
+                                    <td class="style26">
+                                        &nbsp;
+                                    </td>
+                                    <td class="style27">
+                                        &nbsp;
+                                        <asp:Label ID="Label3" runat="server" Font-Size="Large" style="margin-bottom:10px"
+                                            Text="Gestión de Inventario"></asp:Label>
+                                    </td>
+                                    <td class="style28">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="style24" align="right">
+                                        &nbsp;
+                                        </td>
+                                    <td class="style25">
+                                        &nbsp;
+                                    </td>
+                                    <td align="left">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" class="style24">
+                                        <asp:Button ID="BotonModificar" runat="server" style="margin-left: 0px" 
+                                            Text="Modificar" />
+                                    </td>
+                                    <td class="style25">
+                                        <asp:Button ID="BotonReportarDano" runat="server" style="margin-left: 26px" 
+                                            Text="Reportar Daño" />
+                                    </td>
+                                    <td align="left">
+                                        <asp:Button ID="BotonEliminar" runat="server" style="margin-left: 0px" 
+                                            Text="Eliminar" />
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-        </div>
-    <div style="width: 865px; height: 20px;">
-    </div>
-        <div style="width: 687px">
-            <hr style="width: 877px" />
-    </div>
-        
-            <div style="height: 93px; width: 873px;" align="left">
-                     <table style="width: 100%; margin-right:10px;">
-                     <tr align="center">
-                     <td class="style29">
-                  <div style="width: 444px">
-                                  	<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-
-        <asp:Panel ID="Panel1" runat="server" CssClass="MultiColumnContextMenuPanel" Style="display: none; visibility: hidden;">
-       </asp:Panel>
-
-                        <asp:Label ID="Label4" runat="server" Text="Tipo Implemento:    "></asp:Label>
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="TipoImplemento"
-                        ErrorMessage="Nombre del Implemento" ControlToValidate="TextBoxImplementoNuevo">*</asp:RequiredFieldValidator>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
-                      CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxImplementoNuevo"
-                        ErrorMessage="Tipo del Implemento">*</asp:RequiredFieldValidator>
-                    <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" style="margin-left: 0px" ValidationGroup="TipoImplemento"
-                        Width="195px" ></asp:TextBox>
-                                     <asp:DropDownExtender ID="TextBoxImplementoNuevo_DropDownExtender" 
-                        runat="server" DynamicServicePath="" Enabled="True" DropDownControlID="Panel1"
-                        TargetControlID="TextBoxImplementoNuevo">
-                    </asp:DropDownExtender>
-                                     <asp:TextBoxWatermarkExtender ID="TextBoxImplementoNuevo_TextBoxWatermarkExtender" WatermarkText="Tipo de Implemento Nuevo"
-                        runat="server" Enabled="True" TargetControlID="TextBoxImplementoNuevo" WatermarkCssClass="TextoMarcaAgua">
-                    </asp:TextBoxWatermarkExtender>
-                                        <br />
-                                        <br />
-                                        </ContentTemplate> 
-                </asp:UpdatePanel>
-                <asp:Label ID="LblSelectedItemComboBoxMultiColumnaImp" runat="server" Text=""></asp:Label> 
-                                    <asp:Button ID="BotonAgregarImplemento" runat="server" style="margin-left: 122px; margin-top:5px;" 
-                        Text="Agregar Tipo Implemento" onclick="BotonAgregarTipoImplemento_Click" 
-                        ValidationGroup="TipoImplemento" Width="195px" />
-                
-               </div>
-               </td>
-               <td>
-
-               <div style="height: 87px; width: 399px; margin-top:10px;" align="center">
-                	<asp:UpdatePanel ID="UPnlComboBoxMultiColumna" runat="server">
-                    <ContentTemplate>
-
-        <asp:Panel ID="PnlComboBoxMultiColumna" runat="server" CssClass="MultiColumnContextMenuPanel" Style="display: none; visibility: hidden;">
-       </asp:Panel>
-
-                        <asp:Label ID="Label5" runat="server" Text="Deporte:    "></asp:Label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
-                            ControlToValidate="TextBoxDeporteNuevo" CssClass="TextoError" 
-                            ErrorMessage="Nombre del Deporte" ValidationGroup="Deporte">*</asp:RequiredFieldValidator>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                            ControlToValidate="TextBoxDeporteNuevo" CssClass="TextoError" 
-                            ErrorMessage="Deporte del Implemento" ValidationGroup="Implemento">*</asp:RequiredFieldValidator>
-
-                    <asp:TextBox ID="TextBoxDeporteNuevo" text="" runat="server" 
-                            style="margin-left: 0px" ValidationGroup="Deporte"
-                        Width="195px"></asp:TextBox>
-                    <asp:TextBoxWatermarkExtender ID="TextBoxDeporteNuevo_TextBoxWatermarkExtender" WatermarkText="Deporte Nuevo"
-                        runat="server" Enabled="True" TargetControlID="TextBoxDeporteNuevo" WatermarkCssClass="TextoMarcaAgua">
-                    </asp:TextBoxWatermarkExtender>
-                    <asp:DropDownExtender ID="TextBoxDeporteNuevo_DropDownExtender" runat="server"
-                        DynamicServicePath="" Enabled="True" TargetControlID="TextBoxDeporteNuevo" DropDownControlID="PnlComboBoxMultiColumna">
-                    </asp:DropDownExtender>
-                        <br />
-                        <br />
-                </ContentTemplate> 
-                </asp:UpdatePanel>
-                                 <asp:Label ID="LblSelectedItemComboBoxMultiColumna" runat="server" Text=""></asp:Label>
-                    <asp:Button ID="BotonAgregarDeporte" runat="server" Text="Agregar Deporte" 
-                        style="margin-left: 69px; margin-top:7px;" onclick="BotonAgregarDeporte_Click" 
-                         ValidationGroup="Deporte" Width="195px"/>
-                                    </div>
-                
-                </td>
-               </tr>
-               </table>
-                
-            </div>
-  
-                <div style="width: 514px; height: 293px; margin-top:30px;" align="right">
-                <br />
-                <asp:Label ID="Label1" runat="server" Text="Descripción Implemento: "></asp:Label>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionImplemento" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
-                        ErrorMessage="Descripción de Implemento" ControlToValidate="TextBoxNombre">*</asp:RequiredFieldValidator>
-                  <asp:TextBox ID="TextBoxNombre" runat="server" Width="195px" 
-                      style="margin-left: 0px"></asp:TextBox>
-                  <asp:TextBoxWatermarkExtender ID="TextBoxNombre_TextBoxWatermarkExtender" WatermarkText="Descripción max. 30 caractéres"
-                      runat="server" Enabled="True" TargetControlID="TextBoxNombre" WatermarkCssClass="TextoMarcaAgua">
-                  </asp:TextBoxWatermarkExtender>
-                    <br />
-                    <br />
-                  <asp:Label ID="Label2" runat="server" Text="Cantidad:"></asp:Label> 
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
-                      CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxCantidad"
-                        ErrorMessage="Cantidad de Implementos">*</asp:RequiredFieldValidator>
-                           <asp:TextBox ID="TextBoxCantidad" runat="server" Width="195px" 
-                      style="margin-left: 0px"></asp:TextBox>
-                  <asp:TextBoxWatermarkExtender ID="TextBoxCantidad_TextBoxWatermarkExtender" WatermarkText="Digite un número ej: 8, 14, 5"
-                      runat="server" Enabled="True" TargetControlID="TextBoxCantidad" WatermarkCssClass="TextoMarcaAgua">
-                  </asp:TextBoxWatermarkExtender>
-   
-                   <br />
-                  <br />
-
-                    <asp:Label ID="Label6" runat="server" Text="Descripcion del Daño:"></asp:Label> 
-                                      <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionDano" runat="server" 
-                      CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxDescripcion"
-                        ErrorMessage="Descripcion del Daño" Visible="false">*</asp:RequiredFieldValidator>
-                    <asp:TextBox ID="TextBoxDescripcion" runat="server" Width="195px" Height="37px" 
-                        TextMode="MultiLine" Enabled="false"></asp:TextBox>
-
-                   <br />
-                  <br />
-                                      <asp:Button ID="BotonCancelar" runat="server" Text="Cancelar" 
-                        onclick="BotonCancelar_Click" />
-
-                  <asp:Button ID="BotonGuardar" runat="server" Text="Guardar Cambios" 
-                      ValidationGroup="Implemento" onclick="BotonGuardar_Click" 
-                      style="margin-left: 31px" />
-                      <br/>
-                      <br/>
-                  <asp:Label ID="LabelMensaje" runat="server" Text="" CssClass="TextoError" ForeColor="Blue"> </asp:Label>
-                  <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
-                        HeaderText="El siguiente campo es requerido:" ValidationGroup="Implemento"
-                        CssClass="TextoError" Height="31px" Width="209px" 
-                        DisplayMode="List"/>
-                        <asp:ValidationSummary ID="ValidationSummary3" 
-                        runat="server" 
-                        HeaderText="Es requerido que seleccione el siguiente campo:" ValidationGroup="TipoImplemento"
-                        CssClass="TextoError" Height="31px" Width="207px" 
-                        DisplayMode="List"/>
-                        <asp:ValidationSummary ID="ValidationSummary2" 
-                        runat="server" 
-                        HeaderText="Es requerido que seleccione el siguiente campo:" ValidationGroup="Deporte"
-                        CssClass="TextoError" Height="31px" Width="207px" 
-                        DisplayMode="List"/>
-
+                        <div ID="dt_inventario">
+                            <div ID="container">
+                                <div ID="dynamic">
+                                </div>
+                                <div class="spacer">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 865px; height: 20px;">
+                        </div>
+                        <div style="width: 687px">
+                            <hr style="width: 877px" />
+                        </div>
+                        <div align="left" style="height: 93px; width: 873px;">
+                            <table style="width: 100%; margin-right:10px;">
+                                <tr align="center">
+                                    <td class="style29">
+                                        <div style="width: 444px">
+                                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Panel ID="Panel1" runat="server" CssClass="MultiColumnContextMenuPanel" 
+                                                        Style="display: none; visibility: hidden;">
+                                                    </asp:Panel>
+                                                    <asp:Label ID="Label4" runat="server" Text="Tipo Implemento:    "></asp:Label>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                                        ControlToValidate="TextBoxImplementoNuevo" CssClass="TextoError" 
+                                                        ErrorMessage="Nombre del Implemento" ValidationGroup="TipoImplemento">*</asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+                                                        ControlToValidate="TextBoxImplementoNuevo" CssClass="TextoError" 
+                                                        ErrorMessage="Tipo del Implemento" ValidationGroup="Implemento">*</asp:RequiredFieldValidator>
+                                                    <asp:TextBox ID="TextBoxImplementoNuevo" runat="server" 
+                                                        style="margin-left: 0px" ValidationGroup="TipoImplemento" Width="195px"></asp:TextBox>
+                                                    <asp:DropDownExtender ID="TextBoxImplementoNuevo_DropDownExtender" 
+                                                        runat="server" DropDownControlID="Panel1" DynamicServicePath="" Enabled="True" 
+                                                        TargetControlID="TextBoxImplementoNuevo">
+                                                    </asp:DropDownExtender>
+                                                    <asp:TextBoxWatermarkExtender ID="TextBoxImplementoNuevo_TextBoxWatermarkExtender" 
+                                                        runat="server" Enabled="True" TargetControlID="TextBoxImplementoNuevo" 
+                                                        WatermarkCssClass="TextoMarcaAgua" WatermarkText="Tipo de Implemento Nuevo">
+                                                    </asp:TextBoxWatermarkExtender>
+                                                    <br />
+                                                    <br />
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                            <asp:Label ID="LblSelectedItemComboBoxMultiColumnaImp" runat="server" Text=""></asp:Label>
+                                            <asp:Button ID="BotonAgregarImplemento" runat="server" 
+                                                onclick="BotonAgregarTipoImplemento_Click" 
+                                                style="margin-left: 122px; margin-top:5px;" Text="Agregar Tipo Implemento" 
+                                                ValidationGroup="TipoImplemento" Width="195px" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div align="center" style="height: 87px; width: 399px; margin-top:10px;">
+                                            <asp:UpdatePanel ID="UPnlComboBoxMultiColumna" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Panel ID="PnlComboBoxMultiColumna" runat="server" 
+                                                        CssClass="MultiColumnContextMenuPanel" 
+                                                        Style="display: none; visibility: hidden;">
+                                                    </asp:Panel>
+                                                    <asp:Label ID="Label5" runat="server" Text="Deporte:    "></asp:Label>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                                                        ControlToValidate="TextBoxDeporteNuevo" CssClass="TextoError" 
+                                                        ErrorMessage="Nombre del Deporte" ValidationGroup="Deporte">*</asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                                        ControlToValidate="TextBoxDeporteNuevo" CssClass="TextoError" 
+                                                        ErrorMessage="Deporte del Implemento" ValidationGroup="Implemento">*</asp:RequiredFieldValidator>
+                                                    <asp:TextBox ID="TextBoxDeporteNuevo" runat="server" style="margin-left: 0px" 
+                                                        text="" ValidationGroup="Deporte" Width="195px"></asp:TextBox>
+                                                    <asp:TextBoxWatermarkExtender ID="TextBoxDeporteNuevo_TextBoxWatermarkExtender" 
+                                                        runat="server" Enabled="True" TargetControlID="TextBoxDeporteNuevo" 
+                                                        WatermarkCssClass="TextoMarcaAgua" WatermarkText="Deporte Nuevo">
+                                                    </asp:TextBoxWatermarkExtender>
+                                                    <asp:DropDownExtender ID="TextBoxDeporteNuevo_DropDownExtender" runat="server" 
+                                                        DropDownControlID="PnlComboBoxMultiColumna" DynamicServicePath="" 
+                                                        Enabled="True" TargetControlID="TextBoxDeporteNuevo">
+                                                    </asp:DropDownExtender>
+                                                    <br />
+                                                    <br />
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                            <asp:Label ID="LblSelectedItemComboBoxMultiColumna" runat="server" Text=""></asp:Label>
+                                            <asp:Button ID="BotonAgregarDeporte" runat="server" 
+                                                onclick="BotonAgregarDeporte_Click" style="margin-left: 69px; margin-top:7px;" 
+                                                Text="Agregar Deporte" ValidationGroup="Deporte" Width="195px" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div align="right" style="width: 602px; height: 293px; margin-top:30px;">
+                            <br />
+                            <asp:Label ID="Label1" runat="server" Text="Descripción Implemento: "></asp:Label>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionImplemento" 
+                                runat="server" ControlToValidate="TextBoxNombre" CssClass="TextoError" 
+                                ErrorMessage="Descripción de Implemento" ValidationGroup="Implemento">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="TextBoxNombre" runat="server" style="margin-left: 0px" 
+                                Width="195px"></asp:TextBox>
+                            <asp:TextBoxWatermarkExtender ID="TextBoxNombre_TextBoxWatermarkExtender" 
+                                runat="server" Enabled="True" TargetControlID="TextBoxNombre" 
+                                WatermarkCssClass="TextoMarcaAgua" 
+                                WatermarkText="Descripción max. 30 caractéres">
+                            </asp:TextBoxWatermarkExtender>
+                            <br />
+                            <br />
+                            <asp:Label ID="Label2" runat="server" Text="Cantidad:"></asp:Label>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+                                ControlToValidate="TextBoxCantidad" CssClass="TextoError" 
+                                ErrorMessage="Cantidad de Implementos" ValidationGroup="Implemento">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="TextBoxCantidad" runat="server" style="margin-left: 0px" 
+                                Width="195px"></asp:TextBox>
+                            <asp:TextBoxWatermarkExtender ID="TextBoxCantidad_TextBoxWatermarkExtender" 
+                                runat="server" Enabled="True" TargetControlID="TextBoxCantidad" 
+                                WatermarkCssClass="TextoMarcaAgua" 
+                                WatermarkText="Digite un número ej: 8, 14, 5">
+                            </asp:TextBoxWatermarkExtender>
+                            <br />
+                            <br />
+                            <asp:Label ID="Label6" runat="server" Text="Descripcion del Daño:"></asp:Label>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionDano" 
+                                runat="server" ControlToValidate="TextBoxDescripcion" CssClass="TextoError" 
+                                ErrorMessage="Descripcion del Daño" ValidationGroup="Implemento" 
+                                Visible="false">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="TextBoxDescripcion" runat="server" Enabled="false" 
+                                Height="37px" TextMode="MultiLine" Width="195px"></asp:TextBox>
+                            <br />
+                            <br />
+                            <asp:Button ID="BotonCancelar" runat="server" onclick="BotonCancelar_Click" 
+                                Text="Cancelar" />
+                            <asp:Button ID="BotonGuardar" runat="server" onclick="BotonGuardar_Click" 
+                                style="margin-left: 31px" Text="Guardar Cambios" ValidationGroup="Implemento" />
+                            <br/>
+                            <br/>
+                            <asp:Label ID="LabelMensaje" runat="server" CssClass="TextoError" 
+                                ForeColor="Blue" Text=""> </asp:Label>
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
+                                CssClass="TextoError" DisplayMode="List" 
+                                HeaderText="El siguiente campo es requerido:" Height="31px" 
+                                ValidationGroup="Implemento" Width="209px" />
+                            <asp:ValidationSummary ID="ValidationSummary3" runat="server" 
+                                CssClass="TextoError" DisplayMode="List" 
+                                HeaderText="Es requerido que seleccione el siguiente campo:" Height="31px" 
+                                ValidationGroup="TipoImplemento" Width="207px" />
+                            <asp:ValidationSummary ID="ValidationSummary2" runat="server" 
+                                CssClass="TextoError" DisplayMode="List" 
+                                HeaderText="Es requerido que seleccione el siguiente campo:" Height="31px" 
+                                ValidationGroup="Deporte" Width="207px" />
+                        </div>
+                    </asp:View>
+                    <asp:View ID="ViewDanos" runat="server">
+                        <div ID="dt_danos">
+                            <div ID="containerDanos">
+                                <div ID="dynamic2">
+                                </div>
+                                <div class="spacer">
+                                </div>
+                            </div>
+                        </div>
+                    </asp:View>
+              </asp:MultiView>
                 </div>
-  
-    </asp:Content>
+
+            </asp:Content>
