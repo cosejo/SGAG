@@ -116,19 +116,27 @@ function CrearTablaDanos(aDataSet) {
             "sSearch": "Buscar:"
         },
         "aoColumns": [
+                        { "sTitle": "Id Daño", "sClass": "center" },
                         { "sTitle": "Descripción Implemento", "sClass": "center" },
-                        { "sTitle": "Descripción Implemento", "sClass": "center" },
-						{ "sTitle": "Cantidades Dañadas", "sClass": "center" },
 						{ "sTitle": "Descripción del Daño", "sClass": "center" },
+                        { "sTitle": "Cantidades Dañadas", "sClass": "center" },
 						{ "sTitle": "Fecha del Daño", "sClass": "center" }
 					]
     });
 
     dTable.$('tr').click(function () {
-        var data = oTable.fnGetData(this);
+        var data = dTable.fnGetData(this);
         dInformacion = data;
         //$('#MainContent_TextBoxInfo').value = data[0];
         //alert('The cell clicked on had the value of '+ data[0]);  
     });
     dTable.fnSetColumnVis(0, false);
+};
+
+function ObtenerDatosModificarDanos() {
+    __doPostBack('ModificarDaños', dInformacion);
+};
+
+function ObtenerDatosEliminarDanos() {
+    __doPostBack('EliminarDaños', dInformacion);
 };

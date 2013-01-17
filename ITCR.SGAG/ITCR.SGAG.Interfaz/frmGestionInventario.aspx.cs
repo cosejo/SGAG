@@ -17,6 +17,7 @@ namespace ITCR.SGAG.Interfaz
         private static DataTable DT_Deportes;
         private static DataTable DT_TipoImplementos;
         private static DataTable DT_Implementos;
+        private static DataTable DT_Danos;
         private static int Ind_Deporte = -1;
         private const int Ind_Id = 0;
         private const int Ind_Nombre = 1;
@@ -39,9 +40,11 @@ namespace ITCR.SGAG.Interfaz
             {
                 verificarComandoPostBack();
             }
+            
             obtenerDeportes();
             obtenerTiposImplementos();
             obtenerImplementos();
+            obtenerDanos();
         }
 
         protected void BotonAgregarTipoImplemento_Click(object sender, EventArgs e)
@@ -310,6 +313,8 @@ namespace ITCR.SGAG.Interfaz
                 BotonModificar.Attributes.Add("onclick", "javascritp:ObtenerDatosModificar();");
                 BotonEliminar.Attributes.Add("onclick", "javascritp:ObtenerDatosEliminar();");
                 BotonReportarDano.Attributes.Add("onclick", "javascritp:ObtenerDatosDanos();");
+                BotonModificarDanos.Attributes.Add("onclick", "javascritp:ObtenerDatosModificarDanos();");
+                BotonEliminarDanos.Attributes.Add("onclick", "javascritp:EliminarDaños();");
             }
             catch (Exception ex)
             {
@@ -456,7 +461,7 @@ namespace ITCR.SGAG.Interfaz
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaInventario", "<script type=\"text/javascript\"> CrearTablaInventario(" + aDataSet + ");</script>");
                 }
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta", "<script type=\"text/javascript\"> RedibujarTabla();</script>");
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "alerta", "<script type=\"text/javascript\"> RedibujarTabla();</script>");
             }
             catch (Exception ex)
             {
@@ -671,8 +676,51 @@ namespace ITCR.SGAG.Interfaz
                 throw ex;
             }
         }
-  
+
+        #region Daños
+        private void obtenerDanos() 
+        {
+            try
+            {
+                cSGGIDANOPORIMPLEMENTONegocios Danos = new cSGGIDANOPORIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DT_Danos = new DataTable();
+                DT_Danos = Danos.SeleccionarTodos();
+                String aDataSet = "[";
+                int cantidadColumnas = DT_Danos.Columns.Count;
+                for (int IndiceDanos = 0; IndiceDanos < DT_Danos.Rows.Count; IndiceDanos++)
+                {
+
+                    aDataSet += "['" + DT_Danos.Rows[IndiceDanos][0] + "','" + DT_Danos.Rows[IndiceDanos][1].ToString() + "','" + DT_Danos.Rows[IndiceDanos][2].ToString() + "','" + DT_Danos.Rows[IndiceDanos][3] + "','" + DT_Danos.Rows[IndiceDanos][4].ToString().Split(' ')[0] +"']";
+                    if (IndiceDanos + 1 != DT_Danos.Rows.Count)
+                    {
+                        aDataSet += ",";
+                    }
+                }
+                aDataSet += "]";
+
+                if (!Page.ClientScript.IsStartupScriptRegistered("TablaDaños"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaDaños", "<script type=\"text/javascript\"> CrearTablaDanos(" + aDataSet + ");</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alertaDaños", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
+            }
+        }
         #endregion
+
+        protected void BotonCancelarDanos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        protected void BotonGuardarDanos_Click(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }
