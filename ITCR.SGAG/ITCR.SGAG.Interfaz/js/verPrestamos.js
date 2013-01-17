@@ -1,4 +1,10 @@
-﻿function CrearTablaPrestamos (aDataSet) {
+﻿function OnLoad() {
+
+    document.getElementById("li_prestamosDevoluciones").className = "active";
+
+}
+
+function CrearTablaPrestamos (aDataSet) {
     $('#dynamic').html('<table cellpadding="0" cellspacing="0" border="0" class="display" id="example"></table>');
     $('#example').dataTable({
         "bJQueryUI": true,

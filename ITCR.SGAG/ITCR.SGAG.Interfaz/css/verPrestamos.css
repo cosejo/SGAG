@@ -11,3 +11,10 @@
 #dt_prestamos #container {
 	width: 800px;
 }
+
+body 
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}

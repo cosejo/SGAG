@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace ITCR.SGAG.Interfaz
 {
@@ -12,6 +13,9 @@ namespace ITCR.SGAG.Interfaz
         protected void Page_Load(object sender, EventArgs e)
         {
             CrearTablaPrestamos();
+
+            HtmlGenericControl body = this.Master.FindControl("body") as HtmlGenericControl;
+            body.Attributes.Add("onLoad", "OnLoad();");
         }
 
         public void CrearTablaPrestamos()
