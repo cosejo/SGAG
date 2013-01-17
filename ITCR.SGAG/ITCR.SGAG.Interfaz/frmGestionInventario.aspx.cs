@@ -21,11 +21,12 @@ namespace ITCR.SGAG.Interfaz
         private const int Ind_Id = 0;
         private const int Ind_Nombre = 1;
         private static Boolean _Modificacion = false;
-        private static Boolean Contrapeso = true;
+        private static Boolean _Daño = false;
         private static SqlInt32 IdDeporte = 0;
         private static SqlInt32 IdTipoImplemento = 0;
         private static String _DatosSeleccionados = "";
         private static String _DatosSeleccionadosActuales = "";
+        private static int _CantidadMaxImplementosDanados = 0;
 
         #endregion
 
@@ -41,8 +42,6 @@ namespace ITCR.SGAG.Interfaz
             obtenerDeportes();
             obtenerTiposImplementos();
             obtenerImplementos();
-            LabelMensaje.Text = "";
-
         }
 
         protected void BotonAgregarTipoImplemento_Click(object sender, EventArgs e)
@@ -125,18 +124,34 @@ namespace ITCR.SGAG.Interfaz
 
                 if (!_Modificacion)
                 {
-                    if (agregarImplemento())
+                    if (_Daño)
                     {
-                        MensajeDevuelto = "El Implemento ha sido agregado satisfactoriamente";
-                        TextBoxCantidad.Text = "";
-                        TextBoxNombre.Text = "";
-                        TextBoxImplementoNuevo.Text = "";
-                        TextBoxDeporteNuevo.Text = "";
-                        obtenerImplementos();
+                        if ((ReportarDano()))
+                        {
+                            MensajeDevuelto = "El Daño al implemento seleccionado ha sido agregado satisfactoriamente";
+                            BotonReportarDano_Click();
+                            obtenerImplementos();
+                        }
+                        else
+                        {
+                            MensajeDevuelto = "El Daño no ha podido ser agregado";
+                        }
                     }
-                    else
+                    else 
                     {
-                        MensajeDevuelto = "El Implemento no ha podido ser agregado, intentelo nuevamente";
+                        if (agregarImplemento())
+                        {
+                            MensajeDevuelto = "El Implemento ha sido agregado satisfactoriamente";
+                            TextBoxCantidad.Text = "";
+                            TextBoxNombre.Text = "";
+                            TextBoxImplementoNuevo.Text = "";
+                            TextBoxDeporteNuevo.Text = "";
+                            obtenerImplementos();
+                        }
+                        else
+                        {
+                            MensajeDevuelto = "El Implemento no ha podido ser agregado, intentelo nuevamente";
+                        }
                     }
                 }
                 else 
@@ -144,7 +159,7 @@ namespace ITCR.SGAG.Interfaz
                     if (modificarImplemento())
                     {
                         _Modificacion = false;
-                        Contrapeso = false;
+                        _Daño = false;
                         MensajeDevuelto = "El Implemento ha sido modificado satisfactoriamente";
                         TextBoxCantidad.Text = "";
                         TextBoxNombre.Text = "";
@@ -157,7 +172,7 @@ namespace ITCR.SGAG.Interfaz
                         MensajeDevuelto = "El Implemento no ha podido ser modificado";
                     }
                 }
-                
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "refrescarPagina", "<script type=\"text/javascript\"> __doPostBack('refrescar', 'refrescar');</script>");
             }
             catch (Exception ex)
             {
@@ -165,6 +180,23 @@ namespace ITCR.SGAG.Interfaz
             }
             LabelMensaje.ForeColor = System.Drawing.Color.Blue;
             LabelMensaje.Text = MensajeDevuelto;
+        }
+
+        private Boolean ReportarDano()
+        {
+            try
+            {
+                cSGGIDANOPORIMPLEMENTONegocios DanoNuevo = new cSGGIDANOPORIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DanoNuevo.FK_IDIMPLEMENTO = Int32.Parse(_DatosSeleccionados.Split(',')[0].ToString());
+                DanoNuevo.DSC_DANO = TextBoxDescripcion.Text;
+                DanoNuevo.CAN_IMPLEMENTOS = Int32.Parse(TextBoxCantidad.Text.ToString());
+                DanoNuevo.FEC_REPORTE = new SqlDateTime(DateTime.Now);
+                return DanoNuevo.Insertar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void BotonModificar_Click()
@@ -209,7 +241,27 @@ namespace ITCR.SGAG.Interfaz
 
         private void BotonReportarDano_Click()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Boolean condicion = !TextBoxDescripcion.Enabled;
+                TextBoxDescripcion.Enabled = condicion;
+                RequiredFieldValidatorDescripcionDano.Visible = condicion;
+                RequiredFieldValidatorDescripcionImplemento.Visible = !condicion;
+                _Daño = condicion;
+                if (!condicion)
+                {
+                    BotonCancelar_Click(new object(), new EventArgs());
+                }
+                else
+                {
+                    _DatosSeleccionadosActuales = _DatosSeleccionados;
+                    llenarCamposImplemento();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void BotonCancelar_Click(object sender, EventArgs e)
@@ -217,6 +269,7 @@ namespace ITCR.SGAG.Interfaz
             try 
             { 
              _Modificacion = false;
+             _Daño = false;
              IdDeporte = 0;
              IdTipoImplemento = 0;
              _DatosSeleccionados = "";
@@ -225,6 +278,10 @@ namespace ITCR.SGAG.Interfaz
              TextBoxDeporteNuevo.Text = "";
              TextBoxNombre.Text = "";
              TextBoxCantidad.Text = "";
+             TextBoxDescripcion.Text = "";
+             TextBoxDescripcion.Enabled = false;
+             RequiredFieldValidatorDescripcionDano.Visible = false;
+             RequiredFieldValidatorDescripcionImplemento.Visible = true;
             }
             catch(Exception ex)
             {
@@ -272,6 +329,11 @@ namespace ITCR.SGAG.Interfaz
 
                 if (Request["__EVENTTARGET"] == "Danos")
                 {
+                    if (_Daño) 
+                    {
+                        BotonReportarDano_Click();
+                        return;
+                    }
                     _DatosSeleccionados = Request["__EVENTARGUMENT"];
                     if(verificarDatosSeleccionados(_DatosSeleccionados))
                         BotonReportarDano_Click();
@@ -336,7 +398,7 @@ namespace ITCR.SGAG.Interfaz
             try
             {
                 cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
-                Implemento.ID_IMPLEMENTO = int.Parse(_DatosSeleccionadosActuales.Split(',').First());
+                Implemento.ID_IMPLEMENTO = int.Parse(_DatosSeleccionados.Split(',').First());
                 return Implemento.Eliminar();
             }
             catch (Exception ex)
@@ -601,6 +663,6 @@ namespace ITCR.SGAG.Interfaz
         }
   
         #endregion
-   
+
     }
 }

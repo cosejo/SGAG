@@ -13,12 +13,7 @@
     {
         margin-top: 24px;
     }
-        .style16
-        {
-            width: 300px;
-            height: 55px;
-        }
-    </style>
+        </style>
     <style type="text/css">
         
      .TextoMarcaAgua
@@ -111,6 +106,11 @@
             height: 41px;
         }
         
+        .style29
+        {
+            width: 438px;
+        }
+        
     </style>
 
 </asp:Content>
@@ -142,22 +142,12 @@
                                 />
                         </td>
                         <td class="style25">
-                            <asp:Button ID="BotonReportarDano" runat="server" Text="Reportar Daño" />
+                            <asp:Button ID="BotonReportarDano" runat="server" Text="Reportar Daño" 
+                                />
                             &nbsp;
                         </td>
                         <td>
                             <asp:Button ID="BotonEliminar" runat="server" Text="Eliminar"/>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="style24">
-                            &nbsp;
-                        </td>
-                        <td class="style25">
-                            &nbsp;
-                        </td>
-                        <td>
                             &nbsp;
                         </td>
                     </tr>
@@ -175,8 +165,11 @@
             <hr style="width: 877px" />
     </div>
         
-            <div style="height: 99px; width: 511px;" align="right">
-                  
+            <div style="height: 93px; width: 873px;" align="left">
+                     <table style="width: 100%; margin-right:10px;">
+                     <tr align="center">
+                     <td class="style29">
+                  <div style="width: 444px">
                                   	<asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
 
@@ -204,15 +197,15 @@
                                         </ContentTemplate> 
                 </asp:UpdatePanel>
                 <asp:Label ID="LblSelectedItemComboBoxMultiColumnaImp" runat="server" Text=""></asp:Label> 
-
-                                    <asp:Button ID="BotonAgregarImplemento" runat="server" style="margin-left: 103px" 
+                                    <asp:Button ID="BotonAgregarImplemento" runat="server" style="margin-left: 122px; margin-top:5px;" 
                         Text="Agregar Tipo Implemento" onclick="BotonAgregarTipoImplemento_Click" 
                         ValidationGroup="TipoImplemento" Width="195px" />
                 
-                                    
-                
-            </div>
-  <div style="height: 87px; width: 516px;" align="right">
+               </div>
+               </td>
+               <td>
+
+               <div style="height: 87px; width: 399px; margin-top:10px;" align="center">
                 	<asp:UpdatePanel ID="UPnlComboBoxMultiColumna" runat="server">
                     <ContentTemplate>
 
@@ -242,13 +235,21 @@
                 </asp:UpdatePanel>
                                  <asp:Label ID="LblSelectedItemComboBoxMultiColumna" runat="server" Text=""></asp:Label>
                     <asp:Button ID="BotonAgregarDeporte" runat="server" Text="Agregar Deporte" 
-                        style="margin-left: 91px" onclick="BotonAgregarDeporte_Click" 
-                         ValidationGroup="Deporte" Width="197px"/>
+                        style="margin-left: 69px; margin-top:7px;" onclick="BotonAgregarDeporte_Click" 
+                         ValidationGroup="Deporte" Width="195px"/>
                                     </div>
-                <div style="width: 514px; height: 127px" align="right">
+                
+                </td>
+               </tr>
+               </table>
+                
+            </div>
+  
+                <div style="width: 514px; height: 293px; margin-top:30px;" align="right">
+                <br />
                 <asp:Label ID="Label1" runat="server" Text="Descripción Implemento: "></asp:Label>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
-                        ErrorMessage="Cantidad de Implementos" ControlToValidate="TextBoxNombre">*</asp:RequiredFieldValidator>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionImplemento" runat="server" CssClass="TextoError" ValidationGroup="Implemento"
+                        ErrorMessage="Descripción de Implemento" ControlToValidate="TextBoxNombre">*</asp:RequiredFieldValidator>
                   <asp:TextBox ID="TextBoxNombre" runat="server" Width="195px" 
                       style="margin-left: 0px"></asp:TextBox>
                   <asp:TextBoxWatermarkExtender ID="TextBoxNombre_TextBoxWatermarkExtender" WatermarkText="Descripción max. 30 caractéres"
@@ -259,7 +260,7 @@
                   <asp:Label ID="Label2" runat="server" Text="Cantidad:"></asp:Label> 
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
                       CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxCantidad"
-                        ErrorMessage="Nombre de Implemento">*</asp:RequiredFieldValidator>
+                        ErrorMessage="Cantidad de Implementos">*</asp:RequiredFieldValidator>
                            <asp:TextBox ID="TextBoxCantidad" runat="server" Width="195px" 
                       style="margin-left: 0px"></asp:TextBox>
                   <asp:TextBoxWatermarkExtender ID="TextBoxCantidad_TextBoxWatermarkExtender" WatermarkText="Digite un número ej: 8, 14, 5"
@@ -268,6 +269,24 @@
    
                    <br />
                   <br />
+
+                    <asp:Label ID="Label6" runat="server" Text="Descripcion del Daño:"></asp:Label> 
+                                      <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionDano" runat="server" 
+                      CssClass="TextoError" ValidationGroup="Implemento" ControlToValidate="TextBoxDescripcion"
+                        ErrorMessage="Descripcion del Daño" Visible="false">*</asp:RequiredFieldValidator>
+                    <asp:TextBox ID="TextBoxDescripcion" runat="server" Width="195px" Height="37px" 
+                        TextMode="MultiLine" Enabled="false"></asp:TextBox>
+
+                   <br />
+                  <br />
+                                      <asp:Button ID="BotonCancelar" runat="server" Text="Cancelar" 
+                        onclick="BotonCancelar_Click" />
+
+                  <asp:Button ID="BotonGuardar" runat="server" Text="Guardar Cambios" 
+                      ValidationGroup="Implemento" onclick="BotonGuardar_Click" 
+                      style="margin-left: 31px" />
+                      <br/>
+                      <br/>
                   <asp:Label ID="LabelMensaje" runat="server" Text="" CssClass="TextoError" ForeColor="Blue"> </asp:Label>
                   <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
                         HeaderText="El siguiente campo es requerido:" ValidationGroup="Implemento"
@@ -283,20 +302,7 @@
                         HeaderText="Es requerido que seleccione el siguiente campo:" ValidationGroup="Deporte"
                         CssClass="TextoError" Height="31px" Width="207px" 
                         DisplayMode="List"/>
-                  <br />
-                  <br />
-                   <br />
-                    <br />
-                    <asp:Button ID="BotonCancelar" runat="server" Text="Cancelar" 
-                        onclick="BotonCancelar_Click" />
 
-                  <asp:Button ID="BotonGuardar" runat="server" Text="Guardar Cambios" 
-                      ValidationGroup="Implemento" onclick="BotonGuardar_Click" 
-                      style="margin-left: 31px" />
                 </div>
-  <div style="width: 514px; height: 166px" align="right">
-   
-   
-  </div>
-
+  
     </asp:Content>

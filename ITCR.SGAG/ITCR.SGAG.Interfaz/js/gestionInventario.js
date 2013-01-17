@@ -18,7 +18,34 @@ function CrearTablaInventario(aDataSet) {
 						{ "sTitle": "Implemento", "sClass": "center" },
 						{ "sTitle": "Cantidad Inventario", "sClass": "center" },
                         { "sTitle": "Deporte", "sClass": "center" }
-					]
+					],
+        "oLanguage": { 
+                        "oPaginate": { 
+                                        "sPrevious": "Anterior", 
+                                        "sNext": "Siguiente", 
+                                        "sLast": "Última", 
+                                        "sFirst": "Primera" 
+                                        },
+                        "sLengthMenu": 'Mostrar <select>'+ 
+                                    '<option value="10">10</option>'+ 
+                                    '<option value="20">20</option>'+ 
+                                    '<option value="30">30</option>'+ 
+                                    '<option value="40">40</option>'+ 
+                                    '<option value="50">50</option>'+ 
+                                    '<option value="-1">Todos</option>', 
+
+                        "sInfo": "Mostrando del _START_ al _END_ de los resultados (Total: _TOTAL_ resultados)", 
+
+                        "sInfoFiltered": " - filtrados de _MAX_ registros", 
+
+                        "sInfoEmpty": "No hay resultados de búsqueda", 
+
+                        "sZeroRecords": "No hay registros a mostrar", 
+
+                        "sProcessing": "Espere, por favor...", 
+
+                        "sSearch": "Buscar:", 
+                        }
     });
 
     oTable.$('tr').click(function () {
@@ -32,15 +59,15 @@ function CrearTablaInventario(aDataSet) {
 
 function ObtenerDatosModificar()
 {
-    __doPostBack('Modificar', informacion)
+    __doPostBack('Modificar', informacion);
 };
 
 function ObtenerDatosEliminar() {
-    __doPostBack('Eliminar', informacion)
+    __doPostBack('Eliminar', informacion);
 };
 
 function ObtenerDatosDanos() {
-    __doPostBack('Danos', informacion)
+    __doPostBack('Danos', informacion);
 };
 
 function RedibujarTabla() {

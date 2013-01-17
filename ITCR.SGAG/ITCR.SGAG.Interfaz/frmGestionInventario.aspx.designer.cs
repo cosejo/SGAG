@@ -247,13 +247,13 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control RequiredFieldValidator5.
+        /// Control RequiredFieldValidatorDescripcionImplemento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorDescripcionImplemento;
         
         /// <summary>
         /// Control TextBoxNombre.
@@ -310,6 +310,51 @@ namespace ITCR.SGAG.Interfaz {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxCantidad_TextBoxWatermarkExtender;
         
         /// <summary>
+        /// Control Label6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
+        
+        /// <summary>
+        /// Control RequiredFieldValidatorDescripcionDano.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorDescripcionDano;
+        
+        /// <summary>
+        /// Control TextBoxDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDescripcion;
+        
+        /// <summary>
+        /// Control BotonCancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BotonCancelar;
+        
+        /// <summary>
+        /// Control BotonGuardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BotonGuardar;
+        
+        /// <summary>
         /// Control LabelMensaje.
         /// </summary>
         /// <remarks>
@@ -344,23 +389,5 @@ namespace ITCR.SGAG.Interfaz {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
-        
-        /// <summary>
-        /// Control BotonCancelar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonCancelar;
-        
-        /// <summary>
-        /// Control BotonGuardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonGuardar;
     }
 }

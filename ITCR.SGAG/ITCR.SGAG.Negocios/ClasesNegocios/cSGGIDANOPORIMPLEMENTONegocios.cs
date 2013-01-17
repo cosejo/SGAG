@@ -73,14 +73,14 @@ namespace ITCR.SGAG.Negocios
 					+"DSC_DANO:"+DSC_DANO.ToString()+";"
 					+"CAN_IMPLEMENTOS:"+CAN_IMPLEMENTOS.ToString()+";"
 					+"FEC_REPORTE:"+FEC_REPORTE.ToString()+";";
-				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
+				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.UsoFuncionalidad, _ID_USUARIOBitacora,operacion);
 				return base.Insertar();
 			}
 			catch (Exception ex)
 			{
 				//Construir el string a guardar en la bitácora en caso de error.
 				operacion = "Error Insertar cSGGIDANOPORIMPLEMENTO;"+ex.Message;
-				wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
+				//wsseg.BitacoraRegistrarUso(_COD_APLICACIONBitacora, _COD_FUNCIONALIDADBitacora, _COD_SEDEBitacora, eTipoEventoBitacora.Error, _ID_USUARIOBitacora,operacion);
 				throw ex;
 			}
 		}
