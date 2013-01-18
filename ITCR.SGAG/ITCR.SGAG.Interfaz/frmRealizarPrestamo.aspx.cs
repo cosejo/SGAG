@@ -399,7 +399,7 @@ namespace ITCR.SGAG.Interfaz
                     drpCantSolicitada.Items.Clear();
                     if (implemento != null)
                     {
-                        for (int i = 1; i <= Convert.ToInt32(implemento["CAN_DISPONIBLE"]); i++)
+                        for (int i = 0; i <= Convert.ToInt32(implemento["CAN_DISPONIBLE"]); i++)
                         {
                             drpCantSolicitada.Items.Add(i + "");
                         }

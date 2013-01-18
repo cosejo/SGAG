@@ -1,10 +1,8 @@
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * General page setup
- */
- 
+/* DATA TABLE -----------------------*/
+
 #dt_prestamos {
-	font: 80%/1.45em "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
 	text-align:left;
 }
 
@@ -12,9 +10,55 @@
 	width: 800px;
 }
 
+/* --------------------------------- */
+
 body 
 {
-    position: absolute;
+    position: relative;
     top: 0px;
     left: 0px;
+}
+
+#content
+{
+    text-align: left;
+}
+
+#dRealizarPrestamo
+{
+    padding: 10px 0 20px 0;
+}
+
+.dBotonesCentrados
+{
+    width: 800px;
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
+
+legend
+{
+    font-weight: normal;
+    color: #696969;
+}
+
+#pCantDevolver input
+{
+    width: 40px;
+}
+
+#fieldImplemento p, #infoPrestamo p
+{
+    margin: 2px;
+}
+
+h3, #infoPrestamo
+{
+    margin-bottom: 10px;
+}
+
+fieldset 
+{
+    margin-top: 0px;
+    width: 800px;
 }
