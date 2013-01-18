@@ -103,8 +103,10 @@
     <Content Include="frmGestionInventario.aspx" />
     <Content Include="frmHorarioAsistentes.aspx" />
     <Content Include="frmIngresoSalaFuerza.aspx" />
+    <Content Include="frmIngresosExtraordinariosSalaFuerza.aspx" />
     <Content Include="frmMantenimiento.aspx" />
     <Content Include="frmRealizarPrestamo.aspx" />
+    <Content Include="frmReportes.aspx" />
     <Content Include="frmVerPrestamos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="imagenes\candado.png" />
@@ -155,6 +157,9 @@
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Reportes\rptHistorialPrestamos.mht" />
+    <None Include="Reportes\rptIngresosSalaFuerza.mht" />
+    <None Include="Reportes\rptInventario.mht" />
     <None Include="Service References\wsSeguridad\Seguridad.disco" />
     <None Include="Service References\wsSeguridad\configuration91.svcinfo" />
     <None Include="Service References\wsSeguridad\configuration.svcinfo" />
@@ -237,6 +242,13 @@
     <Compile Include="frmIngresoSalaFuerza.aspx.designer.cs">
       <DependentUpon>frmIngresoSalaFuerza.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmIngresosExtraordinariosSalaFuerza.aspx.cs">
+      <DependentUpon>frmIngresosExtraordinariosSalaFuerza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmIngresosExtraordinariosSalaFuerza.aspx.designer.cs">
+      <DependentUpon>frmIngresosExtraordinariosSalaFuerza.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmMantenimiento.aspx.cs">
       <DependentUpon>frmMantenimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -250,6 +262,13 @@
     </Compile>
     <Compile Include="frmRealizarPrestamo.aspx.designer.cs">
       <DependentUpon>frmRealizarPrestamo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportes.aspx.cs">
+      <DependentUpon>frmReportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReportes.aspx.designer.cs">
+      <DependentUpon>frmReportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmVerPrestamos.aspx.cs">
       <DependentUpon>frmVerPrestamos.aspx</DependentUpon>

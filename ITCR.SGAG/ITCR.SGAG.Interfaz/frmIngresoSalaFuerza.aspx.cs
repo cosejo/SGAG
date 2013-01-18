@@ -61,6 +61,7 @@ namespace ITCR.SGAG.Interfaz
             Negocios.FEC_INGRESO = fecha;
             Negocios.FEC_SISTEMA = DateTime.Now.Date;
             Negocios.CAR_USUARIOGIMNASIO = TextBoxId.Text;
+            //Negocios.Insertar();
             Response.Write("<SCRIPT>alert('Se ha registrado correctamente dentro del sistema.')</SCRIPT>");
             }
              catch (Exception ex)
