@@ -73,12 +73,17 @@ function ObtenerDatosDanos() {
     __doPostBack('Danos', informacion);
 };
 
-function RedibujarTabla() {
-    oTable.fnDraw();
+
+function ObtenerDatosModificarDanos() {
+    __doPostBack('ModificarDaños', dInformacion);
 };
 
-function CrearTablaDanos(aDataSet) {
-    $('#dynamic1').html('<table cellpadding="0" cellspacing="0" border="0" class="display" id="danos"></table>');
+function ObtenerDatosEliminarDanos() {
+    __doPostBack('EliminarDaños', dInformacion);
+};
+
+function CrearTablaDanos(dDataSet) {
+    $('#dynamico').html('<table cellpadding="0" cellspacing="0" border="0" class="display" id="danos"></table>');
     TableTools.DEFAULTS.aButtons = [];
     dTable = $('#danos').dataTable({
         "sDom": 'T<"clear">lfrtip',
@@ -87,7 +92,7 @@ function CrearTablaDanos(aDataSet) {
         },
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
-        "aaData": aDataSet,
+        "aaData": dDataSet,
         "oLanguage": {
             "oPaginate": {
                 "sPrevious": "Anterior",
@@ -125,18 +130,10 @@ function CrearTablaDanos(aDataSet) {
     });
 
     dTable.$('tr').click(function () {
-        var data = dTable.fnGetData(this);
-        dInformacion = data;
+        var ddata = dTable.fnGetData(this);
+        dInformacion = ddata;
         //$('#MainContent_TextBoxInfo').value = data[0];
         //alert('The cell clicked on had the value of '+ data[0]);  
     });
     dTable.fnSetColumnVis(0, false);
-};
-
-function ObtenerDatosModificarDanos() {
-    __doPostBack('ModificarDaños', dInformacion);
-};
-
-function ObtenerDatosEliminarDanos() {
-    __doPostBack('EliminarDaños', dInformacion);
 };

@@ -472,13 +472,13 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Control TextBoxDescricpionDano.
+        /// Control TextBoxDescricpionImplemento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxDescricpionDano;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDescricpionImplemento;
         
         /// <summary>
         /// Control Label11.
@@ -544,13 +544,13 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// Control RequiredFieldValidatorDescripcionDano0.
+        /// Control RequiredFieldValidatorDescripcionDano1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorDescripcionDano0;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorDescripcionDano1;
         
         /// <summary>
         /// Control TextBoxDescripcionDano.

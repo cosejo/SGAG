@@ -26,6 +26,7 @@ namespace ITCR.SGAG.Interfaz
         private static SqlInt32 IdDeporte = 0;
         private static SqlInt32 IdTipoImplemento = 0;
         private static String _DatosSeleccionados = "";
+        private static String _DatosSeleccionadosDanos = "";
         private static String _DatosSeleccionadosActuales = "";
         private static int _CantidadMaxImplementosDanados = 0;
 
@@ -244,6 +245,7 @@ namespace ITCR.SGAG.Interfaz
 
         private void BotonReportarDano_Click()
         {
+            String MensajeDevuelto = "";
             try
             {
                 Boolean condicion = !TextBoxDescripcion.Enabled;
@@ -263,8 +265,50 @@ namespace ITCR.SGAG.Interfaz
             }
             catch(Exception ex)
             {
-                throw ex;
+                MensajeDevuelto = ex.Message;
             }
+            LabelMensaje.ForeColor = LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+            LabelMensaje.Text = MensajeDevuelto;
+        }
+
+        private void BotonEliminarDanos_Click()
+        {
+            String MensajeDevuelto = "";
+            LabelMensaje.Text = MensajeDevuelto;
+            try
+            {
+                if (eliminarDano())
+                {
+                    MensajeDevuelto = "El Daño ha sido eliminado satisfactoriamente";
+                    obtenerDanos();
+                }
+                else
+                {
+                    MensajeDevuelto = "El Daño no ha podido ser eliminado";
+                }
+            }
+            catch (Exception ex)
+            {
+                MensajeDevuelto = ex.Message;
+            }
+            LabelMensajeDanos.ForeColor = LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+            LabelMensajeDanos.Text = MensajeDevuelto;
+        }
+
+        private void BotonModificarDanos_Click()
+        {
+            String MensajeDevuelto = "";
+            LabelMensaje.Text = MensajeDevuelto;
+            try
+            {
+                llenarCamposDanos();
+            }
+            catch (Exception ex)
+            {
+                MensajeDevuelto = ex.Message;
+            }
+            LabelMensajeDanos.ForeColor = LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+            LabelMensajeDanos.Text = MensajeDevuelto;
         }
 
         protected void BotonCancelar_Click(object sender, EventArgs e)
@@ -302,6 +346,49 @@ namespace ITCR.SGAG.Interfaz
             MultiViewInventario.ActiveViewIndex = 1;
         }
 
+        protected void BotonCancelarDanos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _DatosSeleccionadosDanos = "";
+                TextBoxDescricpionImplemento.Text = "";
+                TextBoxFechaDano.Text = "";
+                TextBoxCantidad0.Text = "";
+                TextBoxDescripcionDano.Text = "";
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void BotonGuardarDanos_Click(object sender, EventArgs e)
+        {
+            String MensajeDevuelto = "";
+            LabelMensaje.Text = MensajeDevuelto;
+            try
+            {
+                Page.Validate("Daños");
+
+                if (Page.IsValid)
+                {
+                    if (modificarDano())
+                    {
+                        MensajeDevuelto = "El Daño ha sido modificado satisfactoriamente";
+                        obtenerDanos();
+                        BotonCancelarDanos_Click(new object(),new EventArgs());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MensajeDevuelto = ex.Message;
+            }
+            LabelMensajeDanos.ForeColor = LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+            LabelMensajeDanos.Text = MensajeDevuelto;
+        }
+
         #endregion
 
         #region Metodos
@@ -314,7 +401,7 @@ namespace ITCR.SGAG.Interfaz
                 BotonEliminar.Attributes.Add("onclick", "javascritp:ObtenerDatosEliminar();");
                 BotonReportarDano.Attributes.Add("onclick", "javascritp:ObtenerDatosDanos();");
                 BotonModificarDanos.Attributes.Add("onclick", "javascritp:ObtenerDatosModificarDanos();");
-                BotonEliminarDanos.Attributes.Add("onclick", "javascritp:EliminarDaños();");
+                BotonEliminarDanos.Attributes.Add("onclick", "javascritp:ObtenerDatosEliminarDanos();");
             }
             catch (Exception ex)
             {
@@ -352,6 +439,24 @@ namespace ITCR.SGAG.Interfaz
                     _DatosSeleccionados = Request["__EVENTARGUMENT"];
                     if(verificarDatosSeleccionados(_DatosSeleccionados))
                         BotonReportarDano_Click();
+                    return;
+                }
+
+
+                if (Request["__EVENTTARGET"] == "ModificarDaños")
+                {
+                    _DatosSeleccionadosDanos = Request["__EVENTARGUMENT"];
+                    if (verificarDatosSeleccionados(_DatosSeleccionadosDanos))
+                        BotonModificarDanos_Click();
+                    return;
+                }
+
+
+                if (Request["__EVENTTARGET"] == "EliminarDaños")
+                {
+                    _DatosSeleccionadosDanos = Request["__EVENTARGUMENT"];
+                    if (verificarDatosSeleccionados(_DatosSeleccionadosDanos))
+                        BotonEliminarDanos_Click();
                     return;
                 }
 
@@ -424,17 +529,25 @@ namespace ITCR.SGAG.Interfaz
 
         private void llenarCamposImplemento()
         {
-            String datos = _DatosSeleccionadosActuales;
-            String[] arregloDatos = datos.Split(',');
-            TextBoxImplementoNuevo.Text = arregloDatos[1];
-            TextBoxDeporteNuevo.Text = arregloDatos[arregloDatos.Length - 1];
-            TextBoxCantidad.Text = arregloDatos[arregloDatos.Length - 2];
-            TextBoxNombre.Text="";
-            int diferencia = (arregloDatos.Length - 2);
-            for (int i = 2; i < diferencia;i++ )
+            try
             {
-                TextBoxNombre.Text+= arregloDatos[i];
+                String datos = _DatosSeleccionadosActuales;
+                String[] arregloDatos = datos.Split(',');
+                TextBoxImplementoNuevo.Text = arregloDatos[1];
+                TextBoxDeporteNuevo.Text = arregloDatos[arregloDatos.Length - 1];
+                TextBoxCantidad.Text = arregloDatos[arregloDatos.Length - 2];
+                TextBoxNombre.Text = "";
+                int diferencia = (arregloDatos.Length - 2);
+                for (int i = 2; i < diferencia; i++)
+                {
+                    TextBoxNombre.Text += arregloDatos[i];
+                }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         private void obtenerImplementos() 
@@ -678,6 +791,7 @@ namespace ITCR.SGAG.Interfaz
         }
 
         #region Daños
+
         private void obtenerDanos() 
         {
             try
@@ -698,9 +812,9 @@ namespace ITCR.SGAG.Interfaz
                 }
                 aDataSet += "]";
 
-                if (!Page.ClientScript.IsStartupScriptRegistered("TablaDaños"))
+                if (!Page.ClientScript.IsStartupScriptRegistered("TablaDanos"))
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaDaños", "<script type=\"text/javascript\"> CrearTablaDanos(" + aDataSet + ");</script>");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "TablaDanos", "<script type=\"text/javascript\"> CrearTablaDanos(" + aDataSet + ");</script>");
                 }
             }
             catch (Exception ex)
@@ -708,19 +822,68 @@ namespace ITCR.SGAG.Interfaz
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "alertaDaños", "<script type=\"text/javascript\"> alert(" + "'" + ex.Message + "'" + ");</script>");
             }
         }
-        #endregion
 
-        protected void BotonCancelarDanos_Click(object sender, EventArgs e)
+        private Boolean eliminarDano()
         {
+            try
+            {
+                cSGGIDANOPORIMPLEMENTONegocios DanoAEliminar = new cSGGIDANOPORIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DanoAEliminar.ID_DANO = Int32.Parse(_DatosSeleccionadosDanos.Split(',')[0]);
+                return DanoAEliminar.Eliminar();
+            }
+            catch (Exception ex) 
+            {
+                throw ex;
+            }
+        }
 
+        private Boolean modificarDano()
+        {
+            try
+            {
+                cSGGIDANOPORIMPLEMENTONegocios DanoAModificar = new cSGGIDANOPORIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DanoAModificar.ID_DANO = Int32.Parse(_DatosSeleccionadosDanos.Split(',')[0]);
+                Implemento.DSC_IMPLEMENTO = TextBoxDescricpionImplemento.Text;
+                int cantidadIngresada = Int32.Parse(TextBoxCantidad0.Text);
+                DataTable DT_Imp = Implemento.Buscar();
+                int cantidadImplementos = Int32.Parse(DT_Imp.Rows[0][DT_Imp.Columns.Count - 2].ToString());
+                if (cantidadIngresada > cantidadImplementos)
+                {
+                    throw new Exception("El Número dañados debe ser menor o igual a : " + cantidadImplementos.ToString() + ", Ya que esta es la cantidad de implementos registrados en el inventario");
+                }
+                DanoAModificar.FK_IDIMPLEMENTO = Int32.Parse(DT_Imp.Rows[0][0].ToString());
+                DanoAModificar.CAN_IMPLEMENTOS = cantidadIngresada;
+                DanoAModificar.DSC_DANO = TextBoxDescripcionDano.Text;
+                DanoAModificar.FEC_REPORTE = DateTime.Today;
+                return DanoAModificar.Actualizar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void llenarCamposDanos()
+        {
+            try
+            {
+                String datos = _DatosSeleccionadosDanos;
+                String[] arregloDatos = datos.Split(',');
+                TextBoxDescricpionImplemento.Text = arregloDatos[1];
+                TextBoxFechaDano.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
+                TextBoxCantidad0.Text = arregloDatos[arregloDatos.Length - 2];
+                TextBoxDescripcionDano.Text = arregloDatos[2];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion
 
-        protected void BotonGuardarDanos_Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
 
     }
 }

@@ -169,9 +169,9 @@
                                 </tr>
                             </table>
                         </div>
-                        <div ID="dt_inventario">
-                            <div ID="container">
-                                <div ID="dynamic">
+                        <div id="dt_inventario">
+                            <div id="container">
+                                <div id="dynamic">
                                 </div>
                                 <div class="spacer">
                                 </div>
@@ -258,7 +258,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div align="right" style="width: 602px; height: 293px; margin-top:30px;">
+                        <div align="right" style="width: 581px; height: 293px; margin-top:30px;">
                             <br />
                             <asp:Label ID="Label1" runat="server" Text="Descripción Implemento: "></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionImplemento" 
@@ -360,9 +360,9 @@
                         </table>
 
                     </div>
-                        <div ID="dt_danos">
-                            <div ID="containerDanos">
-                                <div ID="dynamic1">
+                        <div id="dt_danos">
+                            <div id="containerDanos">
+                                <div id="dynamico">
                                 </div>
                                 <div class="spacer">
                                 </div>
@@ -373,8 +373,8 @@
                         </div>
                             <div align="right" style="width: 602px; height: 293px; margin-top:0px;">
                                 <br />
-                                <asp:Label ID="Label8" runat="server" Text="Descripción del Daño: "></asp:Label>
-                                <asp:TextBox ID="TextBoxDescricpionDano" runat="server" style="margin-left: 0px" 
+                                <asp:Label ID="Label8" runat="server" Text="Implemento: "></asp:Label>
+                                <asp:TextBox ID="TextBoxDescricpionImplemento" runat="server" style="margin-left: 0px" 
                                     Width="195px" Enabled="false"></asp:TextBox>
                                 <br />
                                 <br />
@@ -396,10 +396,10 @@
                                 <br />
                                 <br />
                                 <asp:Label ID="Label10" runat="server" Text="Descripcion del Daño:"></asp:Label>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionDano0" 
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionDano1" 
                                     runat="server" ControlToValidate="TextBoxDescripcionDano" CssClass="TextoError" 
                                     ErrorMessage="Descripcion del Daño" ValidationGroup="Daños" 
-                                    Visible="false">*</asp:RequiredFieldValidator>
+                                    >*</asp:RequiredFieldValidator>
                                 <asp:TextBox ID="TextBoxDescripcionDano" runat="server" 
                                     Height="37px" TextMode="MultiLine" Width="195px"></asp:TextBox>
                                  <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender2" 
