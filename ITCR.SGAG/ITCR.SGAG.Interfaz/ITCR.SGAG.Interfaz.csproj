@@ -46,6 +46,9 @@
       <HintPath>..\packages\AjaxControlToolkit.4.1.60919\lib\40\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="SanitizerProviders">
       <HintPath>..\packages\AjaxControlToolkit.4.1.60919\lib\40\SanitizerProviders\SanitizerProviders.dll</HintPath>
     </Reference>
@@ -163,8 +166,6 @@
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
-    <None Include="Reportes\rptIngresosSalaFuerza.mht" />
-    <None Include="Reportes\rptInventario.mht" />
     <None Include="Service References\wsSeguridad\Seguridad.disco" />
     <None Include="Service References\wsSeguridad\configuration91.svcinfo" />
     <None Include="Service References\wsSeguridad\configuration.svcinfo" />
@@ -293,12 +294,6 @@
     <Compile Include="Prueba.aspx.designer.cs">
       <DependentUpon>Prueba.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\rptHistorialPrestamos.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptHistorialPrestamos.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Service References\wsSeguridad\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -326,6 +321,7 @@
     <Folder Include="Controles\.svn\tmp\prop-base\" />
     <Folder Include="Controles\.svn\tmp\props\" />
     <Folder Include="Controles\.svn\tmp\text-base\" />
+    <Folder Include="Reportes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
@@ -357,10 +353,6 @@
   <ItemGroup>
     <EmbeddedResource Include="frmError.aspx.resx">
       <DependentUpon>frmError.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptHistorialPrestamos.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptHistorialPrestamos.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

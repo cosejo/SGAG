@@ -13,5 +13,10 @@ namespace ITCR.SGAG.Interfaz
         {
 
         }
+
+        protected void BotonReportesIngresos_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
