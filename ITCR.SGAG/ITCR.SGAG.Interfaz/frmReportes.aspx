@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmReportes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmReportes" %>
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         #titulo
@@ -10,10 +11,14 @@
             height: 221px;
             margin-top: 16px;
         }
+        #reporte
+        {
+            height: 43px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="contenido" style="height: 299px">
+    <div id="contenido" style="height: 327px">
         <div id="titulo">
             <asp:Label ID="LabelTitulo" runat="server" Text="Generación de Reportes" 
                 Font-Size="Large"></asp:Label>
@@ -43,5 +48,10 @@
                  ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
              <asp:TextBox ID="TextBoxFechaFinal" runat="server"></asp:TextBox>
             </div>
+
+            <div id="reporte">
+                <CR:CrystalReportViewer ID="CrystalReportViewerReportes" runat="server" 
+                    AutoDataBind="true" />
+                </div>
     </div>
 </asp:Content>
