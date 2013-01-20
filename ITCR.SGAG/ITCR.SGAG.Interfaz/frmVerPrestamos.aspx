@@ -28,30 +28,11 @@
 		    </div>
 	    </div>
 
-        <div class="dBotonesCentrados"><asp:Button ID="btnVerDetalle" runat="server" Text="Ver Detalle" /></div>
+        <div class="dBotonesCentrados"><asp:Button ID="btnVerDetalle" runat="server" 
+                Text="Ver Detalle" onclick="btnVerDetalle_Click" /></div>
 
-        <h3>Detalle del Préstamo</h3>
-        <div id="infoPrestamo">
-            <p><b>Nombre: </b><asp:Label ID="lblNombre" runat="server" Text="Mauricio Muñoz Chaves"></asp:Label></p>
-            <p><b>Identificación: </b><asp:Label ID="lblIdentificacion" runat="server" Text="200949216"></asp:Label></p>
-        </div>
-        <div id="implementos">
-            <asp:Panel ID="panelImplemento" runat="server">
-                <fieldset id="fieldImplemento">
-                <legend>Implemento Prestado</legend>
-                    <p><b>Implemento: </b><asp:Label ID="lblImplemento" runat="server" Text="Balón de fútbol - Marca Addidas"></asp:Label></p>
-                    <p><b>Fecha de Devolución: </b><asp:Label ID="lblFechaDevolucion" runat="server" Text="17/02-2013 -- -- --"></asp:Label></p>
-                    <p><b>Cantidad Pendiente: </b><asp:Label ID="lblCantidadPendiente" runat="server" Text="6"></asp:Label></p>
-                    <p id="pCantDevolver"><b>Cantidad a devolver: </b><asp:TextBox ID="txtCantDevolver" CssClass="CampoTextoNumerico" runat="server"></asp:TextBox></p>
-                    <p id="pCantDanada"><b>Cantidad con daños: </b><asp:TextBox ID="txtCantDanada" CssClass="CampoTextoNumerico" runat="server"></asp:TextBox></p>
-                    <p id="pObservaciones"><b>Observaciones de los daños: </b><asp:TextBox ID="txtObservaciones" CssClass="CampoTexto" runat="server"></asp:TextBox></p>
-                </fieldset>
-            </asp:Panel>
-        <div id="dRealizarDevolucion" class="dBotonesCentrados"><asp:Button ID="btnRealizarDevolucion" runat="server" Text="Realizar Devolución" /></div>
-
-        
-
-    </div>
-    
+        <asp:Panel ID="panelDetalle" runat="server">
+        </asp:Panel>
+    </div>  
 
 </asp:Content>

@@ -42,15 +42,16 @@ legend
     color: #696969;
 }
 
-#pCantDevolver input, #pCantDanada input
+.pCantDevolver input, .pCantDanada input
 {
     width: 40px;
+    margin-right: 10px;
 }
 
-#pObservaciones input
+.pObservaciones input
 {
-    maxlength: "100";
-    width: 500px;
+    width: 700px;
+    margin-right: 10px;
 }
 
 #fieldImplemento p, #infoPrestamo p
