@@ -57,7 +57,6 @@
     <Compile Include="ClasesNegocios\cSGMUUSUARIONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRDANOPORDEVOLUCIONNegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRDEVOLUCIONNegocios.cs" />
-    <Compile Include="ClasesNegocios\cSGPRDEVOLUCIONPORPRESTAMONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRIMPLEMENTOPORPRESTAMONegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRIMPLEMENTOSPORDEVOLUCIONNegocios.cs" />
     <Compile Include="ClasesNegocios\cSGPRINGRESONegocios.cs" />

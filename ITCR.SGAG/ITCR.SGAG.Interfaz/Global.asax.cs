@@ -16,7 +16,7 @@ namespace ITCR.SGAG.Interfaz
         public static string gTituloPagina = "Tecnológico de Costa Rica";
 
         //Pie de pagina global
-        public static string gPiePagina = "Instituto Tecnológico de Costa Rica, 2012";
+        public static string gPiePagina = "Instituto Tecnológico de Costa Rica, 2013";
         
         // al variar esto se ve afectado el encabezado de cada página y el título de las páginas en el navegador
         public static string gSubTituloPagina = "Plantilla Estándar VS2010";

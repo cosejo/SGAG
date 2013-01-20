@@ -15,6 +15,7 @@ function CrearTablaPrestamos (aDataSet) {
         "bJQueryUI": true,
         "aaData": aDataSet,
         "aoColumns": [
+            { "sTitle": "ID" },
             { "sTitle": "Identificación" },
 			{ "sTitle": "Nombre" },
 			{ "sTitle": "Fecha Préstamo" },

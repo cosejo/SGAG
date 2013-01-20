@@ -13,13 +13,13 @@ namespace ITCR.SGAG.Interfaz {
     public partial class frmVerPrestamos {
         
         /// <summary>
-        /// lblRealizarPrestamo control.
+        /// lblRealizarDevolucion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRealizarPrestamo;
+        protected global::System.Web.UI.WebControls.Label lblRealizarDevolucion;
         
         /// <summary>
         /// btnVerDetalle control.
@@ -31,12 +31,12 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.Button btnVerDetalle;
         
         /// <summary>
-        /// panelDetalle control.
+        /// WrapperDetalle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelDetalle;
+        protected global::System.Web.UI.WebControls.Panel WrapperDetalle;
     }
 }

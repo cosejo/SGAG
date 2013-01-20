@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Cliente:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Cliente:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGPRDEVOLUCION'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:35 p.m.
+// Fecha: domingo, 20 de enero de 2013, 04:36:28 a.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -42,8 +42,8 @@ namespace ITCR.SGAG.Datos
 		/// Propiedades necesarias para este método: 
 		/// <UL>
 		///		 <LI>FEC_DEVOLUCION</LI>
-		///		 <LI>DEVUELTO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>FK_IDPRESTAMO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -66,8 +66,8 @@ namespace ITCR.SGAG.Datos
 		/// <UL>
 		///		 <LI>ID_DEVOLUCION</LI>
 		///		 <LI>FEC_DEVOLUCION</LI>
-		///		 <LI>DEVUELTO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>FK_IDPRESTAMO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>
@@ -114,8 +114,8 @@ namespace ITCR.SGAG.Datos
 		///		 <LI>CodError</LI>
 		///		 <LI>ID_DEVOLUCION</LI>
 		///		 <LI>FEC_DEVOLUCION</LI>
-		///		 <LI>DEVUELTO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>FK_IDPRESTAMO</LI>
 		/// </UL>
 		/// Llena todas las propiedades que corresponden al campo en tabla con el valor de la fila seleccionada.
 		/// </remarks>
@@ -150,8 +150,8 @@ namespace ITCR.SGAG.Datos
 		/// <UL>
 		///		 <LI>ID_DEVOLUCION</LI>
 		///		 <LI>FEC_DEVOLUCION</LI>
-		///		 <LI>DEVUELTO</LI>
 		///		 <LI>CAR_USUARIOGIMNASIO</LI>
+		///		 <LI>FK_IDPRESTAMO</LI>
 		/// </UL>
 		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
 		/// <UL>

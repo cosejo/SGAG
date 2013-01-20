@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmVerPrestamos.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmVerPrestamos" %>
+﻿<%@ Page MaintainScrollPositionOnPostback="true" Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmVerPrestamos.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmVerPrestamos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -19,7 +19,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
     <div id="content">
-        <div id="dRealizarPrestamo"><asp:Label ID="lblRealizarPrestamo" class="SubTituloPagina" runat="server" Text="Préstamos y Devoluciones"></asp:Label></div>
+        <div id="dRealizarPrestamo"><asp:Label ID="lblRealizarDevolucion" class="SubTituloPagina" runat="server" Text="Préstamos y Devoluciones"></asp:Label></div>
 
         <div id="dt_prestamos">
 		    <div id="container">
@@ -30,8 +30,8 @@
 
         <div class="dBotonesCentrados"><asp:Button ID="btnVerDetalle" runat="server" 
                 Text="Ver Detalle" onclick="btnVerDetalle_Click" /></div>
-
-        <asp:Panel ID="panelDetalle" runat="server">
+        
+        <asp:Panel ID="WrapperDetalle" runat="server">
         </asp:Panel>
     </div>  
 

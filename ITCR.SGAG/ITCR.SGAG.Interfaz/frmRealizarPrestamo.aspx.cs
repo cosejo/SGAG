@@ -141,7 +141,7 @@ namespace ITCR.SGAG.Interfaz
 
         private void ObtenerImplementos()
         {
-            cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "0");
             _inventario = tempImplemento.SeleccionarTodos();        
         }
 
@@ -164,19 +164,36 @@ namespace ITCR.SGAG.Interfaz
 
         private cSGMUUSUARIONegocios Verificar()
         {
-            // SE DEBE VERIFICAR QUE EL USUARIO_SOLICITANTE ESTÁ ACTIVO. 
-            // ESTO SE HACE CON EL WEB SERVICE.
-            // SI NO ESTÁ ACTIVO DEBE RETORNAR NULL.
+            String nombre = "";
 
-            cSGMUUSUARIONegocios usuarioSolicitante = new cSGMUUSUARIONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            // Descomentar esta línea para realizar pruebas en ambiente de desarrollo
+            // ----------------------------------------------------------------------
+            nombre = "Mauricio Muñoz Chaves";
+            // ----------------------------------------------------------------------
+
+            // Comentar estas líneas para realizar pruebas en ambiente de desarrollo
+            // ---------------------------------------------------------------------
+            //wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+            //wsseg.ComprobarEstudiante(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
+            //if (nombre == "")
+            //{
+            //    wsseg.ComprobarUsuarioAD(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
+            //    if (nombre == "")
+            //    {
+            //        return null;
+            //    }
+            //}
+            // ---------------------------------------------------------------------
+
+            cSGMUUSUARIONegocios usuarioSolicitante = new cSGMUUSUARIONegocios(Global.gCOD_APLICACION, "CA", 0, "0");
             usuarioSolicitante.CAR_USUARIO = txtIdentificacion.Text;
-            usuarioSolicitante.NOM_USUARIO = "Mauricio M. Chaves";
+            usuarioSolicitante.NOM_USUARIO = nombre;
             return usuarioSolicitante;
         }
 
         private String VerificarEstado(cSGMUUSUARIONegocios pUsuarioGimnasio)
         {
-            cSGPRPRESTAMONegocios tempPrestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            cSGPRPRESTAMONegocios tempPrestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "0");
             tempPrestamo.CAR_USUARIOGIMNASIO = pUsuarioGimnasio.CAR_USUARIO;
             tempPrestamo.ESTADO = _PENDIENTE;
             DataTable prestamosPendientes = tempPrestamo.Buscar();
@@ -229,7 +246,7 @@ namespace ITCR.SGAG.Interfaz
 
         private void RealizarPrestamo()
         {
-            cSGPRPRESTAMONegocios nuevoPrestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+            cSGPRPRESTAMONegocios nuevoPrestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "0");
             nuevoPrestamo.ESTADO = _PENDIENTE;
             nuevoPrestamo.FEC_PRESTAMO = DateTime.Now;
             nuevoPrestamo.FK_IDTIPOPRESTAMO = drpTipoPrestamo.SelectedIndex + 1;
@@ -248,7 +265,7 @@ namespace ITCR.SGAG.Interfaz
             {
                 if (panelImplemento != null)
                 {
-                    cSGPRIMPLEMENTOPORPRESTAMONegocios nuevoImplemento = new cSGPRIMPLEMENTOPORPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                    cSGPRIMPLEMENTOPORPRESTAMONegocios nuevoImplemento = new cSGPRIMPLEMENTOPORPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 0, "0");
                     nuevoImplemento.FK_IDPRESTAMO = pIdPrestamo;
                     int durante = 1;
                     int disponible = 0;
@@ -267,7 +284,7 @@ namespace ITCR.SGAG.Interfaz
                         {
                             DropDownList drpCantSolicitada = (DropDownList)elementoHijo;
                             nuevoImplemento.CAN_SOLICITADA = int.Parse(drpCantSolicitada.SelectedValue);
-                            cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                            cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "0");
                             tempImplemento.ID_IMPLEMENTO = nuevoImplemento.FK_IDIMPLEMENTO;
                             tempImplemento.CAN_DISPONIBLE = disponible - nuevoImplemento.CAN_SOLICITADA;
                             tempImplemento.Actualizar();
@@ -354,6 +371,12 @@ namespace ITCR.SGAG.Interfaz
 
             int indexSeleccionado = drpSender.SelectedIndex-1;
 
+            if (drpSender.SelectedIndex != 0 && !ComprobarRepeticiones(drpSender.SelectedIndex, drpSender.ID))
+            {
+                drpSender.SelectedIndex = 0;
+                return;
+            }
+
             DataRow implemento = (drpSender.SelectedIndex == 0) ? null : _inventario.Rows[indexSeleccionado];
 
             Control panelImplemento = _implementos[int.Parse(idPanel)];
@@ -371,15 +394,15 @@ namespace ITCR.SGAG.Interfaz
                 else if (elementoHijo is Label && elementoHijo.ID.StartsWith("lblProxDevolucion_"))
                 {
                     Label lblProxDevolucion = (Label)elementoHijo;
-                    cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "200949216");
+                    cSGGIIMPLEMENTONegocios tempImplemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 0, "0");
 
                     if (implemento != null)
                     {
                         tempImplemento.ID_IMPLEMENTO = Convert.ToInt32(implemento["ID_IMPLEMENTO"]);
                         DataTable tblProxDevolucion = tempImplemento.ConocerProxDevolucion();
-                        if (tblProxDevolucion.Rows.Count > 0)
+                        if (tblProxDevolucion.Rows[0]["FEC_ENTREGA"].ToString() != "-1")
                         {
-                            lblProxDevolucion.Text = tblProxDevolucion.Rows[0]["PROX_DEVOLUCION"].ToString();
+                            lblProxDevolucion.Text = tblProxDevolucion.Rows[0]["FEC_ENTREGA"].ToString();
                         }
                         else
                         {
@@ -411,6 +434,33 @@ namespace ITCR.SGAG.Interfaz
                 }
                 #endregion
             }
+        }
+
+        protected bool ComprobarRepeticiones(int pIndexSeleccionado, String pIdSender)
+        {
+            foreach (Control panelImplemento in _implementos)
+            {
+                if (panelImplemento != null)
+                {
+                    foreach (Control elementoHijo in panelImplemento.Controls)
+                    {
+                        if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpImplemento_"))
+                        {
+                            if (((DropDownList)elementoHijo).SelectedIndex == pIndexSeleccionado && elementoHijo.ID != pIdSender)
+                            {
+                                if (!Page.ClientScript.IsStartupScriptRegistered("ImplementoInvalido"))
+                                {
+                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ImplementoInvalido",
+                                        "<script type=\"text/javascript\"> _MensajeAlerta = 'Ha elegido el mismo implemento más de una vez. Esta acción es inválida.'; </script>");
+                                }
+                                return false;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         protected void btnAgregarImplemento_Click(object sender, EventArgs e)
@@ -453,6 +503,18 @@ namespace ITCR.SGAG.Interfaz
                                 {
                                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ImplementoInvalido",
                                         "<script type=\"text/javascript\"> _MensajeAlerta = 'Aún existen implementos sin elegir. Eliminelos de la lista si no son parte del préstamo.'; </script>");
+                                }
+                                return;
+                            }
+                        }
+                        if (elementoHijo is DropDownList && elementoHijo.ID.StartsWith("drpCantSolicitada_"))
+                        {
+                            if (((DropDownList)elementoHijo).SelectedIndex == 0)
+                            {
+                                if (!Page.ClientScript.IsStartupScriptRegistered("CantidadInvalida"))
+                                {
+                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CantidadInvalida",
+                                        "<script type=\"text/javascript\"> _MensajeAlerta = 'Hay implementos con cantidad solicitada 0. Debe elegir una cantidad para estos implementos o quitarlos de la lista si no son parte del préstamo.'; </script>");
                                 }
                                 return;
                             }

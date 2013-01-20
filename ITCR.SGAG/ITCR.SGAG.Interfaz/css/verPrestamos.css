@@ -36,16 +36,15 @@ body
     margin: 20px 0 20px 0;
 }
 
+.dBotonesCentrados input
+{
+    margin: 0 15px 0 15px;
+}
+
 legend
 {
     font-weight: normal;
     color: #696969;
-}
-
-.pCantDevolver input, .pCantDanada input
-{
-    width: 40px;
-    margin-right: 10px;
 }
 
 .pObservaciones input
