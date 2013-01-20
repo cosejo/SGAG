@@ -40,15 +40,6 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.TextBox TextBoxFecha;
         
         /// <summary>
-        /// Control TextBoxFecha_CalendarExtender.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        //protected global::AjaxControlToolkit.CalendarExtender TextBoxFecha_CalendarExtender;
-        
-        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace ITCR.SGAG.Interfaz {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// Control RequiredFieldValidatorIdentificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorIdentificacion;
         
         /// <summary>
         /// Control TextBoxId.
@@ -92,5 +92,14 @@ namespace ITCR.SGAG.Interfaz {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButRegistrar;
+        
+        /// <summary>
+        /// Control ValidationSummary.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
     }
 }

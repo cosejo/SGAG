@@ -15,6 +15,12 @@ namespace ITCR.SGAG.Interfaz
         protected void Page_Load(object sender, EventArgs e)
         {
             ButRegistrar.Enabled = false;
+            TextBoxId.Enabled = true;
+            if(!IsPostBack)
+            {
+                DateTime hoy = DateTime.Today;
+                TextBoxFecha.Text = hoy.Month + "/" + hoy.Day + "/" + hoy.Year;
+            }
         }
 
         protected void ButVerificar_Click(object sender, EventArgs e)
@@ -22,7 +28,7 @@ namespace ITCR.SGAG.Interfaz
             try
             {
                 wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-                wsseg.ComprobarEstudiante(out Nombre, TextBoxId.Text);
+                //wsseg.ComprobarEstudiante(out Nombre, TextBoxId.Text);
                 if (Nombre == "")
                 {
                     wsseg.ComprobarUsuarioAD(out Nombre, TextBoxId.Text);
@@ -42,7 +48,7 @@ namespace ITCR.SGAG.Interfaz
                     LabelNombre.Text = "Nombre: " + Nombre;
                     ButRegistrar.Enabled = true;
                 }
-
+                TextBoxId.Enabled = false;
                 LabelNombre.Visible = true;
             }
             catch (Exception ex) 
@@ -62,7 +68,10 @@ namespace ITCR.SGAG.Interfaz
             Negocios.FEC_SISTEMA = DateTime.Now.Date;
             Negocios.CAR_USUARIOGIMNASIO = TextBoxId.Text;
             //Negocios.Insertar();
-            Response.Write("<SCRIPT>alert('Se ha registrado correctamente dentro del sistema.')</SCRIPT>");
+            //Response.Write("<SCRIPT>alert('Se ha registrado correctamente dentro del sistema.')</SCRIPT>");
+            LabelNombre.Text = "Se ha registrado correctamente dentro del sistema";
+            LabelNombre.ForeColor = System.Drawing.Color.Blue;
+            LabelNombre.Visible = true;
             }
              catch (Exception ex)
              {
