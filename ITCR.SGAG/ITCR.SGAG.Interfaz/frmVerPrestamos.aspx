@@ -43,6 +43,8 @@
                     <p><b>Fecha de Devolución: </b><asp:Label ID="lblFechaDevolucion" runat="server" Text="17/02-2013 -- -- --"></asp:Label></p>
                     <p><b>Cantidad Pendiente: </b><asp:Label ID="lblCantidadPendiente" runat="server" Text="6"></asp:Label></p>
                     <p id="pCantDevolver"><b>Cantidad a devolver: </b><asp:TextBox ID="txtCantDevolver" CssClass="CampoTextoNumerico" runat="server"></asp:TextBox></p>
+                    <p id="pCantDanada"><b>Cantidad con daños: </b><asp:TextBox ID="txtCantDanada" CssClass="CampoTextoNumerico" runat="server"></asp:TextBox></p>
+                    <p id="pObservaciones"><b>Observaciones de los daños: </b><asp:TextBox ID="txtObservaciones" CssClass="CampoTexto" runat="server"></asp:TextBox></p>
                 </fieldset>
             </asp:Panel>
         <div id="dRealizarDevolucion" class="dBotonesCentrados"><asp:Button ID="btnRealizarDevolucion" runat="server" Text="Realizar Devolución" /></div>

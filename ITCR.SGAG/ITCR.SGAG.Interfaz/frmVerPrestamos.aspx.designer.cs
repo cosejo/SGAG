@@ -94,6 +94,24 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.TextBox txtCantDevolver;
         
         /// <summary>
+        /// txtCantDanada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantDanada;
+        
+        /// <summary>
+        /// txtObservaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
+        
+        /// <summary>
         /// btnRealizarDevolucion control.
         /// </summary>
         /// <remarks>
