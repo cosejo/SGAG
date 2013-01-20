@@ -31,7 +31,7 @@ namespace ITCR.SGAG.Interfaz
                    // ReportViewerSGAG.LocalReport.ReportPath = "~Reportes\rptIngresoSalaFuerza.rdlc";
 
                     // Set the processing mode for the ReportViewer to Local
-                    ReportViewerSGAG.ProcessingMode = ProcessingMode.Local;
+                   /* ReportViewerSGAG.ProcessingMode = ProcessingMode.Local;
                     LocalReport rep = ReportViewerSGAG.LocalReport;
                     rep.ReportPath = "Reportes\rptIngresoSalaFuerza.rdlc";
                     DataSet ds = new DataSet();
@@ -55,7 +55,7 @@ namespace ITCR.SGAG.Interfaz
 
 
                     rep.DataSources.Add(dsMaintenanceDS);
-                    rep.Refresh();
+                    rep.Refresh();*/
                 }
                 LabelMensaje.ForeColor = System.Drawing.Color.Blue;
             }

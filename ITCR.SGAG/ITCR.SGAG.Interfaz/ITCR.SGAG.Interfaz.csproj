@@ -159,17 +159,6 @@
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="packages.config" />
-    <None Include="DataSetIngresosSalaFuerza.xsc">
-      <DependentUpon>DataSetIngresosSalaFuerza.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetIngresosSalaFuerza.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetIngresosSalaFuerza.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSetIngresosSalaFuerza.xss">
-      <DependentUpon>DataSetIngresosSalaFuerza.xsd</DependentUpon>
-    </None>
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Service References\wsSeguridad\Seguridad.disco" />
     <None Include="Service References\wsSeguridad\configuration91.svcinfo" />
@@ -200,11 +189,6 @@
     <Content Include="App_Code\UsuarioGimnasio.cs" />
     <Compile Include="Clases\cUtilInterfaz.cs" />
     <Compile Include="Clases\GSSI-Navigation.cs" />
-    <Compile Include="DataSetIngresosSalaFuerza.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetIngresosSalaFuerza.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -344,6 +328,10 @@
       <Project>{937D46B1-A7DD-432F-AC3A-19D75FE2A107}</Project>
       <Name>ITCR.SGAG.Negocios</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ITCR.SGAG.Reportes\ITCR.SGAG.Reportes.csproj">
+      <Project>{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}</Project>
+      <Name>ITCR.SGAG.Reportes</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -363,7 +351,6 @@
     <EmbeddedResource Include="frmError.aspx.resx">
       <DependentUpon>frmError.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptIngresoSalaFuerza.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\wsSeguridad\" />

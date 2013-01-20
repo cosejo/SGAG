@@ -50,15 +50,23 @@
                  ErrorMessage="Fecha Inicio" ControlToValidate="TextBoxFechaInicio" ValidationGroup="Fecha">*</asp:RequiredFieldValidator>
              <asp:TextBox ID="TextBoxFechaInicio" runat="server" style="margin-right:75px"></asp:TextBox>
 
+             <asp:CalendarExtender ID="TextBoxFechaInicio_CalendarExtender" runat="server" 
+                 Enabled="True" TargetControlID="TextBoxFechaInicio">
+             </asp:CalendarExtender>
+
              <asp:Label ID="LabelFechaFinal" runat="server" Text="Fecha Final:" style="margin-right:15px"></asp:Label>
              <asp:RequiredFieldValidator ID="RequiredFieldValidatorFechaFinal" runat="server" CssClass="TextoError"
                  ErrorMessage="Fecha Final" ControlToValidate="TextBoxFechaFinal" ValidationGroup="Fecha">*</asp:RequiredFieldValidator>
              <asp:TextBox ID="TextBoxFechaFinal" runat="server"></asp:TextBox>
 
+             <asp:CalendarExtender ID="TextBoxFechaFinal_CalendarExtender" runat="server" 
+                 Enabled="True" TargetControlID="TextBoxFechaFinal">
+             </asp:CalendarExtender>
+
              <br />
+             <asp:ValidationSummary ID="ValidationSummary" runat="server" ValidationGroup="Fecha" HeaderText="Los siguientes campos son requeridos: " ShowMessageBox="true" ShowSummary="false" />
              <br />
              <asp:Label ID="LabelMensaje" runat="server" Text=""></asp:Label>
-             <!-- Falta el summary validator-->
             </div>
 
             <div id="reporte">

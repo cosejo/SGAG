@@ -85,6 +85,15 @@ namespace ITCR.SGAG.Interfaz {
         protected global::System.Web.UI.WebControls.TextBox TextBoxFechaInicio;
         
         /// <summary>
+        /// Control TextBoxFechaInicio_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender TextBoxFechaInicio_CalendarExtender;
+        
+        /// <summary>
         /// Control LabelFechaFinal.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,24 @@ namespace ITCR.SGAG.Interfaz {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxFechaFinal;
+        
+        /// <summary>
+        /// Control TextBoxFechaFinal_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender TextBoxFechaFinal_CalendarExtender;
+        
+        /// <summary>
+        /// Control ValidationSummary.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
         
         /// <summary>
         /// Control LabelMensaje.
