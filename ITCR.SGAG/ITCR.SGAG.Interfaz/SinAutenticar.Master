@@ -86,8 +86,13 @@
 		</div>
         <div id="menu_principal">
             <li><a id="li_inicio" href="frmRealizarPrestamo.aspx">Inicio</a><span>•</span></li>
-            <li><a id="li_realizarPrestamo" href="frmRealizarPrestamo.aspx">Realizar Préstamo</a><span>•</span></li>
-            <li><a id="li_prestamosDevoluciones" href="frmVerPrestamos.aspx">Préstamos y Devoluciones</a></li>
+            <li><a id="li_realizarPrestamo" href="frmRealizarPrestamo.aspx">Préstamo</a><span>•</span></li>
+            <li><a id="li_prestamosDevoluciones" href="frmVerPrestamos.aspx">Devoluciones</a><span>•</span></li>
+            <li><a id="li_gestionInventario" href="frmGestionInventario.aspx">Inventario</a><span>•</span></li>
+            <li><a id="li_ingresoSalaFuerza" href="frmIngresoSalaFuerza.aspx">Sala de Fuerza</a><span>•</span></li>
+            <li><a id="li_ingresosExtraordinariosSalaFuerza" href="frmIngresosExtraordinariosSalaFuerza.aspx">Registros Extraordinarios</a><span>•</span></li>
+            <li><a id="li_horarioAsistentes" href="frmHorarioAsistentes.aspx">Horarios</a><span>•</span></li>
+            <li><a id="li_reportes" href="frmReportes.aspx">Reportes</a></li>
         </div>
 	<div class="page" style="text-align:center">
 		<div class="main" style="text-align:center;margin:0 auto 0 auto;">

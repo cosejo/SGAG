@@ -1,10 +1,10 @@
 #region Acerca de...
 ///////////////////////////////////////////////////////////////////////////
-// Empresa:  Tecnológico de Costa Rica
-// Proyecto: ITCR.SGAG
+// Empresa:  Instituto Tecnológico de Costa Rica
+// Proyecto: Sistema de Gestión del Área del Gimnasio
 // Descripción: Clase de acceso a datos para tabla 'SGPRINGRESO'
 // Generado por ITCR Gen v2010.0.0.0 
-// Fecha: viernes, 21 de diciembre de 2012, 07:17:35 p.m.
+// Fecha: domingo, 20 de enero de 2013, 09:00:09 p.m.
 // Dado que esta clase implementa IDispose, las clases derivadas no deben hacerlo.
 ///////////////////////////////////////////////////////////////////////////
 #endregion
@@ -24,9 +24,9 @@ namespace ITCR.SGAG.Base
 	public class cSGPRINGRESOBase : cBDInteraccionBase
 	{
 		#region Declaraciones de miembros de la clase
-			private SqlDateTime		_fEC_INGRESO, _fEC_SISTEMA;
+			private SqlDateTime		_fEC_SISTEMA, _fEC_INGRESO;
 			private SqlInt32		_iD_INGRESO;
-			private SqlString		_cAR_USUARIOGIMNASIO, _cAR_USUARIOGIMNASIOOld;
+			private SqlString		_cAR_USUARIOGIMNASIO;
 		#endregion
 
 
@@ -193,81 +193,6 @@ namespace ITCR.SGAG.Base
 
 
 		/// <summary>
-		/// Propósito: Método Update para actualizar una o más filas utilizando la llave foránea 'CAR_USUARIOGIMNASIO.
-		/// Este método actualiza una o más filas existentes en la base de datos, actualiza el campo 'CAR_USUARIOGIMNASIO' en
-		/// todas las filas que tienen ese valor para este campo con el valor 'CAR_USUARIOGIMNASIOanterior 
-		/// con el valor colocado en la propiedad 'CAR_USUARIOGIMNASIO'.
-		/// </summary>
-		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
-		/// <remarks>
-		/// Propiedades necesarias para este método: 
-		/// <UL>
-		///		 <LI>CAR_USUARIOGIMNASIO</LI>
-		///		 <LI>CAR_USUARIOGIMNASIOOld</LI>
-		/// </UL>
-		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
-		/// <UL>
-		///		 <LI>CodError</LI>
-		/// </UL>
-		/// </remarks>
-		public bool ActualizarTodos_Con_CAR_USUARIOGIMNASIO_FK()
-		{
-			SqlCommand	cmdAEjecutar = new SqlCommand();
-			cmdAEjecutar.CommandText = "dbo.[pr_SGPRINGRESO_ActualizarTodos_Con_CAR_USUARIOGIMNASIO_FK]";
-			cmdAEjecutar.CommandType = CommandType.StoredProcedure;
-
-			// Usar el objeto conexión de la clase base
-			cmdAEjecutar.Connection = _conexionBD;
-
-			try
-			{
-				cmdAEjecutar.Parameters.Add(new SqlParameter("@sCAR_USUARIOGIMNASIO", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _cAR_USUARIOGIMNASIO));
-				cmdAEjecutar.Parameters.Add(new SqlParameter("@sCAR_USUARIOGIMNASIOOld", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _cAR_USUARIOGIMNASIOOld));
-				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 20, ParameterDirection.Output, true, 0, 0, "", DataRowVersion.Proposed, _codError));
-
-				if(_conexionBDEsCreadaLocal)
-				{
-					// Abre una conexión.
-					_conexionBD.Open();
-				}
-				else
-				{
-					if(_conexionBDProvider.IsTransactionPending)
-					{
-						cmdAEjecutar.Transaction = _conexionBDProvider.CurrentTransaction;
-					}
-				}
-
-				// Ejecuta la consulta.
-				_filasAfectadas = cmdAEjecutar.ExecuteNonQuery();
-				_codError = Int32.Parse(cmdAEjecutar.Parameters["@iCodError"].Value.ToString());
-
-				if(_codError != (int)ITCRError.AllOk)
-				{
-					// Genera un error.
-					throw new Exception("Procedimiento almacenado 'pr_SGPRINGRESO_ActualizarTodos_Con_CAR_USUARIOGIMNASIO_FK' reportó el error Código: " + _codError);
-				}
-
-				return true;
-			}
-			catch (Exception ex)
-			{
-				// Ocurrió un error. le hace Bubble a quien llama y encapsula el objeto Exception
-				throw new Exception("cSGPRINGRESOBase::ActualizarTodos_Con_CAR_USUARIOGIMNASIO_FK::Ocurrió un error." + ex.Message, ex);
-			}
-			finally
-			{
-				if(_conexionBDEsCreadaLocal)
-				{
-					// Cierra la conexión.
-					_conexionBD.Close();
-				}
-				cmdAEjecutar.Dispose();
-			}
-		}
-
-
-		/// <summary>
 		/// Propósito: Método Eliminar. Borra una fila en la base de datos, basado en la llave primaria.
 		/// </summary>
 		/// <returns>True si tuvo éxito, sino genera una Exception. </returns>
@@ -324,76 +249,6 @@ namespace ITCR.SGAG.Base
 			{
 				// Ocurrió un error. le hace Bubble a quien llama y encapsula el objeto Exception
 				throw new Exception("cSGPRINGRESOBase::Eliminar::Ocurrió un error." + ex.Message, ex);
-			}
-			finally
-			{
-				if(_conexionBDEsCreadaLocal)
-				{
-					// Cierra la conexión.
-					_conexionBD.Close();
-				}
-				cmdAEjecutar.Dispose();
-			}
-		}
-
-
-		/// <summary>
-		/// Propósito: Método Eliminar para una llave primaria. Este método va a borrar una o más filas en la base de datos, basado en la llave primaria 'CAR_USUARIOGIMNASIO'
-		/// </summary>
-		/// <returns>True si tuvo éxito, false otherwise. </returns>
-		/// <remarks>
-		/// Propiedades necesarias para este método: 
-		/// <UL>
-		///		 <LI>CAR_USUARIOGIMNASIO</LI>
-		/// </UL>
-		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
-		/// <UL>
-		///		 <LI>CodError</LI>
-		/// </UL>
-		/// </remarks>
-		public bool EliminarTodo_Con_CAR_USUARIOGIMNASIO_FK()
-		{
-			SqlCommand	cmdAEjecutar = new SqlCommand();
-			cmdAEjecutar.CommandText = "dbo.[pr_SGPRINGRESO_EliminarTodo_Con_CAR_USUARIOGIMNASIO_FK]";
-			cmdAEjecutar.CommandType = CommandType.StoredProcedure;
-
-			// Usar el objeto conexión de la clase base
-			cmdAEjecutar.Connection = _conexionBD;
-
-			try
-			{
-				cmdAEjecutar.Parameters.Add(new SqlParameter("@sCAR_USUARIOGIMNASIO", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _cAR_USUARIOGIMNASIO));
-				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 20, ParameterDirection.Output, true, 0, 0, "", DataRowVersion.Proposed, _codError));
-
-				if(_conexionBDEsCreadaLocal)
-				{
-					// Abre una conexión.
-					_conexionBD.Open();
-				}
-				else
-				{
-					if(_conexionBDProvider.IsTransactionPending)
-					{
-						cmdAEjecutar.Transaction = _conexionBDProvider.CurrentTransaction;
-					}
-				}
-
-				// Ejecuta la consulta.
-				_filasAfectadas = cmdAEjecutar.ExecuteNonQuery();
-				_codError = Int32.Parse(cmdAEjecutar.Parameters["@iCodError"].Value.ToString());
-
-				if(_codError != (int)ITCRError.AllOk)
-				{
-					// Genera un error.
-					throw new Exception("Procedimiento almacenado 'pr_SGPRINGRESO_EliminarTodo_Con_CAR_USUARIOGIMNASIO_FK' reportó el error Código: " + _codError);
-				}
-
-				return true;
-			}
-			catch (Exception ex)
-			{
-				// Ocurrió un error. le hace Bubble a quien llama y encapsula el objeto Exception
-				throw new Exception("cSGPRINGRESOBase::EliminarTodo_Con_CAR_USUARIOGIMNASIO_FK::Ocurrió un error." + ex.Message, ex);
 			}
 			finally
 			{
@@ -561,79 +416,6 @@ namespace ITCR.SGAG.Base
 
 
 		/// <summary>
-		/// Propósito: Método SELECT para una llave primaria. Este método hace Select de una o más filas de la base de datos, basado en la llave primaria 'CAR_USUARIOGIMNASIO'
-		/// </summary>
-		/// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
-		/// <remarks>
-		/// Propiedades necesarias para este método: 
-		/// <UL>
-		///		 <LI>CAR_USUARIOGIMNASIO</LI>
-		/// </UL>
-		/// Propiedades actualizadas luego de una llamada exitosa a este método: 
-		/// <UL>
-		///		 <LI>CodError</LI>
-		/// </UL>
-		/// </remarks>
-		public DataTable SeleccionarTodos_Con_CAR_USUARIOGIMNASIO_FK()
-		{
-			SqlCommand	cmdAEjecutar = new SqlCommand();
-			cmdAEjecutar.CommandText = "dbo.[pr_SGPRINGRESO_SeleccionarTodos_Con_CAR_USUARIOGIMNASIO_FK]";
-			cmdAEjecutar.CommandType = CommandType.StoredProcedure;
-			DataTable toReturn = new DataTable("SGPRINGRESO");
-			SqlDataAdapter adapter = new SqlDataAdapter(cmdAEjecutar);
-
-			// Usar el objeto conexión de la clase base
-			cmdAEjecutar.Connection = _conexionBD;
-
-			try
-			{
-				cmdAEjecutar.Parameters.Add(new SqlParameter("@sCAR_USUARIOGIMNASIO", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, _cAR_USUARIOGIMNASIO));
-				cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 0, 0, "", DataRowVersion.Proposed, _codError));
-
-				if(_conexionBDEsCreadaLocal)
-				{
-					// Abre una conexión.
-					_conexionBD.Open();
-				}
-				else
-				{
-					if(_conexionBDProvider.IsTransactionPending)
-					{
-						cmdAEjecutar.Transaction = _conexionBDProvider.CurrentTransaction;
-					}
-				}
-
-				// Ejecuta la consulta.
-				adapter.Fill(toReturn);
-				_codError = (Int32)cmdAEjecutar.Parameters["@iCodError"].Value;
-
-				if(_codError != (int)ITCRError.AllOk)
-				{
-					// Genera un error.
-					throw new Exception("Procedimiento Almacenado 'pr_SGPRINGRESO_SeleccionarTodos_Con_CAR_USUARIOGIMNASIO_FK' reportó el error Código: " + _codError);
-				}
-
-				return toReturn;
-			}
-			catch(Exception ex)
-			{
-				// Ocurrió un error. Le hace Bubble a quien llama y encapsula el objeto Exception
-				throw new Exception("cSGPRINGRESOBase::SeleccionarTodos_Con_CAR_USUARIOGIMNASIO_FK::Ocurrió un error." + ex.Message, ex);
-			}
-			finally
-			{
-				if(_conexionBDEsCreadaLocal)
-				{
-					// Cierra la conexión.
-					_conexionBD.Close();
-				}
-				cmdAEjecutar.Dispose();
-				adapter.Dispose();
-			}
-		}
-
-
-		/// <summary>
 		/// Propósito: Método Buscar. Este método hace una busqueda de acuerdo con todos los campos de la tabla.
 		/// </summary>
 		/// <returns>DataTable si tuvo éxito, sino genera una Exception. </returns>
@@ -781,22 +563,6 @@ namespace ITCR.SGAG.Base
 					throw new ArgumentOutOfRangeException("CAR_USUARIOGIMNASIO", "CAR_USUARIOGIMNASIO can't be NULL");
 				}
 				_cAR_USUARIOGIMNASIO = value;
-			}
-		}
-		public SqlString CAR_USUARIOGIMNASIOOld
-		{
-			get
-			{
-				return _cAR_USUARIOGIMNASIOOld;
-			}
-			set
-			{
-				SqlString cAR_USUARIOGIMNASIOOldTmp = (SqlString)value;
-				if(cAR_USUARIOGIMNASIOOldTmp.IsNull )
-				{
-					throw new ArgumentOutOfRangeException("CAR_USUARIOGIMNASIOOld", "CAR_USUARIOGIMNASIOOld can't be NULL");
-				}
-				_cAR_USUARIOGIMNASIOOld = value;
 			}
 		}
 		#endregion
