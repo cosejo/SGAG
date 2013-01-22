@@ -16,8 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCR.SGAG.Reportes", "ITCR.SGAG.Reportes\ITCR.SGAG.Reportes.csproj", "{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}"
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ITCR.SGAG.vsmdi
@@ -71,16 +69,6 @@ Global
 		{E5173675-5717-4913-BC2D-A60904C10371}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E5173675-5717-4913-BC2D-A60904C10371}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E5173675-5717-4913-BC2D-A60904C10371}.Release|x86.ActiveCfg = Release|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{E1A6BB5A-D063-44EB-BE71-26497B8DD3C1}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

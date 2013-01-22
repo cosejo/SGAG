@@ -20,7 +20,7 @@ namespace ITCR.SGAG.Interfaz
             int month = 1;
             int day = 11;
 
-            String eventData = "["
+              String eventData = "["
                 + "{ 'id': 1, 'start': new Date(" + year + "," + month + "," + day + ", 12), 'end': new Date(" + year + "," + month + "," + day + ", 13,35), 'title': 'Lunch with Fat' },"
                 + " { 'id': 2, 'start': new Date(" + year + "," + month + "," + day + ", 14), 'end': new Date(" + year + "," + month + "," + day + ",  14, 45), 'title': 'Prety Fat Meeting' },"
                 + " { 'id': 3, 'start': new Date(" + year + "," + month + "," + day + ", 1, 18), 'end': new Date(" + year + "," + month + "," + day + ", 1, 18, 45), 'title': 'Hair cut Fat' },"

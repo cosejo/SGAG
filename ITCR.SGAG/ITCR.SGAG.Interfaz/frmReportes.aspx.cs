@@ -73,6 +73,15 @@ namespace ITCR.SGAG.Interfaz
             String MensajeDevuelto = "";
             try
             {
+                
+                //ReportViewerSGAG.LocalReport.ReportPath = Server.MapPath("Reportes/RptInventario.rdlc");
+                ObjectDataSource ObjectDataSource1 = new ObjectDataSource("SGAG_BDDataSetTableAdapters.pr_SGGIIMPLEMENTO_SeleccionarTodosTableAdapter", "GetData");
+                ObjectDataSource1.SelectParameters.Add("@iCodError",0 + "");
+                ReportDataSource rds = new ReportDataSource("SGAG_BDDataSet_pr_SGGIIMPLEMENTO_SeleccionarTodos", ObjectDataSource1);
+                ReportViewerSGAG.LocalReport.DataSources.Clear();
+                ReportViewerSGAG.LocalReport.DataSources.Add(rds);
+                ReportViewerSGAG.LocalReport.ReportPath = "Reportes/RptInventario.rdlc"; ;
+                ReportViewerSGAG.LocalReport.Refresh(); 
                 LabelMensaje.ForeColor = System.Drawing.Color.Blue;
             }
             catch (Exception ex)

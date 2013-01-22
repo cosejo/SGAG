@@ -73,8 +73,6 @@
                 <rsweb:ReportViewer ID="ReportViewerSGAG" runat="server" Font-Names="Verdana" 
                     Font-Size="8pt" Height="309px" InteractiveDeviceInfos="(Colección)" 
                     WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="689px">
-                    <LocalReport >
-                    </LocalReport>
                 </rsweb:ReportViewer>
                 </div>
     </div>

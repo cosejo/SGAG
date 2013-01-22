@@ -119,14 +119,7 @@
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
               <div align="center">
-                  <asp:LinkButton ID="LinkButtonInventario" runat="server" 
-                      style="margin-right:30px" onclick="LinkButtonInventario_Click">Gestión Inventario</asp:LinkButton>
-                  <asp:LinkButton ID="LinkButtonDanos" runat="server" style="margin-left:20px" 
-                      onclick="LinkButtonDanos_Click">Gestión Daños</asp:LinkButton>
-                  <br />
               </div>
-                <asp:MultiView ID="MultiViewInventario" runat="server" ActiveViewIndex="0">
-                    <asp:View ID="ViewInventario" runat="server">
                         <div style="width: 866px">
                             <table align="center" style="width: 99%;">
                                 <tr>
@@ -316,115 +309,6 @@
                                 HeaderText="Es requerido que seleccione el siguiente campo:" Height="31px" 
                                 ValidationGroup="Deporte" Width="207px" />
                         </div>
-                    </asp:View>
-                    <asp:View ID="ViewDanos" runat="server">
-                    <div>
-
-                        <table align="center" style="width: 99%;">
-                            <tr>
-                                <td class="style26">
-                                    &nbsp;
-                                </td>
-                                <td class="style27">
-                                    &nbsp;
-                                    <asp:Label ID="Label7" runat="server" Font-Size="Large" 
-                                        style="margin-bottom:10px" Text="Gestión de Daños"></asp:Label>
-                                </td>
-                                <td class="style28">
-                                    &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" class="style24">
-                                    &nbsp;
-                                </td>
-                                <td class="style25">
-                                    &nbsp;
-                                </td>
-                                <td align="left">
-                                    &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" class="style24">
-                                    &nbsp;</td>
-                                <td class="style25" align="center">
-                                    <asp:Button ID="BotonModificarDanos" runat="server" style="margin-left: 0px" 
-                                        Text="Modificar" />
-                                    <asp:Button ID="BotonEliminarDanos" runat="server" style="margin-left: 20px" 
-                                        Text="Eliminar" />
-                                </td>
-                                <td align="left">
-                                    &nbsp;</td>
-                            </tr>
-                        </table>
-
-                    </div>
-                        <div id="dt_danos">
-                            <div id="containerDanos">
-                                <div id="dynamico">
-                                </div>
-                                <div class="spacer">
-                                </div>
-                            </div>
-                        </div>
-                        <div style="width: 687px">
-                            <hr style="width: 877px" />
-                        </div>
-                            <div align="right" style="width: 602px; height: 293px; margin-top:0px;">
-                                <br />
-                                <asp:Label ID="Label8" runat="server" Text="Implemento: "></asp:Label>
-                                <asp:TextBox ID="TextBoxDescricpionImplemento" runat="server" style="margin-left: 0px" 
-                                    Width="195px" Enabled="false"></asp:TextBox>
-                                <br />
-                                <br />
-                                <asp:Label ID="Label11" runat="server" Text="Fecha del reporte del Daño:"></asp:Label>
-                                <asp:TextBox ID="TextBoxFechaDano" runat="server" Width="195px" Enabled="false"></asp:TextBox>
-                                <br />
-                                <br />
-                                <asp:Label ID="Label9" runat="server" Text="Cantidades Dañadas:"></asp:Label>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
-                                    ControlToValidate="TextBoxCantidad0" CssClass="TextoError" 
-                                    ErrorMessage="Cantidades Dañadas" ValidationGroup="Daños">*</asp:RequiredFieldValidator>
-                                <asp:TextBox ID="TextBoxCantidad0" runat="server" style="margin-left: 0px" 
-                                    Width="195px"></asp:TextBox>
-                                <asp:TextBoxWatermarkExtender ID="TextBoxCantidad0_TextBoxWatermarkExtender" 
-                                    runat="server" Enabled="True" TargetControlID="TextBoxCantidad0" 
-                                    WatermarkCssClass="TextoMarcaAgua" 
-                                    WatermarkText="Digite un número ej: 8, 14, 5">
-                                </asp:TextBoxWatermarkExtender>
-                                <br />
-                                <br />
-                                <asp:Label ID="Label10" runat="server" Text="Descripcion del Daño:"></asp:Label>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionDano1" 
-                                    runat="server" ControlToValidate="TextBoxDescripcionDano" CssClass="TextoError" 
-                                    ErrorMessage="Descripcion del Daño" ValidationGroup="Daños" 
-                                    >*</asp:RequiredFieldValidator>
-                                <asp:TextBox ID="TextBoxDescripcionDano" runat="server" 
-                                    Height="37px" TextMode="MultiLine" Width="195px"></asp:TextBox>
-                                 <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender2" 
-                                    runat="server" Enabled="True" TargetControlID="TextBoxDescripcionDano" 
-                                    WatermarkCssClass="TextoMarcaAgua" 
-                                    WatermarkText="Descripción General del Daño">
-                                </asp:TextBoxWatermarkExtender>
-                                <br />
-                                <br />
-                                <asp:Button ID="BotonCancelarDanos" runat="server"  
-                                    Text="Cancelar" onclick="BotonCancelarDanos_Click" />
-                                <asp:Button ID="BotonGuardarDanos" runat="server"  
-                                    style="margin-left: 31px" Text="Guardar Cambios" ValidationGroup="Daños" 
-                                    onclick="BotonGuardarDanos_Click" />
-                                <br/>
-                                <br/>
-                                <asp:Label ID="LabelMensajeDanos" runat="server" CssClass="TextoError" 
-                                    ForeColor="Blue" Text=""> </asp:Label>
-                                <asp:ValidationSummary ID="ValidationSummary6" runat="server" 
-                                    CssClass="TextoError" DisplayMode="List" 
-                                    HeaderText="Se requiere llenar el siguiente campo:" Height="31px" 
-                                    ValidationGroup="Daños" Width="207px" />
-                            </div>
-                    </asp:View>
-              </asp:MultiView>
                 </div>
 
             </asp:Content>
