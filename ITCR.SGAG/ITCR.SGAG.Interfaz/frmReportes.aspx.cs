@@ -150,11 +150,19 @@ namespace ITCR.SGAG.Interfaz
         {
             try
             {
+                String sfechaReporte;
+                String sfechaIngreso;
+                string[] arregloFechas;
                 String aDataSet = "[";
                 for (int IndiceImplementos = 0; IndiceImplementos < DT_Ingresos.Rows.Count; IndiceImplementos++)
                 {
-
-                    aDataSet += "['" + DT_Ingresos.Rows[IndiceImplementos][0].ToString() + "','" + DT_Ingresos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Ingresos.Rows[IndiceImplementos][2] + "']";
+                    sfechaIngreso = DT_Ingresos.Rows[IndiceImplementos][1].ToString().Split(' ')[0];
+                    arregloFechas = sfechaIngreso.Split('/');
+                    sfechaIngreso = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    sfechaReporte = DT_Ingresos.Rows[IndiceImplementos][2].ToString().Split(' ')[0];
+                    arregloFechas = sfechaReporte.Split('/');
+                    sfechaReporte = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    aDataSet += "['" + DT_Ingresos.Rows[IndiceImplementos][0].ToString() + "','" + sfechaIngreso + "','" + sfechaReporte + "']";
                     if (IndiceImplementos + 1 != DT_Ingresos.Rows.Count)
                     {
                         aDataSet += ",";
@@ -179,11 +187,19 @@ namespace ITCR.SGAG.Interfaz
         {
             try
             {
+                String sfechaReporte;
+                String sfechaIngreso;
+                string[] arregloFechas;
                 String aDataSet = "[";
                 for (int IndiceImplementos = 0; IndiceImplementos < DT_Prestamos.Rows.Count; IndiceImplementos++)
                 {
-
-                    aDataSet += "['" + DT_Prestamos.Rows[IndiceImplementos][0].ToString() + "','" + DT_Prestamos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Prestamos.Rows[IndiceImplementos][2] + "']";
+                    sfechaIngreso = DT_Prestamos.Rows[IndiceImplementos][1].ToString().Split(' ')[0];
+                    arregloFechas = sfechaIngreso.Split('/');
+                    sfechaIngreso = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    sfechaReporte = DT_Prestamos.Rows[IndiceImplementos][2].ToString().Split(' ')[0];
+                    arregloFechas = sfechaReporte.Split('/');
+                    sfechaReporte = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    aDataSet += "['" + DT_Prestamos.Rows[IndiceImplementos][0].ToString() + "','" + sfechaIngreso + "','" + sfechaReporte + "']";
                     if (IndiceImplementos + 1 != DT_Prestamos.Rows.Count)
                     {
                         aDataSet += ",";
