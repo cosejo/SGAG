@@ -165,5 +165,24 @@ namespace ITCR.SGAG.Datos
 				//    base.DescripcionCF = "{0}" + base.DescripcionCF + "{0}"; }
 			return base.Buscar();
 		}
-	} //class
+
+        /// <summary>
+        /// Propósito: Método Seleccionar datos entre dos fechas. Este método va a Hacer un SELECT LIKE de tabla.
+        /// </summary>
+        /// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
+        /// <remarks>
+        /// Propiedades necesarias para este método: 
+        /// <UL>
+        /// </UL>
+        /// Propiedades actualizadas luego de una llamada exitosa a este método: 
+        /// <UL>
+        ///		 <LI>CodError</LI>
+        /// </UL>
+        /// </remarks>
+        public DataTable SeleccionarPorFecha(DateTime Inicio, DateTime Final)
+        {
+            return base.SeleccionarPorFecha(Inicio, Final);
+        }
+
+    } //class
 } //namespace

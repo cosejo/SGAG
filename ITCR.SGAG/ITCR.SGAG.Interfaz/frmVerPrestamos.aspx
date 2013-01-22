@@ -18,7 +18,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div id="content">
+    <div id="content" style="margin-left:250px">
         <div id="dRealizarPrestamo"><asp:Label ID="lblRealizarDevolucion" class="SubTituloPagina" runat="server" Text="Préstamos y Devoluciones"></asp:Label></div>
 
         <div id="dt_prestamos">

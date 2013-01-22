@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmReportes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmReportes" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <link href="DataTable_Plugin/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />
+    <script src="DataTable_Plugin/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="js/TableTools.js" type="text/javascript"></script>
+    <script src="js/ZeroClipboard.js" type="text/javascript"></script>
+    <script src="js/reportes.js" type="text/javascript"></script>
     <style type="text/css">
         #titulo
         {
@@ -8,22 +13,22 @@
         }
         #contenidoBotones
         {
-            height: 221px;
+            height: 249px;
             margin-top: 16px;
         }
         #reporte
         {
-            height: 43px;
+            height: 152px;
+            width: 980px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="contenido" style="height: 593px">
+    <div id="contenido" style="height: 435px">
         <div id="titulo">
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
-            <asp:Label ID="LabelTitulo" runat="server" Text="Generación de Reportes" 
-                Font-Size="Large"></asp:Label>
+            <asp:Label ID="LabelTitulo" runat="server" Text="Generación de Reportes" style="margin-left:570px" Font-Size="Large"></asp:Label>
             </div>
          <div id="contenidoBotones" align="center">
              <asp:Button ID="BotonReportesIngresos" runat="server" 
@@ -63,12 +68,23 @@
              </asp:CalendarExtender>
 
              <br />
-             <asp:ValidationSummary ID="ValidationSummary" runat="server" ValidationGroup="Fecha" HeaderText="Los siguientes campos son requeridos: " ShowMessageBox="true" ShowSummary="false" />
+             <asp:ValidationSummary ID="ValidationSummary" runat="server" 
+                 ValidationGroup="Fecha" HeaderText="Los siguientes campos son requeridos: " 
+                 ShowMessageBox="true" ShowSummary="false" Height="1px" />
              <br />
              <asp:Label ID="LabelMensaje" runat="server" Text=""></asp:Label>
+             <hr style="width: 1200px" />
             </div>
-
-            <div id="reporte">
+            <div id="reporte" style="margin-left:225px">
+                <div id="container">
+                    <div id="dynamic">
+                    </div>
+                    <div class="spacer">
+                    </div>
                 </div>
+             </div>
     </div>
+    <br />
+    <br />
+    <hr style="width: 1200px" style="margin-top:35px; margin-left:75px" />
 </asp:Content>

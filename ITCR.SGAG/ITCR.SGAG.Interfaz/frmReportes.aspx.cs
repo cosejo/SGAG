@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Reporting.WebForms;
 using System.Data;
+using ITCR.SGAG.Negocios;
 
 namespace ITCR.SGAG.Interfaz
 {
@@ -25,37 +26,15 @@ namespace ITCR.SGAG.Interfaz
             {
                 if(Page.IsValid)
                 {
-                    //generar reporte
                     validarFechaInicio();
                     validarFechaFinal();
-                   // ReportViewerSGAG.LocalReport.ReportPath = "~Reportes\rptIngresoSalaFuerza.rdlc";
-
-                    // Set the processing mode for the ReportViewer to Local
-                   /* ReportViewerSGAG.ProcessingMode = ProcessingMode.Local;
-                    LocalReport rep = ReportViewerSGAG.LocalReport;
-                    rep.ReportPath = "Reportes\rptIngresoSalaFuerza.rdlc";
-                    DataSet ds = new DataSet();
-
-                    // Create a report data source for the sales order data
-                    ReportDataSource dsMaintenanceDS = new ReportDataSource();
-                    dsMaintenanceDS.Name = "DataSetIngresosSalaFuerza";
-                    dsMaintenanceDS.Value = ds.Tables["SGPRINGRESO"];
-                    rep.DataSources.Clear();
-
-
-                    string[] _p1 = new string[] { "pDtFechaInicio", "01/01/2012"};
-                    string[] _p2 = new string[] { "pDtFechaInicio", "01/02/2013" };
-
-
-                    ReportParameter p1 = new ReportParameter("pDtFechaInicio", _p1);
-                    ReportParameter p2 = new ReportParameter("pDtFechaInicio", _p2);
-
-
-                    this.ReportViewerSGAG.LocalReport.SetParameters(new ReportParameter[] { p1, p2});
-
-
-                    rep.DataSources.Add(dsMaintenanceDS);
-                    rep.Refresh();*/
+                    cSGPRINGRESONegocios Ingreso = new cSGPRINGRESONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                    string[] arregloFechas = TextBoxFechaInicio.Text.Split('/');
+                    string fechaInicio = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    arregloFechas = TextBoxFechaFinal.Text.Split('/');
+                    string fechaFinal = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    DataTable DT_Ingresos = Ingreso.SeleccionarPorFecha(Convert.ToDateTime(fechaInicio), Convert.ToDateTime(fechaFinal));
+                    llenarTablaIngresos(TextBoxFechaInicio.Text, TextBoxFechaFinal.Text, DT_Ingresos);
                 }
                 LabelMensaje.ForeColor = System.Drawing.Color.Blue;
             }
@@ -73,15 +52,9 @@ namespace ITCR.SGAG.Interfaz
             String MensajeDevuelto = "";
             try
             {
-                
-                ////ReportViewerSGAG.LocalReport.ReportPath = Server.MapPath("Reportes/RptInventario.rdlc");
-                //ObjectDataSource ObjectDataSource1 = new ObjectDataSource("SGAG_BDDataSetTableAdapters.pr_SGGIIMPLEMENTO_SeleccionarTodosTableAdapter", "GetData");
-                //ObjectDataSource1.SelectParameters.Add("@iCodError",0 + "");
-                //ReportDataSource rds = new ReportDataSource("SGAG_BDDataSet_pr_SGGIIMPLEMENTO_SeleccionarTodos", ObjectDataSource1);
-                //ReportViewerSGAG.LocalReport.DataSources.Clear();
-                //ReportViewerSGAG.LocalReport.DataSources.Add(rds);
-                //ReportViewerSGAG.LocalReport.ReportPath = "Reportes/RptInventario.rdlc"; ;
-                //ReportViewerSGAG.LocalReport.Refresh(); 
+                cSGGIIMPLEMENTONegocios Implemento = new cSGGIIMPLEMENTONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                DataTable DT_Implementos = Implemento.SeleccionarTodos();
+                llenarTablaImplementos(DT_Implementos);
                 LabelMensaje.ForeColor = System.Drawing.Color.Blue;
             }
             catch (Exception ex)
@@ -99,7 +72,6 @@ namespace ITCR.SGAG.Interfaz
             {
                 if (Page.IsValid)
                 {
-                    //generar reporte
                     validarFechaInicio();
                     validarFechaFinal();
                 }
@@ -133,6 +105,62 @@ namespace ITCR.SGAG.Interfaz
             try
             {
                 //Validar rango de fecha y que sea mayor que la de inicio
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void llenarTablaImplementos(DataTable DT_Implementos)
+        {
+            try
+            {
+                String aDataSet = "[";
+                for (int IndiceImplementos = 0; IndiceImplementos < DT_Implementos.Rows.Count; IndiceImplementos++)
+                {
+
+                    aDataSet += "['" + DT_Implementos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Implementos.Rows[IndiceImplementos][3].ToString() + "','" + DT_Implementos.Rows[IndiceImplementos][4] + "','" + DT_Implementos.Rows[IndiceImplementos][2].ToString() + "']";
+                    if (IndiceImplementos + 1 != DT_Implementos.Rows.Count)
+                    {
+                        aDataSet += ",";
+                    }
+                }
+                aDataSet += "]";
+
+                if (!Page.ClientScript.IsStartupScriptRegistered("ReporteInventario"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ReporteInventario", "<script type=\"text/javascript\"> CrearTablaReporteInventario(" + aDataSet + ");</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void llenarTablaIngresos(string FechaInicio, string FechaFinal, DataTable DT_Ingresos)
+        {
+            try
+            {
+                String aDataSet = "[";
+                for (int IndiceImplementos = 0; IndiceImplementos < DT_Ingresos.Rows.Count; IndiceImplementos++)
+                {
+
+                    aDataSet += "['" + DT_Ingresos.Rows[IndiceImplementos][0].ToString() + "','" + DT_Ingresos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Ingresos.Rows[IndiceImplementos][2] + "']";
+                    if (IndiceImplementos + 1 != DT_Ingresos.Rows.Count)
+                    {
+                        aDataSet += ",";
+                    }
+                }
+                aDataSet += "]";
+
+                FechaInicio = FechaInicio.Replace('/',',');
+                FechaFinal = FechaFinal.Replace('/',',');
+                if (!Page.ClientScript.IsStartupScriptRegistered("ReporteIngreso"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ReporteIngreso", "<script type=\"text/javascript\"> CrearTablaReporteIngresos(" + aDataSet + "," + FechaInicio +"," + FechaFinal + ");</script>");
+                }
             }
             catch (Exception ex)
             {

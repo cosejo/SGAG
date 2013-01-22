@@ -43,29 +43,33 @@
     <style type="text/css">
         .style2
         {
-            width: 605px;
+            width: 655px;
         }
         #calendar
         {
             width: 973px;
         }
+        .style3
+        {
+            width: 275px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table style="width: 142%; margin-bottom: 0px; margin-left: 0px;">
+    <table style="width: 93%; margin-bottom: 0px; margin-left: 0px;">
         <tr align = "center">
-            <td style="font-size: large">
+            <td style="font-size: large" class="style3">
                 &nbsp;</td>
             <td style="font-size: large" class="style2">
                 <asp:ScriptManager ID="ScriptManager" runat="server">
                 </asp:ScriptManager>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
                 Horario de Asistentes</td>
             <td>
                 &nbsp;</td>
         </tr>
         <tr>
-            <td style="font-size: large">
+            <td style="font-size: large" class="style3">
                 &nbsp;</td>
             <td style="font-size: large" class="style2">
                 &nbsp;</td>
@@ -73,7 +77,7 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td>
+            <td class="style3">
                 &nbsp;</td>
             <td class="style2">
                 <asp:Label ID="Label2" runat="server" Text="Nombre del Asistente"></asp:Label>
@@ -88,25 +92,12 @@
                 </asp:DropDownList>
             </td>
             <td>
-                <asp:Label ID="Label4" runat="server" Text="Desde"></asp:Label>
-                :&nbsp;
-                <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-                <br />
-                <asp:CalendarExtender ID="TextBox3_CalendarExtender" runat="server" 
-                    Enabled="True" TargetControlID="TextBox3">
-                </asp:CalendarExtender>
-                <asp:Label ID="Label5" runat="server" Text="Hasta"></asp:Label>
-                :&nbsp;&nbsp;
-                <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-                <asp:CalendarExtender ID="TextBox4_CalendarExtender" runat="server" 
-                    Enabled="True" TargetControlID="TextBox4">
-                </asp:CalendarExtender>
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
 
             <td 
-             </td>
+             </td class="style3">
 
                 <br />
                 <br />
@@ -117,5 +108,5 @@
         </tr>
     </table>
 
-    <div id="calendar"></div>
+    <div id="calendar" align="left" style="margin-left:180px"</div>
 </asp:Content>

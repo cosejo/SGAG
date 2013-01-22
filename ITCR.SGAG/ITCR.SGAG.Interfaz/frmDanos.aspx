@@ -116,7 +116,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
- <div style="width: 866px; margin-left: 0px" align="left"> 
+ <div style="width: 853px; margin-left: 170px; height: 540px;" align="left"> 
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
                     <div>
@@ -170,9 +170,10 @@
                             </div>
                         </div>
                         <div style="width: 687px">
-                            <hr style="width: 877px" />
+                            <hr style="width: 848px" />
                         </div>
-                            <div align="right" style="width: 602px; height: 293px; margin-top:0px;">
+                            <div align="right" 
+                  style="width: 602px; height: 359px; margin-top:0px;">
                                 <br />
                                 <asp:Label ID="Label8" runat="server" Text="Implemento: "></asp:Label>
                                 <asp:TextBox ID="TextBoxDescricpionImplemento" runat="server" style="margin-left: 0px" 

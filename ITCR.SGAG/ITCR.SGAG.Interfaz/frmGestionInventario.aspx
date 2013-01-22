@@ -115,7 +115,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <div style="width: 866px; margin-left: 0px" align="left"> 
+          <div style="width: 939px; margin-left: 120px" align="center"> 
               <asp:ScriptManager ID="ScriptManager1" runat="server">
               </asp:ScriptManager>
               <div align="center">
@@ -172,8 +172,8 @@
                         </div>
                         <div style="width: 865px; height: 20px;">
                         </div>
-                        <div style="width: 687px">
-                            <hr style="width: 877px" />
+                        <div style="width: 863px" align="left">
+                            <hr style="width: 859px" align="left" />
                         </div>
                         <div align="left" style="height: 93px; width: 873px;">
                             <table style="width: 100%; margin-right:10px;">
@@ -251,7 +251,8 @@
                                 </tr>
                             </table>
                         </div>
-                        <div align="right" style="width: 581px; height: 293px; margin-top:30px;">
+                        <div align="center" 
+                  style="width: 581px; height: 293px; margin-top:30px;">
                             <br />
                             <asp:Label ID="Label1" runat="server" Text="Descripción Implemento: "></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionImplemento" 
@@ -266,11 +267,11 @@
                             </asp:TextBoxWatermarkExtender>
                             <br />
                             <br />
-                            <asp:Label ID="Label2" runat="server" Text="Cantidad:"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Text="Cantidad:" style="margin-left:95px"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
                                 ControlToValidate="TextBoxCantidad" CssClass="TextoError" 
                                 ErrorMessage="Cantidad de Implementos" ValidationGroup="Implemento">*</asp:RequiredFieldValidator>
-                            <asp:TextBox ID="TextBoxCantidad" runat="server" style="margin-left: 0px" 
+                            <asp:TextBox ID="TextBoxCantidad" runat="server" style="margin-left: 2px" 
                                 Width="195px"></asp:TextBox>
                             <asp:TextBoxWatermarkExtender ID="TextBoxCantidad_TextBoxWatermarkExtender" 
                                 runat="server" Enabled="True" TargetControlID="TextBoxCantidad" 
@@ -279,7 +280,7 @@
                             </asp:TextBoxWatermarkExtender>
                             <br />
                             <br />
-                            <asp:Label ID="Label6" runat="server" Text="Descripcion del Daño:"></asp:Label>
+                            <asp:Label ID="Label6" runat="server" Text="Descripcion del Daño:" style="margin-left:30px"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescripcionDano" 
                                 runat="server" ControlToValidate="TextBoxDescripcion" CssClass="TextoError" 
                                 ErrorMessage="Descripcion del Daño" ValidationGroup="Implemento" 
@@ -289,25 +290,25 @@
                             <br />
                             <br />
                             <asp:Button ID="BotonCancelar" runat="server" onclick="BotonCancelar_Click" 
-                                Text="Cancelar" />
+                                Text="Cancelar" style="margin-left:95px" />
                             <asp:Button ID="BotonGuardar" runat="server" onclick="BotonGuardar_Click" 
                                 style="margin-left: 31px" Text="Guardar Cambios" ValidationGroup="Implemento" />
                             <br/>
                             <br/>
                             <asp:Label ID="LabelMensaje" runat="server" CssClass="TextoError" 
-                                ForeColor="Blue" Text=""> </asp:Label>
+                                ForeColor="Blue" Text="" style="margin-left:95px"> </asp:Label>
                             <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
                                 CssClass="TextoError" DisplayMode="List" 
                                 HeaderText="El siguiente campo es requerido:" Height="31px" 
-                                ValidationGroup="Implemento" Width="209px" />
+                                ValidationGroup="Implemento" Width="209px" style="margin-left:95px" />
                             <asp:ValidationSummary ID="ValidationSummary3" runat="server" 
                                 CssClass="TextoError" DisplayMode="List" 
                                 HeaderText="Es requerido que seleccione el siguiente campo:" Height="31px" 
-                                ValidationGroup="TipoImplemento" Width="207px" />
+                                ValidationGroup="TipoImplemento" Width="207px"  style="margin-left:95px"/>
                             <asp:ValidationSummary ID="ValidationSummary2" runat="server" 
                                 CssClass="TextoError" DisplayMode="List" 
                                 HeaderText="Es requerido que seleccione el siguiente campo:" Height="31px" 
-                                ValidationGroup="Deporte" Width="207px" />
+                                ValidationGroup="Deporte" Width="207px"  style="margin-left:95px" />
                         </div>
                 </div>
 

@@ -493,6 +493,77 @@ namespace ITCR.SGAG.Base
 			}
 		}
 
+        /// <summary>
+        /// Propósito: Método Seleccionar datos entre dos fechas. Este método va a Hacer un SELECT LIKE de tabla.
+        /// </summary>
+        /// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
+        /// <remarks>
+        /// Propiedades necesarias para este método: 
+        /// <UL>
+        /// </UL>
+        /// Propiedades actualizadas luego de una llamada exitosa a este método: 
+        /// <UL>
+        ///		 <LI>CodError</LI>
+        /// </UL>
+        /// </remarks>
+        public DataTable SeleccionarPorFecha(DateTime Inicio, DateTime Final)
+        {
+            SqlCommand cmdAEjecutar = new SqlCommand();
+            cmdAEjecutar.CommandText = "dbo.[pr_SGPRINGRESO_SeleccionarTodos_Por_Fechas]";
+            cmdAEjecutar.CommandType = CommandType.StoredProcedure;
+            DataTable toReturn = new DataTable("SGPRINGRESO");
+            SqlDataAdapter adapter = new SqlDataAdapter(cmdAEjecutar);
+
+            // Usar el objeto conexión de la clase base
+            cmdAEjecutar.Connection = _conexionBD;
+
+            try
+            {
+                cmdAEjecutar.Parameters.Add(new SqlParameter("@dFEC_INICIO", SqlDbType.DateTime, 8, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, Inicio));
+                cmdAEjecutar.Parameters.Add(new SqlParameter("@dFEC_FINAL", SqlDbType.DateTime, 8, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, Final));
+                cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
+
+                if (_conexionBDEsCreadaLocal)
+                {
+                    // Abre una conexión.
+                    _conexionBD.Open();
+                }
+                else
+                {
+                    if (_conexionBDProvider.IsTransactionPending)
+                    {
+                        cmdAEjecutar.Transaction = _conexionBDProvider.CurrentTransaction;
+                    }
+                }
+
+                // Ejecuta la consulta.
+                adapter.Fill(toReturn);
+                _codError = Int32.Parse(cmdAEjecutar.Parameters["@iCodError"].Value.ToString());
+
+                if (_codError != (int)ITCRError.AllOk)
+                {
+                    // Genera un error.
+                    throw new Exception("Procedimiento Almacenado 'pr_SGPRINGRESO_SeleccionarTodos_Por_Fechas' reportó el error Código: " + _codError);
+                }
+
+                return toReturn;
+            }
+            catch (Exception ex)
+            {
+                // Ocurrió un error. le hace Bubble a quien llama y encapsula el objeto Exception
+                throw new Exception("cSGPRINGRESOBase::Buscar::Ocurrió un error." + ex.Message, ex);
+            }
+            finally
+            {
+                if (_conexionBDEsCreadaLocal)
+                {
+                    // Cierra la conexión.
+                    _conexionBD.Close();
+                }
+                cmdAEjecutar.Dispose();
+                adapter.Dispose();
+            }
+        }
 
 		#region Declaraciones de propiedades de la clase
 		public SqlInt32 ID_INGRESO
@@ -566,5 +637,7 @@ namespace ITCR.SGAG.Base
 			}
 		}
 		#endregion
-	}
+
+
+    }
 }
