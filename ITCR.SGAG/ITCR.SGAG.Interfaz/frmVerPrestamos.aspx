@@ -1,4 +1,4 @@
-﻿<%@ Page MaintainScrollPositionOnPostback="true" Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmVerPrestamos.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmVerPrestamos" %>
+﻿<%@ Page MaintainScrollPositionOnPostback="true" Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmVerPrestamos.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmVerPrestamos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -8,7 +8,7 @@
     <link href="DataTable_Plugin/css/TableTools.css" rel="stylesheet" type="text/css" />
     <link href="css/verPrestamos.css" rel="stylesheet" type="text/css" />
 
-    <script src="js/jquery.js" type="text/javascript"></script>
+<%--    <script src="js/jquery.js" type="text/javascript"></script>--%>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
     <script src="DataTable_Plugin/jquery.dataTables.js" type="text/javascript"></script>
     <script src="DataTable_Plugin/ZeroClipboard.js" type="text/javascript"></script>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmHorarioAsistentes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmHorarioAsistentes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmHorarioAsistentes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmHorarioAsistentes" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
   <style type='text/css'>
@@ -33,10 +33,10 @@
   }
   </style>
 
-  <script type='text/javascript' src='js/jquery-1.4.4.min.js'></script>
+<%--  <script type='text/javascript' src='js/jquery-1.4.4.min.js'></script>
   <script type='text/javascript' src='js/jquery-ui-1.8.11.custom.min.js'></script>
   <link href="css/jquery-ui-1.8.11.custom.css" rel="stylesheet" type="text/css" />
-  <link href="css/jquery.weekcalendar.css" rel="stylesheet" type="text/css" />
+--%>  <link href="css/jquery.weekcalendar.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="js/date.js"></script>
   <script type='text/javascript' src='js/jquery.weekcalendar.js'></script>
   <script src="js/HorarioAsistentes.js" type="text/javascript"></script>

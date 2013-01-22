@@ -3,7 +3,7 @@ var _PrestamoSeleccionado;
 
 function OnLoad() {
 
-    document.getElementById("li_prestamosDevoluciones").className = "active";
+   // document.getElementById("li_prestamosDevoluciones").className = "active";
 
 }
 

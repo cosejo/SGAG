@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmRealizarPrestamo.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmRealizarPrestamo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmRealizarPrestamo.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmRealizarPrestamo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <link href="css/itcr.css" rel="stylesheet" type="text/css" />
     <link href="css/realizarPrestamo.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-    <script src="js/jquery.js" type="text/javascript"></script>
+<%--    <script src="js/jquery.js" type="text/javascript"></script>--%>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
     <script src="js/realizarPrestamo.js" type="text/javascript"></script>
 

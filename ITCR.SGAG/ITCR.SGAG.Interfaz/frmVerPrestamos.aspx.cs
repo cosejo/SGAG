@@ -53,21 +53,21 @@ namespace ITCR.SGAG.Interfaz
 
                 // Descomentar esta línea para realizar pruebas en ambiente de desarrollo
                 // ----------------------------------------------------------------------
-                nombre = "Mauricio Muñoz Chaves";
+               // nombre = "Mauricio Muñoz Chaves";
                 // ----------------------------------------------------------------------
 
                 // Comentar estas líneas para realizar pruebas en ambiente de desarrollo
                 // ---------------------------------------------------------------------
-                //wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-                //wsseg.ComprobarEstudiante(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
-                //if (nombre == "")
-                //{
-                //    wsseg.ComprobarUsuarioAD(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
-                //    if (nombre == "")
-                //    {
-                //        nombre = "Nombre desconocido";
-                //    }
-                //}
+                wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+                wsseg.ComprobarEstudiante(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
+                if (nombre == "")
+                {
+                    wsseg.ComprobarUsuarioAD(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
+                    if (nombre == "")
+                    {
+                        nombre = "Nombre desconocido";
+                    }
+                }
                 // ---------------------------------------------------------------------
 
                 aDataSet += "['"
@@ -282,21 +282,21 @@ namespace ITCR.SGAG.Interfaz
 
                     // Descomentar esta línea para realizar pruebas en ambiente de desarrollo
                     // ----------------------------------------------------------------------
-                    nombre = "Mauricio Muñoz Chaves";
+                   // nombre = "Mauricio Muñoz Chaves";
                     // ----------------------------------------------------------------------
 
                     // Comentar estas líneas para realizar pruebas en ambiente de desarrollo
                     // ---------------------------------------------------------------------
-                    //wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-                    //wsseg.ComprobarEstudiante(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
-                    //if (nombre == "")
-                    //{
-                    //    wsseg.ComprobarUsuarioAD(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
-                    //    if (nombre == "")
-                    //    {
-                    //        nombre = "Nombre desconocido";
-                    //    }
-                    //}
+                    wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+                    wsseg.ComprobarEstudiante(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
+                    if (nombre == "")
+                    {
+                        wsseg.ComprobarUsuarioAD(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
+                        if (nombre == "")
+                        {
+                            nombre = "Nombre desconocido";
+                        }
+                    }
                     // ---------------------------------------------------------------------
 
                     Label lblIdentifiacion = (Label)_prestamoElegido.FindControl("lblIdentificacion");

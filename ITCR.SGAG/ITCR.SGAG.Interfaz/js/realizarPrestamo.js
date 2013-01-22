@@ -4,7 +4,7 @@ var _ListaTextBoxDurante = new Array();
 
 function OnLoad() {
 
-    document.getElementById("li_realizarPrestamo").className = "active";
+    //document.getElementById("li_realizarPrestamo").className = "active";
 
     if (_MensajeAlerta != '') {
         alert(_MensajeAlerta);

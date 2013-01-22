@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup-SGAG", "Setup-SGAG\Setup-SGAG.vdproj", "{78FECFD1-5024-4550-80A7-193D2BD4CA6C}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ITCR.SGAG.vsmdi
@@ -69,6 +71,12 @@ Global
 		{E5173675-5717-4913-BC2D-A60904C10371}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E5173675-5717-4913-BC2D-A60904C10371}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E5173675-5717-4913-BC2D-A60904C10371}.Release|x86.ActiveCfg = Release|Any CPU
+		{78FECFD1-5024-4550-80A7-193D2BD4CA6C}.Debug|Any CPU.ActiveCfg = Debug
+		{78FECFD1-5024-4550-80A7-193D2BD4CA6C}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{78FECFD1-5024-4550-80A7-193D2BD4CA6C}.Debug|x86.ActiveCfg = Debug
+		{78FECFD1-5024-4550-80A7-193D2BD4CA6C}.Release|Any CPU.ActiveCfg = Release
+		{78FECFD1-5024-4550-80A7-193D2BD4CA6C}.Release|Mixed Platforms.ActiveCfg = Release
+		{78FECFD1-5024-4550-80A7-193D2BD4CA6C}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

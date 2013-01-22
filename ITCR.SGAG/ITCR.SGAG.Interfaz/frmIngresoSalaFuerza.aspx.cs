@@ -10,7 +10,7 @@ namespace ITCR.SGAG.Interfaz
 {
     public partial class frmIngresoSalaFuerza : System.Web.UI.Page
     {
-        string Nombre = "NATALIA MARÍA QUIRÓS PORRAS";
+        string Nombre = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,7 @@ namespace ITCR.SGAG.Interfaz
             try
             {
                 wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-                //wsseg.ComprobarEstudiante(out Nombre, TextBoxId.Text);
+                wsseg.ComprobarEstudiante(out Nombre, TextBoxId.Text);
                 if (Nombre == "")
                 {
                     wsseg.ComprobarUsuarioAD(out Nombre, TextBoxId.Text);
@@ -67,8 +67,8 @@ namespace ITCR.SGAG.Interfaz
             Negocios.FEC_INGRESO = fecha;
             Negocios.FEC_SISTEMA = DateTime.Now.Date;
             Negocios.CAR_USUARIOGIMNASIO = TextBoxId.Text;
-            //Negocios.Insertar();
-            //Response.Write("<SCRIPT>alert('Se ha registrado correctamente dentro del sistema.')</SCRIPT>");
+            Negocios.Insertar();
+            Response.Write("<SCRIPT>alert('Se ha registrado correctamente dentro del sistema.')</SCRIPT>");
             LabelNombre.Text = "Se ha registrado correctamente dentro del sistema";
             LabelNombre.ForeColor = System.Drawing.Color.Blue;
             LabelNombre.Visible = true;

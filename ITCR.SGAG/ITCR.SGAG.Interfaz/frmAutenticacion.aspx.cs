@@ -106,14 +106,14 @@ namespace ITCR.SGAG.Interfaz
             {
                 DataTable oDt;
                 DataSet oDs;
-                /*wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+                wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
                 oDs = wsseg.ObtenerListaSedes();
                 oDt = oDs.Tables[0];
                 sSedes.DataSource = new DataView(oDt);
                 sSedes.DataTextField = "NOM_SEDE";
                 sSedes.DataValueField = "COD_SEDE";
                 sSedes.DataBind();
-                oDt.Dispose();*/
+                oDt.Dispose();
             }
             catch (Exception ex)
             {
@@ -143,8 +143,8 @@ namespace ITCR.SGAG.Interfaz
                         Session["COD_SEDE"] = "CA"; // DropSede.SelectedItem.Value;      //modificado a solicitud de Kattia 22/3/2012
                         int CodAplicacion = Global.gCOD_APLICACION;
 
-                       /* wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-                        
+                        wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+
                         if (wsseg.TieneAccesoAplicacion(CodAplicacion, IdUsuario, Session["COD_SEDE"].ToString()))
                         {
                             switch (System.Int32.Parse(ddlTipoUsuario.SelectedItem.Value))
@@ -165,79 +165,22 @@ namespace ITCR.SGAG.Interfaz
                             Session.Add("ID_USUARIO", IdUsuario);
                             Session.Add("NUM_CEDULA", wsseg.ObtenerCedula(IdUsuario)); //obtener número de cédula si tiene.
                             Session.Add("NOM_USUARIO", wsseg.ObtenerNombreUsuario(IdUsuario)); //obtener nombre completo del usuario.
-                            Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());*/
-                           // if (FormsAuthentication.GetRedirectUrl(IdUsuario, false) == "")
-                            //{
-                               /* Session.Add("ID_USUARIO", IdUsuario);
+                            Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());
+                            if (FormsAuthentication.GetRedirectUrl(IdUsuario, false) == "")
+                            {
                                 FormsAuthentication.SetAuthCookie(IdUsuario, false);
-                                //Response.Redirect(this.PaginaRedireccionar);
-                                Response.Write("Ha iniciado Sesión satisfactoriamente");*/
-                        PaginaRedireccionar = "frmIngresoSalaFuerza.aspx";
-                        //PaginaRedireccionar = "frmRealizarPrestamo.aspx";
-                        Negocios.ClasesNegocios.IniciarSesion inicio = new Negocios.ClasesNegocios.IniciarSesion();
-                       /* switch (System.Int32.Parse(ddlTipoUsuario.SelectedItem.Value))
-                        {
-                            case 1://Funcionario
-                                if (inicio.iniciarSesionFuncionario(IdUsuario, Password))
-                                {
-                                    Session.Add("ID_USUARIO", IdUsuario);
-                                    Session.Add("NUM_CEDULA", "12345"); //obtener número de cédula si tiene.
-                                    Session.Add("NOM_USUARIO", IdUsuario); //obtener nombre completo del usuario.
-                                    Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());
-                                    FormsAuthentication.SetAuthCookie(IdUsuario, false);
-                                    Response.Redirect(this.PaginaRedireccionar);
-                                    Response.Write("Ha iniciado Sesión satisfactoriamente");
-                                }
-                                else 
-                                {
-                                    throw new Exception("El usuario del funcionario no es válido");
-                                }
-                                break;
-                            case 2://Estudiante
-                                if (inicio.iniciarSesionEstudiante(IdUsuario, Password))
-                                {
-                                    Session.Add("ID_USUARIO", IdUsuario);
-                                    Session.Add("NUM_CEDULA", "12345"); //obtener número de cédula si tiene.
-                                    Session.Add("NOM_USUARIO", IdUsuario); //obtener nombre completo del usuario.
-                                    Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());
-                                    FormsAuthentication.SetAuthCookie(IdUsuario, false);
-                                    Response.Redirect(this.PaginaRedireccionar);
-                                    Response.Write("Ha iniciado Sesión satisfactoriamente");
-                                }
-                                else
-                                {
-                                    throw new Exception("El Estudiante no es válido"); }
-                                break;
-                            case 3://Usuario Sistema
-                                break;
-                        }*/
-
-                          //  }
-                           /* else
+                                Response.Redirect(this.PaginaRedireccionar);
+                            }
+                            else
                             {
                                 FormsAuthentication.RedirectFromLoginPage(IdUsuario, false);
-                            }*/
-                      /*  }
+                            }
+                        }
                         else
                         {
                             txtUsuario.Text = "";
                             txtPassword.Text = "";
-                        }*/
-                        Session.Add("ID_USUARIO", IdUsuario);
-                        Session.Add("NUM_CEDULA", "12345"); //obtener número de cédula si tiene.
-                        Session.Add("NOM_USUARIO", IdUsuario); //obtener nombre completo del usuario.
-                        Session.Add("COD_SEDE", Session["COD_SEDE"].ToString());
-                        if (FormsAuthentication.GetRedirectUrl(IdUsuario, false) == "/default.aspx")
-                        {
-                            FormsAuthentication.SetAuthCookie(IdUsuario, false);
-                            Response.Redirect(PaginaRedireccionar, false);
-                            Response.Write("Ha iniciado Sesión satisfactoriamente");
                         }
-                         else
-                            {
-                                FormsAuthentication.RedirectFromLoginPage(IdUsuario, false);
-                            }
-                        
                     }
                     catch (COMException ex)// captura y manejo de errores
                     {
@@ -268,7 +211,6 @@ namespace ITCR.SGAG.Interfaz
                         lblMensajeError.Text = ex.Message;
                         txtPassword.Text = "";
                     }
-
                 }
             }
         }

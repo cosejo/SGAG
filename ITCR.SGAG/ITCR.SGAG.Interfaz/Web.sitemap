@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-    <siteMapNode url="" title=""  description="">
-        <siteMapNode url="" title=""  description="" />
-        <siteMapNode url="" title=""  description="" />
+    <siteMapNode url="~/Default.aspx" title="Inicio"  description="Inicio">
+        <siteMapNode url="~/frmHorarioAsistentes.aspx" title="Horarios"  description="Horarios" />
+		<siteMapNode url="~/frmDanos.aspx" title="Daños"  description="Daños" />
+		<siteMapNode url="~/frmGestionInventario.aspx" title="Inventario"  description="Inventario" />
+		<siteMapNode url="~/frmIngresoSalaFuerza.aspx" title="Ingresos Ordinarios"  description="Ingresos Ordinarios" />
+		<siteMapNode url="~/frmIngresosExtraordinariosSalaFuerza.aspx" title="Ingresos Extraordinarios"  description="Ingresos Extraordinarios" />
+		<siteMapNode url="~/frmRealizarPrestamo.aspx" title="Préstamo"  description="Préstamo" />
+		<siteMapNode url="~/frmReportes.aspx" title="Reportes"  description="Reportes" />
+		<siteMapNode url="~/frmVerPrestamos.aspx" title="Devoluciones"  description="Devoluciones" />
     </siteMapNode>
 </siteMap>

@@ -21,7 +21,7 @@ namespace ITCR.SGAG.Interfaz
         // al variar esto se ve afectado el encabezado de cada página y el título de las páginas en el navegador
         public static string gSubTituloPagina = "Plantilla Estándar VS2010";
 
-        public static int gCOD_APLICACION = 0; //modificar en web.config, no acá
+        public static int gCOD_APLICACION = 203; //modificar en web.config, no acá
 
 
         void Application_Start(object sender, EventArgs e)

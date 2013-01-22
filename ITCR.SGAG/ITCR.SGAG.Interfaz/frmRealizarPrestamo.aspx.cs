@@ -168,21 +168,21 @@ namespace ITCR.SGAG.Interfaz
 
             // Descomentar esta línea para realizar pruebas en ambiente de desarrollo
             // ----------------------------------------------------------------------
-            nombre = "Mauricio Muñoz Chaves";
+            //nombre = "Mauricio Muñoz Chaves";
             // ----------------------------------------------------------------------
 
             // Comentar estas líneas para realizar pruebas en ambiente de desarrollo
-            // ---------------------------------------------------------------------
-            //wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-            //wsseg.ComprobarEstudiante(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
-            //if (nombre == "")
-            //{
-            //    wsseg.ComprobarUsuarioAD(out nombre, prestamo["CAR_USUARIOGIMNASIO"].ToString());
-            //    if (nombre == "")
-            //    {
-            //        return null;
-            //    }
-            //}
+             //---------------------------------------------------------------------
+            wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+            wsseg.ComprobarEstudiante(out nombre, txtIdentificacion.Text);
+            if (nombre == "")
+            {
+                wsseg.ComprobarUsuarioAD(out nombre, txtIdentificacion.Text);
+                if (nombre == "")
+                {
+                    return null;
+                }
+            }
             // ---------------------------------------------------------------------
 
             cSGMUUSUARIONegocios usuarioSolicitante = new cSGMUUSUARIONegocios(Global.gCOD_APLICACION, "CA", 0, "0");

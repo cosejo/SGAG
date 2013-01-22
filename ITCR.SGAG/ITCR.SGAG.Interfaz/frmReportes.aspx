@@ -1,6 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SinAutenticar.Master" AutoEventWireup="true" CodeBehind="frmReportes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmReportes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmReportes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmReportes" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         #titulo
@@ -70,10 +69,6 @@
             </div>
 
             <div id="reporte">
-                <rsweb:ReportViewer ID="ReportViewerSGAG" runat="server" Font-Names="Verdana" 
-                    Font-Size="8pt" Height="309px" InteractiveDeviceInfos="(Colección)" 
-                    WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="689px">
-                </rsweb:ReportViewer>
                 </div>
     </div>
 </asp:Content>

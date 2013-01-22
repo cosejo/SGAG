@@ -9,7 +9,7 @@ using System.Text;
 using System.IO;
 //using DataJsonConverter;
 using System.Collections.Generic;
-//using ITCR.SGAG.Interfaz.wsSeguridad;
+using ITCR.SGAG.Interfaz.wsSeguridad;
 
 public enum eModo : short {Insertar = 1, Modificar = 2, Consultar = 3, Revisar = 4, Anular = 5, EditarAnular = 6, Eliminar = 7, VerHistorial = 8}
 
@@ -153,10 +153,10 @@ public class cUtilInterfaz
         try
         {
 
-            //SeguridadSoapClient wsseg = new SeguridadSoapClient();
-           /* bool retVal = wsseg.TienePermisoFuncionalidad(pCOD_APLICACION, pCOD_FUNCIONALIDAD, pID_USUARIO, pCOD_SEDE);
-            return retVal;*/
-            return true;
+            SeguridadSoapClient wsseg = new SeguridadSoapClient();
+            bool retVal = wsseg.TienePermisoFuncionalidad(pCOD_APLICACION, pCOD_FUNCIONALIDAD, pID_USUARIO, pCOD_SEDE);
+            return retVal;
+            //return true;
         }
         catch (Exception ex) // captura y manejo de errores
         {
@@ -168,7 +168,7 @@ public class cUtilInterfaz
     {
         try
         {
-            /*SeguridadSoapClient wsseg = new SeguridadSoapClient();
+            SeguridadSoapClient wsseg = new SeguridadSoapClient();
             DataSet oDs = wsseg.ObtenerListaSedes();
             DataTable oDt = oDs.Tables[0];
             sSedes.DataSource = new DataView(oDt);
@@ -176,7 +176,7 @@ public class cUtilInterfaz
             sSedes.DataValueField = "COD_SEDE";
             sSedes.DataBind();
             oDt.Dispose();
-            oDs.Dispose();*/
+            oDs.Dispose();
         }
         catch (Exception ex)
         {

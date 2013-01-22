@@ -19,12 +19,9 @@ namespace ITCR.SGAG.Interfaz
                 Page.Title = "TEC - " + Global.gSubTituloPagina;
 
                 //TODO: esto es temporal, en etapa de desarrollo
-                //wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
-                Session.Add("ID_USUARIO", "csanabria");
-                /*Session.Add("NUM_CEDULA", wsseg.ObtenerCedula("csanabria")); //obtener número de cédula si tiene.
-                Session.Add("NOM_USUARIO", wsseg.ObtenerNombreUsuario("csanabria")); //obtener nombre completo del usuario.*/
-                Session.Add("NUM_CEDULA", "110241589"); //obtener número de cédula si tiene.
-                Session.Add("NOM_USUARIO", "csanabria"); //obtener nombre completo del usuario.
+                wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+                Session.Add("NUM_CEDULA", wsseg.ObtenerCedula(Session["ID_USUARIO"].ToString())); //obtener número de cédula si tiene.
+                Session.Add("NOM_USUARIO", wsseg.ObtenerNombreUsuario(Session["ID_USUARIO"].ToString())); //obtener nombre completo del usuario.*/
                 Session.Add("COD_SEDE", "CA");
                 //hasta aqui...
 
@@ -60,14 +57,14 @@ namespace ITCR.SGAG.Interfaz
                     {
                         DataTable dt;
                         DataSet ds;
-                        /*wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
+                        wsSeguridad.SeguridadSoapClient wsseg = new wsSeguridad.SeguridadSoapClient();
                         ds = wsseg.ObtenerMenuUsuario(Global.gCOD_APLICACION, Session["ID_USUARIO"].ToString(), Session["COD_SEDE"].ToString());
                         dt = ds.Tables[0];
                         if (dt.Rows.Count > 0)
                         {
                             Crea_menu(dt);
                         }
-                        */
+                        
                     }
                 }
 
@@ -109,10 +106,10 @@ namespace ITCR.SGAG.Interfaz
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Menu", "<script type=\"text/javascript\"> CreaMenu(" + _Arreglo + ");</script>");
                 }
             }
-            //else
-            //{
-            //    Response.Redirect("frmAutenticacion.aspx");
-            //}
+            else
+            {
+                Response.Redirect("frmAutenticacion.aspx");
+            }
         }
 
         //private void AgregarNodo(DataRow FilaActual, DataTable TablaCompleta, MenuItem NodoPadre)

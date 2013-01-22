@@ -182,17 +182,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <None Include="SGAG_BDDataSet.xsc">
-      <DependentUpon>SGAG_BDDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="SGAG_BDDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SGAG_BDDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SGAG_BDDataSet.xss">
-      <DependentUpon>SGAG_BDDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\Daño.cs" />
@@ -204,6 +193,7 @@
     <Content Include="App_Code\TipoImplemento.cs" />
     <Content Include="App_Code\Usuario.cs" />
     <Content Include="App_Code\UsuarioGimnasio.cs" />
+    <Content Include="App_Code\GSSI-Navigation.cs" />
     <Compile Include="Clases\cUtilInterfaz.cs" />
     <Compile Include="Clases\GSSI-Navigation.cs" />
     <Compile Include="Default.aspx.cs">
@@ -317,11 +307,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="SGAG_BDDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SGAG_BDDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="SinAutenticar.Master.cs">
       <DependentUpon>SinAutenticar.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -376,8 +361,6 @@
     <EmbeddedResource Include="frmError.aspx.resx">
       <DependentUpon>frmError.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\RptIngresos.rdlc" />
-    <EmbeddedResource Include="Reportes\RptInventario.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\wsSeguridad\" />
