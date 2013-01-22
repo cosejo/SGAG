@@ -74,6 +74,13 @@ namespace ITCR.SGAG.Interfaz
                 {
                     validarFechaInicio();
                     validarFechaFinal();
+                    cSGPRPRESTAMONegocios Prestamo = new cSGPRPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                    string[] arregloFechas = TextBoxFechaInicio.Text.Split('/');
+                    string fechaInicio = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    arregloFechas = TextBoxFechaFinal.Text.Split('/');
+                    string fechaFinal = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    //DataTable DT_Prestamos = Prestamo.SeleccionarPorFecha(Convert.ToDateTime(fechaInicio), Convert.ToDateTime(fechaFinal));
+                    //llenarTablaIngresos(TextBoxFechaInicio.Text, TextBoxFechaFinal.Text, DT_Prestamos);
                 }
                 LabelMensaje.ForeColor = System.Drawing.Color.Blue;
             }
@@ -155,8 +162,8 @@ namespace ITCR.SGAG.Interfaz
                 }
                 aDataSet += "]";
 
-                FechaInicio = FechaInicio.Replace('/',',');
-                FechaFinal = FechaFinal.Replace('/',',');
+                FechaInicio = "'" + FechaInicio + "'";
+                FechaFinal = "'" +  FechaFinal + "'";
                 if (!Page.ClientScript.IsStartupScriptRegistered("ReporteIngreso"))
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ReporteIngreso", "<script type=\"text/javascript\"> CrearTablaReporteIngresos(" + aDataSet + "," + FechaInicio +"," + FechaFinal + ");</script>");
@@ -168,6 +175,34 @@ namespace ITCR.SGAG.Interfaz
             }
         }
 
+        private void llenarTablaPrestamos(string FechaInicio, string FechaFinal, DataTable DT_Prestamos)
+        {
+            try
+            {
+                String aDataSet = "[";
+                for (int IndiceImplementos = 0; IndiceImplementos < DT_Prestamos.Rows.Count; IndiceImplementos++)
+                {
+
+                    aDataSet += "['" + DT_Prestamos.Rows[IndiceImplementos][0].ToString() + "','" + DT_Prestamos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Prestamos.Rows[IndiceImplementos][2] + "']";
+                    if (IndiceImplementos + 1 != DT_Prestamos.Rows.Count)
+                    {
+                        aDataSet += ",";
+                    }
+                }
+                aDataSet += "]";
+
+                FechaInicio = FechaInicio.Replace("/","'/'");
+                FechaFinal = FechaFinal.Replace("/", "'/'");
+                if (!Page.ClientScript.IsStartupScriptRegistered("ReportePrestamos"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ReportePrestamos", "<script type=\"text/javascript\"> CrearTablaReportePrestamos(" + aDataSet + "," + FechaInicio + "," + FechaFinal + ");</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
     }
 }
