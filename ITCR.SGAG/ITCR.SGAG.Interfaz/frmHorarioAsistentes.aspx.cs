@@ -37,6 +37,10 @@ namespace ITCR.SGAG.Interfaz
         {
             try 
             {
+                if(DropDownListAsistentes.SelectedIndex==-1)
+                {
+                    return;
+                }
                 string[] Seleccion = DropDownListAsistentes.SelectedValue.Split('-');
                 cSGPRUSUARIOGIMNASIONegocios Asistente = new cSGPRUSUARIOGIMNASIONegocios(Global.gCOD_APLICACION, "CA", 1, "naquiros");
                 Asistente.CAR_USUARIOGIMNASIO = Seleccion[0];
@@ -84,11 +88,12 @@ namespace ITCR.SGAG.Interfaz
                     Asistente.CAR_USUARIOGIMNASIO = TextBoxCarne.Text;
                     Asistente.NOM_USUARIOGIMNASIO = Nombre;
                     Asistente.APE_USUARIOGIMNASIO = "";
+                    Asistente.Insertar();
                 }
             }
             catch (Exception ex) 
             {
-                Response.Write("<SCRIPT>alert(''" + ex.Message + ")</SCRIPT>");
+                Response.Write("<SCRIPT>alert('" + ex.Message + "')</SCRIPT>");
             }
         }
 
@@ -108,7 +113,7 @@ namespace ITCR.SGAG.Interfaz
             }
             catch (Exception ex)
             {
-                Response.Write("<SCRIPT>alert(''" + ex.Message + ")</SCRIPT>");
+                Response.Write("<SCRIPT>alert('" + ex.Message + "')</SCRIPT>");
             }
         }
 
@@ -132,7 +137,7 @@ namespace ITCR.SGAG.Interfaz
             }
             catch (Exception ex) 
             {
-                Response.Write("<SCRIPT>alert(''" + ex.Message + ")</SCRIPT>");
+                Response.Write("<SCRIPT>alert('" + ex.Message + "')</SCRIPT>");
             }
         }
 
@@ -188,7 +193,7 @@ namespace ITCR.SGAG.Interfaz
             }
             catch(Exception ex)
             {
-                Response.Write("<SCRIPT>alert(''" + ex.Message + ")</SCRIPT>");
+                Response.Write("<SCRIPT>alert('" + ex.Message + "')</SCRIPT>");
             }
         }
 
@@ -202,7 +207,7 @@ namespace ITCR.SGAG.Interfaz
             }
             catch(Exception ex)
             {
-                Response.Write("<SCRIPT>alert(''" + ex.Message + ")</SCRIPT>");
+                Response.Write("<SCRIPT>alert('" + ex.Message + "')</SCRIPT>");
             }
         }
 
@@ -229,12 +234,12 @@ namespace ITCR.SGAG.Interfaz
                 HorarioPorUsuario.FK_IDHORARIO = IdHorarioEncontrado;
                 HorarioPorUsuario.FK_CARUSUARIO = DropDownListAsistentes.SelectedValue.Split('-')[0];
                 HorarioPorUsuario.Insertar();
-                Response.Write("<SCRIPT>alert(''" + "El Horario ha sido Asignado satisfactoriamente" + ")</SCRIPT>");
+                Response.Write("<SCRIPT>alert('" + "El Horario ha sido Asignado satisfactoriamente" + "')</SCRIPT>");
                 BotonCancelar_Click(new object(), new EventArgs());
             }
             catch (Exception ex)
             {
-                Response.Write("<SCRIPT>alert(''" + ex.Message + ")</SCRIPT>");
+                Response.Write("<SCRIPT>alert('" + ex.Message + "')</SCRIPT>");
             }
         }
 

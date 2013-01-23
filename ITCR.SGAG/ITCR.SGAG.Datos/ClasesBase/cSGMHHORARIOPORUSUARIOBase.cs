@@ -494,7 +494,7 @@ namespace ITCR.SGAG.Base
 		public bool EliminarTodo_Con_FK_CARUSUARIO_FK()
 		{
 			SqlCommand	cmdAEjecutar = new SqlCommand();
-			cmdAEjecutar.CommandText = "dbo.[pr_SGMHHORARIOPORUSUARIO_EliminarTodo_Con_FK_CARUSUARIO_FK]";
+			cmdAEjecutar.CommandText = "dbo.[pr_SGMHHORARIOPORUSUARIO_EliminarTodo_FK_FK_CARUSUARIO]";
 			cmdAEjecutar.CommandType = CommandType.StoredProcedure;
 
 			// Usar el objeto conexión de la clase base

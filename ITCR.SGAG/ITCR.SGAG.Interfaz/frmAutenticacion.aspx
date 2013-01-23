@@ -8,8 +8,8 @@
 //            $("#ManContent_imgProcesando").css("visibility", "visible");
 
             //      sin jQuery
-            document.getElementById("MainContent_lblMensajeError").style.cssText = "display:none";
-            document.getElementById("ManContent_imgProcesando").style.cssText = "visibility:visible";
+            //document.getElementById("MainContent_lblMensajeError").style.cssText = "display:none";
+           //document.getElementById("ManContent_imgProcesando").style.cssText = "visibility:visible";
 	    }
      </script>
      <style type="text/css">

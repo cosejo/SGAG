@@ -225,8 +225,8 @@ namespace ITCR.SGAG.Interfaz
                 }
                 aDataSet += "]";
 
-                FechaInicio = FechaInicio.Replace("/","'/'");
-                FechaFinal = FechaFinal.Replace("/", "'/'");
+                FechaInicio = "'" + FechaInicio + "'";
+                FechaFinal = "'" + FechaFinal + "'";
                 if (!Page.ClientScript.IsStartupScriptRegistered("ReportePrestamosImp"))
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ReportePrestamosImp", "<script type=\"text/javascript\"> CrearTablaReportePrestamosImp(" + aDataSet + "," + FechaInicio + "," + FechaFinal + ");</script>");
@@ -258,8 +258,8 @@ namespace ITCR.SGAG.Interfaz
                 }
                 aDataSet += "]";
 
-                FechaInicio = FechaInicio.Replace("/","'/'");
-                FechaFinal = FechaFinal.Replace("/", "'/'");
+                FechaInicio = "'" + FechaInicio + "'";
+                FechaFinal = "'" + FechaFinal + "'";
                 if (!Page.ClientScript.IsStartupScriptRegistered("ReportePrestamos"))
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ReportePrestamos", "<script type=\"text/javascript\"> CrearTablaReportePrestamos(" + aDataSet + "," + FechaInicio + "," + FechaFinal + ");</script>");

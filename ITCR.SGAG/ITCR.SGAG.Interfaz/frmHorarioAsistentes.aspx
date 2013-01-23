@@ -87,7 +87,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="Label3" runat="server" Text="Carné:" style="margin-left:175px"></asp:Label>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="Agregar"
-                    ErrorMessage="Número de Carné">*</asp:RequiredFieldValidator>
+                    ErrorMessage="Número de Carné" ControlToValidate="TextBoxCarne">*</asp:RequiredFieldValidator>
                 <asp:TextBox ID="TextBoxCarne" runat="server" Height="20px" Width="185px"></asp:TextBox>
                 <asp:Button ID="BotonAgregar" runat="server" style="margin-left: 43px" ValidationGroup="Agregar"
                     Text="Agregar Asistente" onclick="Boton_Click" />
@@ -118,9 +118,9 @@
                 <asp:Label ID="Label2" runat="server" Text="Nombre del Asistente:" style="margin-left: 115px"></asp:Label>
 
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="TextoError"
-                    ErrorMessage="Nombre del Asistente">*</asp:RequiredFieldValidator>
+                    ErrorMessage="Nombre del Asistente" ControlToValidate="DropDownListAsistentes">*</asp:RequiredFieldValidator>
 
-                <asp:DropDownList ID="DropDownListAsistentes" runat="server" Height="16px" 
+                <asp:DropDownList ID="DropDownListAsistentes" runat="server" Height="23px" 
                     style="margin-left: 0px" Width="210px" 
                     onselectedindexchanged="DropDownListAsistentes_SelectedIndexChanged">
                 </asp:DropDownList>
@@ -195,7 +195,8 @@
                          <asp:Label ID="Label5" runat="server" Text="Día:" style="margin-left:570px"></asp:Label>
                      <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="TextoError" ValidationGroup="Asignar"
                          ErrorMessage="Día" ControlToValidate="DropDownListDias">*</asp:RequiredFieldValidator>
-                     <asp:DropDownList ID="DropDownListDias" runat="server" Height="16px" Width="128px">
+                     <asp:DropDownList ID="DropDownListDias" runat="server" Height="23px" 
+                         Width="128px">
                          <asp:ListItem Value="0">Domingo</asp:ListItem>
                          <asp:ListItem Value="1">Lunes</asp:ListItem>
                          <asp:ListItem Value="2">Martes</asp:ListItem>
