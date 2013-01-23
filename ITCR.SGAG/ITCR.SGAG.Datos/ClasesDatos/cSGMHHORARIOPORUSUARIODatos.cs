@@ -161,5 +161,10 @@ namespace ITCR.SGAG.Datos
 				//    base.DescripcionCF = "{0}" + base.DescripcionCF + "{0}"; }
 			return base.Buscar();
 		}
-	} //class
+
+        public DataTable SeleccionarTodosPorCarne()
+        {
+            return base.SeleccionarTodosPorCarne();
+        }
+    } //class
 } //namespace

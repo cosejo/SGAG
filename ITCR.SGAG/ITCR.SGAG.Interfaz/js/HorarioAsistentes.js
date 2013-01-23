@@ -1,49 +1,66 @@
-﻿function crearHorario(event) {
+﻿var oTable;
+var informacion;
 
-    var eventData = {
-        events: event
-    };
+function CrearTablaHorario(aDataSet) {
+    $('#dynamic').html('<table cellpadding="0" cellspacing="0" border="0" class="display" id="example"></table>');
+    TableTools.DEFAULTS.aButtons = [];
+    oTable = $('#example').dataTable({
+        "sDom": 'T<"clear">lfrtip',
+        "oTableTools": {
+            "sRowSelect": "single"
+        },
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+        "aaData": aDataSet,
+        "oLanguage": {
+            "oPaginate": {
+                "sPrevious": "Anterior",
+                "sNext": "Siguiente",
+                "sLast": "Última",
+                "sFirst": "Primera"
+            },
+            "sLengthMenu": 'Mostrar <select>' +
+                                    '<option value="10">10</option>' +
+                                    '<option value="20">20</option>' +
+                                    '<option value="30">30</option>' +
+                                    '<option value="40">40</option>' +
+                                    '<option value="50">50</option>' +
+                                    '<option value="-1">Todos</option>',
 
-    $('#calendar').weekCalendar({
-        timeslotsPerHour: 2,
-        timeslotHeigh: 30,
-        hourLine: true,
-        data: eventData,
-        height: function ($calendar) {
-            return $(window).height() - $('h1').outerHeight(true);
+            "sInfo": "Mostrando del _START_ al _END_ de los resultados (Total: _TOTAL_ resultados)",
+
+            "sInfoFiltered": " - filtrados de _MAX_ registros",
+
+            "sInfoEmpty": "No hay resultados de búsqueda",
+
+            "sZeroRecords": "No hay registros a mostrar",
+
+            "sProcessing": "Espere, por favor...",
+
+            "sSearch": "Buscar:"
         },
-        eventRender: function (calEvent, $event) {
-            if (calEvent.end.getTime() < new Date().getTime()) {
-                $event.css('backgroundColor', '#aaa');
-                $event.find('.time').css({ 'backgroundColor': '#999', 'border': '1px solid #888' });
-            }
-        },
-        eventNew: function (calEvent, $event) {
-            displayMessage('<strong>Added event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-            alert('You\'ve added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.');
-        },
-        eventDrop: function (calEvent, $event) {
-            displayMessage('<strong>Moved Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-        },
-        eventResize: function (calEvent, $event) {
-            displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-        },
-        eventClick: function (calEvent, $event) {
-            displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-        },
-        eventMouseover: function (calEvent, $event) {
-            displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-        },
-        eventMouseout: function (calEvent, $event) {
-            displayMessage('<strong>Mouseout Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-        },
-        noEvents: function () {
-            displayMessage('There are no events for this week');
-        }
+        "aoColumns": [
+                        { "sTitle": "Id Horario", "sClass": "center" },
+						{ "sTitle": "Dia", "sClass": "center" },
+						{ "sTitle": "Hora Inicio", "sClass": "center" },
+                        { "sTitle": "Hora Final", "sClass": "center" }
+					]
     });
 
-        function displayMessage(message) {
-        $('#message').html(message).fadeIn();
-    }
-    $('<div id="message" class="ui-corner-all"></div>').prependTo($('asp:Content'));
-     };
+    oTable.$('tr').click(function () {
+        var data = oTable.fnGetData(this);
+        informacion = data;
+        //$('#MainContent_TextBoxInfo').value = data[0];
+        //alert('The cell clicked on had the value of '+ data[0]);  
+    });
+    oTable.fnSetColumnVis(0, false);
+};
+
+function ObtenerDatosEliminar() {
+    __doPostBack('Eliminar', informacion);
+};
+
+function CargarTimePicker() {
+    $('#tpfechainicio').timepicker();
+    $('#tpfechafinal').timepicker();
+};

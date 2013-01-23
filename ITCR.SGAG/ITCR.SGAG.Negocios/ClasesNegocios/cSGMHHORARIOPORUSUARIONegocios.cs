@@ -239,5 +239,17 @@ namespace ITCR.SGAG.Negocios
 				throw ex;
 			}
 		}
-	} //class
+
+        public DataTable SeleccionarTodosPorCarne()
+        {
+            try
+            {
+                return base.SeleccionarTodosPorCarne();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    } //class
 } //namespace

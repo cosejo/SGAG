@@ -937,6 +937,78 @@ namespace ITCR.SGAG.Base
 		}
 
 
+        /// <summary>
+        /// Propósito: Método obtenerReporte. Este método va a Hacer un SELECT Implemento y la cantidad de elementos prestados de tabla.
+        /// </summary>
+        /// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
+        /// <remarks>
+        /// Propiedades necesarias para este método: 
+        /// <UL>
+        /// </UL>
+        /// Propiedades actualizadas luego de una llamada exitosa a este método: 
+        /// <UL>
+        ///		 <LI>CodError</LI>
+        /// </UL>
+        /// </remarks>
+        public DataTable obtenerReporte(DateTime dateTimeInicio, DateTime dateTimeFinal)
+        {
+            SqlCommand cmdAEjecutar = new SqlCommand();
+            cmdAEjecutar.CommandText = "dbo.[pr_SGPRIMPLEMENTOPORPRESTAMO_ObtenerReporte]";
+            cmdAEjecutar.CommandType = CommandType.StoredProcedure;
+            DataTable toReturn = new DataTable("SGPRIMPLEMENTOPORPRESTAMO");
+            SqlDataAdapter adapter = new SqlDataAdapter(cmdAEjecutar);
+
+            // Usar el objeto conexión de la clase base
+            cmdAEjecutar.Connection = _conexionBD;
+
+            try
+            {
+                cmdAEjecutar.Parameters.Add(new SqlParameter("@daFEC_PRESTAMO_INI", SqlDbType.DateTime, 8, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, dateTimeInicio));
+                cmdAEjecutar.Parameters.Add(new SqlParameter("@daFEC_PRESTAMO_FIN", SqlDbType.DateTime, 8, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, dateTimeFinal));
+                cmdAEjecutar.Parameters.Add(new SqlParameter("@iCodError", SqlDbType.Int, 4, ParameterDirection.Output, true, 10, 0, "", DataRowVersion.Proposed, _codError));
+
+                if (_conexionBDEsCreadaLocal)
+                {
+                    // Abre una conexión.
+                    _conexionBD.Open();
+                }
+                else
+                {
+                    if (_conexionBDProvider.IsTransactionPending)
+                    {
+                        cmdAEjecutar.Transaction = _conexionBDProvider.CurrentTransaction;
+                    }
+                }
+
+                // Ejecuta la consulta.
+                adapter.Fill(toReturn);
+                _codError = Int32.Parse(cmdAEjecutar.Parameters["@iCodError"].Value.ToString());
+
+                if (_codError != (int)ITCRError.AllOk)
+                {
+                    // Genera un error.
+                    throw new Exception("Procedimiento Almacenado 'pr_SGPRIMPLEMENTOPORPRESTAMO_ObtenerReporte' reportó el error Código: " + _codError);
+                }
+
+                return toReturn;
+            }
+            catch (Exception ex)
+            {
+                // Ocurrió un error. le hace Bubble a quien llama y encapsula el objeto Exception
+                throw new Exception("cSGPRIMPLEMENTOPORPRESTAMOBase::obtenerReporte::Ocurrió un error." + ex.Message, ex);
+            }
+            finally
+            {
+                if (_conexionBDEsCreadaLocal)
+                {
+                    // Cierra la conexión.
+                    _conexionBD.Close();
+                }
+                cmdAEjecutar.Dispose();
+                adapter.Dispose();
+            }
+        }
+
 		#region Declaraciones de propiedades de la clase
 		public SqlInt32 ID_IMPLEMENTOPORPRESTAMO
 		{
@@ -1054,5 +1126,7 @@ namespace ITCR.SGAG.Base
 			}
 		}
 		#endregion
-	}
+
+
+    }
 }

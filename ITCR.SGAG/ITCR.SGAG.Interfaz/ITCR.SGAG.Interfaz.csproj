@@ -72,6 +72,7 @@
     <Content Include="css\eventcalendar.css" />
     <Content Include="css\itcr.css" />
     <Content Include="css\jquery-ui-1.8.11.custom.css" />
+    <Content Include="css\jquery-ui-timepicker-addon.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\jquery.ui.autocomplete.css" />
     <Content Include="css\jquery.weekcalendar.css" />
@@ -144,6 +145,7 @@
     <Content Include="js\HorarioAsistentes.js" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\jquery-ui-1.8.11.custom.min.js" />
+    <Content Include="js\jquery-ui-timepicker-addon.js" />
     <Content Include="js\jquery-ui.js" />
     <Content Include="js\jquery.dataTables.js" />
     <Content Include="js\jquery.dataTables.min.js" />

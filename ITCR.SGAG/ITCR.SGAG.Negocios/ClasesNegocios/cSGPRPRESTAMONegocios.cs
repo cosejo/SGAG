@@ -263,5 +263,30 @@ namespace ITCR.SGAG.Negocios
 				throw ex;
 			}
 		}
-	} //class
+
+        /// <summary>
+        /// Propósito: Método Obtener Reporte. Este método va a Hacer un SELECT de tabla para obtener los estados de los prestamos realizados.
+        /// </summary>
+        /// <returns>DataTable object si tuvo éxito, sino genera una Exception. </returns>
+        /// <remarks>
+        /// Propiedades necesarias para este método: 
+        /// <UL>
+        /// </UL>
+        /// Propiedades actualizadas luego de una llamada exitosa a este método: 
+        /// <UL>
+        ///		 <LI>CodError</LI>
+        /// </UL>
+        /// </remarks>
+        public DataTable obtenerReporte(DateTime dateTimeInicio, DateTime dateTimeFinal)
+        {
+            try
+            {
+                return base.obtenerReporte(dateTimeInicio,dateTimeFinal);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    } //class
 } //namespace

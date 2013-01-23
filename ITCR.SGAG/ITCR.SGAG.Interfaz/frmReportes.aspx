@@ -44,8 +44,14 @@
              <br />
              <br />
              <asp:Button ID="BotonHistorialPrestamos" runat="server" 
-                 Text="Historial de Prestamos" Width="185px" ValidationGroup="Fecha" 
+                 Text="Préstamos Realizados" Width="185px" ValidationGroup="Fecha" 
                  onclick="BotonHistorialPrestamos_Click" />
+             <br />
+             <br />
+             <br />
+                 <asp:Button ID="BotonCantidadPrestados" runat="server" 
+                 Text="Prestamos por Implemento" Width="185px" ValidationGroup="Fecha" onclick="BotonCantidadPrestados_Click" 
+                  />
              <br />
              <br />
              <br />

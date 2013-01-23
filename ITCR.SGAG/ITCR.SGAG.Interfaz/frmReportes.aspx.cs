@@ -79,8 +79,8 @@ namespace ITCR.SGAG.Interfaz
                     string fechaInicio = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
                     arregloFechas = TextBoxFechaFinal.Text.Split('/');
                     string fechaFinal = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
-                    //DataTable DT_Prestamos = Prestamo.SeleccionarPorFecha(Convert.ToDateTime(fechaInicio), Convert.ToDateTime(fechaFinal));
-                    //llenarTablaIngresos(TextBoxFechaInicio.Text, TextBoxFechaFinal.Text, DT_Prestamos);
+                    DataTable DT_Prestamos = Prestamo.obtenerReporte(Convert.ToDateTime(fechaInicio), Convert.ToDateTime(fechaFinal));
+                    llenarTablaPrestamos(TextBoxFechaInicio.Text, TextBoxFechaFinal.Text, DT_Prestamos);
                 }
                 LabelMensaje.ForeColor = System.Drawing.Color.Blue;
             }
@@ -91,6 +91,33 @@ namespace ITCR.SGAG.Interfaz
             }
             LabelMensaje.Text = MensajeDevuelto;
         }
+
+        protected void BotonCantidadPrestados_Click(object sender, EventArgs e)
+        {
+            String MensajeDevuelto = "";
+            try
+            {
+                if (Page.IsValid)
+                {
+                    validarFechaInicio();
+                    validarFechaFinal();
+                    cSGPRIMPLEMENTOPORPRESTAMONegocios Prestamo = new cSGPRIMPLEMENTOPORPRESTAMONegocios(Global.gCOD_APLICACION, "CA", 2, "cosejo");
+                    string[] arregloFechas = TextBoxFechaInicio.Text.Split('/');
+                    string fechaInicio = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    arregloFechas = TextBoxFechaFinal.Text.Split('/');
+                    string fechaFinal = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    DataTable DT_Prestamos = Prestamo.obtenerReporte(Convert.ToDateTime(fechaInicio), Convert.ToDateTime(fechaFinal));
+                    llenarTablaPrestamosImp(TextBoxFechaInicio.Text, TextBoxFechaFinal.Text, DT_Prestamos);
+                }
+                LabelMensaje.ForeColor = System.Drawing.Color.Blue;
+            }
+            catch (Exception ex)
+            {
+                MensajeDevuelto = ex.Message;
+                LabelMensaje.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
         #endregion
 
         #region metodos
@@ -183,23 +210,47 @@ namespace ITCR.SGAG.Interfaz
             }
         }
 
+        private void llenarTablaPrestamosImp(string FechaInicio, string FechaFinal, DataTable DT_Prestamos)
+        {
+            try
+            {
+                String aDataSet = "[";
+                for (int IndiceImplementos = 0; IndiceImplementos < DT_Prestamos.Rows.Count; IndiceImplementos++)
+                {
+                    aDataSet += "['" + DT_Prestamos.Rows[IndiceImplementos][1].ToString() + "','" + DT_Prestamos.Rows[IndiceImplementos][2].ToString() + "']";
+                    if (IndiceImplementos + 1 != DT_Prestamos.Rows.Count)
+                    {
+                        aDataSet += ",";
+                    }
+                }
+                aDataSet += "]";
+
+                FechaInicio = FechaInicio.Replace("/","'/'");
+                FechaFinal = FechaFinal.Replace("/", "'/'");
+                if (!Page.ClientScript.IsStartupScriptRegistered("ReportePrestamosImp"))
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ReportePrestamosImp", "<script type=\"text/javascript\"> CrearTablaReportePrestamosImp(" + aDataSet + "," + FechaInicio + "," + FechaFinal + ");</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void llenarTablaPrestamos(string FechaInicio, string FechaFinal, DataTable DT_Prestamos)
         {
             try
             {
-                String sfechaReporte;
-                String sfechaIngreso;
+                String sfechaPrestamo;
                 string[] arregloFechas;
                 String aDataSet = "[";
                 for (int IndiceImplementos = 0; IndiceImplementos < DT_Prestamos.Rows.Count; IndiceImplementos++)
                 {
-                    sfechaIngreso = DT_Prestamos.Rows[IndiceImplementos][1].ToString().Split(' ')[0];
-                    arregloFechas = sfechaIngreso.Split('/');
-                    sfechaIngreso = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
-                    sfechaReporte = DT_Prestamos.Rows[IndiceImplementos][2].ToString().Split(' ')[0];
-                    arregloFechas = sfechaReporte.Split('/');
-                    sfechaReporte = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
-                    aDataSet += "['" + DT_Prestamos.Rows[IndiceImplementos][0].ToString() + "','" + sfechaIngreso + "','" + sfechaReporte + "']";
+                    sfechaPrestamo = DT_Prestamos.Rows[IndiceImplementos][2].ToString().Split(' ')[0];
+                    arregloFechas = sfechaPrestamo.Split('/');
+                    sfechaPrestamo = arregloFechas[1] + "/" + arregloFechas[0] + "/" + arregloFechas[2];
+                    aDataSet += "['" + DT_Prestamos.Rows[IndiceImplementos][1].ToString() + "','" + sfechaPrestamo + "','" + DT_Prestamos.Rows[IndiceImplementos][3].ToString() + "','" + DT_Prestamos.Rows[IndiceImplementos][4].ToString() + "']";
                     if (IndiceImplementos + 1 != DT_Prestamos.Rows.Count)
                     {
                         aDataSet += ",";
@@ -219,6 +270,9 @@ namespace ITCR.SGAG.Interfaz
                 throw ex;
             }
         }
+
+        
         #endregion
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmHorarioAsistentes.aspx.cs" Inherits="ITCR.SGAG.Interfaz.frmHorarioAsistentes" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-  <style type='text/css'>
+    <style type='text/css'>
   body {
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     margin: 0;
@@ -40,6 +40,9 @@
   <script type="text/javascript" src="js/date.js"></script>
   <script type='text/javascript' src='js/jquery.weekcalendar.js'></script>
   <script src="js/HorarioAsistentes.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+
     <style type="text/css">
         .style2
         {
@@ -80,33 +83,135 @@
             <td class="style3">
                 &nbsp;</td>
             <td class="style2">
-                <asp:Label ID="Label2" runat="server" Text="Nombre del Asistente"></asp:Label>
                 :
-                <asp:DropDownList ID="DropDownList1" runat="server" Height="16px" 
-                    style="margin-left: 0px" Width="210px">
-                </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="Label3" runat="server" Text="Identificación"></asp:Label>
-                :&nbsp;
-                <asp:DropDownList ID="DropDownList2" runat="server" Height="16px" Width="140px">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="Label3" runat="server" Text="Carné:" style="margin-left:175px"></asp:Label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="TextoError" ValidationGroup="Agregar"
+                    ErrorMessage="Número de Carné">*</asp:RequiredFieldValidator>
+                <asp:TextBox ID="TextBoxCarne" runat="server" Height="20px" Width="185px"></asp:TextBox>
+                <asp:Button ID="BotonAgregar" runat="server" style="margin-left: 43px" ValidationGroup="Agregar"
+                    Text="Agregar Asistente" onclick="Boton_Click" />
+            </td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td class="style2">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td class="style2">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td class="style2">
+                <asp:Label ID="Label2" runat="server" Text="Nombre del Asistente:" style="margin-left: 115px"></asp:Label>
+
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="TextoError"
+                    ErrorMessage="Nombre del Asistente">*</asp:RequiredFieldValidator>
+
+                <asp:DropDownList ID="DropDownListAsistentes" runat="server" Height="16px" 
+                    style="margin-left: 0px" Width="210px" 
+                    onselectedindexchanged="DropDownListAsistentes_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
             <td>
                 &nbsp;</td>
         </tr>
         <tr>
-
-            <td 
-             </td class="style3">
-
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-
+            <td class="style3">
+                &nbsp;</td>
+            <td class="style2">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td class="style2">
+                <asp:Button ID="BotonEliminar" runat="server" style="margin-left: 155px" 
+                    Text="Eliminar Asistente" onclick="BotonEliminar_Click" />
+                    <asp:Button ID="BotonEliminarHorario" runat="server" 
+                    Text="Eliminar Hora Asignada" style="margin-left: 56px" Width="160px" />
+            </td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td class="style2">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
         </tr>
     </table>
+                <br />
+                <br />
+                   <div id="dt_horario">
+                            <div id="container">
+                                <div id="dynamic">
+                                </div>
+                                <div class="spacer">
+                                </div>
+                            </div>
+                        </div>
+                         <br />
+                         <br />
+                 <div style="height: 256px">
 
-    <div id="calendar" align="left" style="margin-left:180px"</div>
+                     <asp:Label ID="LabelAgregarHorario" runat="server" Text="Asignar Horario" 
+                         style="margin-left:570px" Font-Size="Large"></asp:Label>
+                         <br />
+                         <br />
+                         <br />
+                     <asp:Label ID="Label1" runat="server" Text="Fecha Inicio:" style="margin-left:515px"></asp:Label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" CssClass="TextoError" 
+                         ErrorMessage="Fecha Inicio" ValidationGroup="Asignar" ControlToValidate="tpfechainicio">*</asp:RequiredFieldValidator>
+                         <input type="text" name="fechaInicio" id="tpfechainicio" value="" runat="server" 
+                         class="hasDatepicker" style="margin-left:4px"/>
+                          <br />
+                         <br />
+                         <br />
+                         <asp:Label ID="Label4" runat="server" Text="Fecha Final:" style="margin-left:515px"></asp:Label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" CssClass="TextoError" ValidationGroup="Asignar" 
+                         ErrorMessage="Fecha Inicio" ControlToValidate="tpfechafinal">*</asp:RequiredFieldValidator>
+                         <input type="text" name="fechaFinal" id="tpfechafinal" value="" runat="server"
+                         class="hasDatepicker" style="margin-left:4px"/>
+                         <br />
+                         <br />
+                         <br />
+                         <asp:Label ID="Label5" runat="server" Text="Día:" style="margin-left:570px"></asp:Label>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="TextoError" ValidationGroup="Asignar"
+                         ErrorMessage="Día" ControlToValidate="DropDownListDias">*</asp:RequiredFieldValidator>
+                     <asp:DropDownList ID="DropDownListDias" runat="server" Height="16px" Width="128px">
+                         <asp:ListItem Value="0">Domingo</asp:ListItem>
+                         <asp:ListItem Value="1">Lunes</asp:ListItem>
+                         <asp:ListItem Value="2">Martes</asp:ListItem>
+                         <asp:ListItem Value="3">Miercoles</asp:ListItem>
+                         <asp:ListItem Value="4">Jueves</asp:ListItem>
+                         <asp:ListItem Value="5">Viernes</asp:ListItem>
+                         <asp:ListItem Value="6">Sabado</asp:ListItem>
+                     </asp:DropDownList>
+                                              <br />
+                         <br />
+                         <br />
+                         <asp:Button ID="BotonCancelar" runat="server" Text="Cancelar" 
+                         onclick="BotonCancelar_Click" style="margin-left: 522px" />
+                         <asp:Button ID="BotonAsignar" runat="server" Text="Asignar" 
+                         onclick="BotonAsignar_Click" style="margin-left: 99px" />
+                </div>
+                      <br />
+                         <br />
 </asp:Content>
