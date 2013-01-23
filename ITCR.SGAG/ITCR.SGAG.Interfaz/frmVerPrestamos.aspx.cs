@@ -259,7 +259,6 @@ namespace ITCR.SGAG.Interfaz
             Button btnRealizarDevolucion = new Button();
             btnRealizarDevolucion.ID = "btnRealizarDevolucion";
             btnRealizarDevolucion.Text = "Realizar Devolución";
-            btnRealizarDevolucion.CssClass = "";
             panelDetalle.Controls.Add(btnRealizarDevolucion);
             Button btnOcultarDetalle = new Button();
             btnOcultarDetalle.ID = "btnOcultarDetalle";
